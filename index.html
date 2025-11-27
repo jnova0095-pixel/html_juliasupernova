@@ -149,44 +149,17 @@
                     <div class="h-1 w-16 rounded-full bg-slate-700/60"></div>
                   </div>
 
-                  <!-- Video + overlay -->
+                  <!-- Vimeo embed -->
                   <div class="mt-4 px-4 pb-4">
                     <div class="relative aspect-[9/16] rounded-3xl overflow-hidden">
-                      <video
-                        id="heroVideo"
-                        src="herovideo.mp4"
-                        playsinline
-                        class="w-full h-full object-cover"
-                        preload="metadata"
-                      ></video>
-
-                      <!-- Clickable overlay play/pause button -->
-                      <button
-                        id="heroVideoOverlay"
-                        class="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/10 transition"
-                        type="button"
-                        aria-label="Play showreel"
-                      >
-                        <!-- Play circle -->
-                        <span
-                          id="heroPlayIcon"
-                          class="flex items-center justify-center w-14 h-14 rounded-full bg-white/95 backdrop-blur-sm shadow-lg shadow-slate-900/80"
-                        >
-                          <span class="ml-0.5 border-l-[11px] border-y-[7px] border-l-slate-900 border-y-transparent"></span>
-                        </span>
-
-                        <!-- Pause circle (fixed alignment) -->
-                        <span
-                          id="heroPauseIcon"
-                          class="hidden w-14 h-14 rounded-full bg-white/95 backdrop-blur-sm shadow-lg shadow-slate-900/80 flex items-center justify-center"
-                        >
-                          <span class="flex items-center justify-center gap-1">
-                            <!-- Shorter, centered bars -->
-                            <span class="w-1.5 h-4 bg-slate-900 rounded-sm"></span>
-                            <span class="w-1.5 h-4 bg-slate-900 rounded-sm"></span>
-                          </span>
-                        </span>
-                      </button>
+                      <iframe
+                        src="https://player.vimeo.com/video/1141247956?h=cf5c4db302&title=0&byline=0&portrait=0"
+                        class="w-full h-full"
+                        frameborder="0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                        title="Showreel"
+                      ></iframe>
                     </div>
                   </div>
 
@@ -649,56 +622,6 @@
   <script>
     // Simple current year for footer
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Hero video play/pause logic
-    const heroVideo = document.getElementById('heroVideo');
-    const heroOverlay = document.getElementById('heroVideoOverlay');
-    const heroPlayIcon = document.getElementById('heroPlayIcon');
-    const heroPauseIcon = document.getElementById('heroPauseIcon');
-
-    if (heroVideo && heroOverlay && heroPlayIcon && heroPauseIcon) {
-      const showPlay = () => {
-        heroPlayIcon.classList.remove('hidden');
-        heroPauseIcon.classList.add('hidden');
-        heroOverlay.classList.remove('opacity-0', 'pointer-events-none');
-      };
-
-      const showPause = () => {
-        heroPlayIcon.classList.add('hidden');
-        heroPauseIcon.classList.remove('hidden');
-        heroOverlay.classList.remove('opacity-0', 'pointer-events-none');
-      };
-
-      heroOverlay.addEventListener('click', async () => {
-        try {
-          if (heroVideo.paused) {
-            await heroVideo.play();
-          } else {
-            heroVideo.pause();
-          }
-        } catch (err) {
-          console.error('Video play failed:', err);
-        }
-      });
-
-      heroVideo.addEventListener('play', () => {
-        showPause();
-      });
-
-      heroVideo.addEventListener('pause', () => {
-        if (heroVideo.currentTime < heroVideo.duration) {
-          showPlay();
-        }
-      });
-
-      heroVideo.addEventListener('ended', () => {
-        heroVideo.currentTime = 0;
-        showPlay();
-      });
-
-      // Initial state
-      showPlay();
-    }
   </script>
 </body>
 </html>
