@@ -149,17 +149,18 @@
                     <div class="h-1 w-16 rounded-full bg-slate-700/60"></div>
                   </div>
 
-                  <!-- Vimeo embed -->
+                  <!-- Local video inside phone mockup -->
                   <div class="mt-4 px-4 pb-4">
-                    <div class="relative aspect-[9/16] rounded-3xl overflow-hidden">
-                      <iframe
-                        src="https://player.vimeo.com/video/1141247956?h=cf5c4db302&title=0&byline=0&portrait=0"
-                        class="w-full h-full"
-                        frameborder="0"
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowfullscreen
-                        title="Showreel"
-                      ></iframe>
+                    <div class="relative aspect-[9/16] rounded-3xl overflow-hidden bg-black">
+                      <video
+                        id="heroVideo"
+                        src="herovideo.mp4"
+                        muted
+                        playsinline
+                        autoplay
+                        loop
+                        class="w-full h-full object-cover"
+                      ></video>
                     </div>
                   </div>
 
