@@ -161,16 +161,16 @@
                         loop
                         class="w-full h-full object-cover"
                       ></video>
-                    </div>
 
-                    <!-- Pause/Play button -->
-                    <button
-                      id="videoToggle"
-                      type="button"
-                      class="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/15 text-[11px] text-slate-100 hover:bg-black/80 transition"
-                    >
-                      ⏸ Pause video
-                    </button>
+                      <!-- Centered round play/pause button -->
+                      <button
+                        id="videoOverlayToggle"
+                        type="button"
+                        class="absolute inset-0 m-auto w-14 h-14 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-xl text-slate-50 hover:bg-black/80 transition"
+                      >
+                        ⏸
+                      </button>
+                    </div>
                   </div>
 
                   <!-- Soft radial glow only -->
@@ -633,18 +633,18 @@
     // Simple current year for footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Pause / Play toggle for hero video
+    // Play / Pause toggle for hero video with centered round button
     const heroVideo = document.getElementById('heroVideo');
-    const videoToggle = document.getElementById('videoToggle');
+    const overlayToggle = document.getElementById('videoOverlayToggle');
 
-    if (heroVideo && videoToggle) {
-      videoToggle.addEventListener('click', () => {
+    if (heroVideo && overlayToggle) {
+      overlayToggle.addEventListener('click', () => {
         if (heroVideo.paused) {
           heroVideo.play();
-          videoToggle.textContent = '⏸ Pause video';
+          overlayToggle.textContent = '⏸';
         } else {
           heroVideo.pause();
-          videoToggle.textContent = '▶ Play video';
+          overlayToggle.textContent = '▶';
         }
       });
     }
