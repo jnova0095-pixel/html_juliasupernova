@@ -726,7 +726,11 @@
       const btn = document.getElementById(buttonId);
       if (!video || !btn) return;
 
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        // Prevent the parent <a href="#"> from scrolling to top
+        e.preventDefault();
+        e.stopPropagation();
+
         if (video.paused) {
           video.play();
           btn.textContent = '⏸';
