@@ -324,6 +324,7 @@
               <div class="relative bg-slate-950">
                 <div class="relative w-full aspect-[9/16] overflow-hidden rounded-none border-y border-white/10 bg-black">
                   <video
+                    id="projectVideo1"
                     src="example1.mp4"
                     playsinline
                     muted
@@ -331,6 +332,15 @@
                     autoplay
                     class="w-full h-full object-cover"
                   ></video>
+
+                  <!-- Centered play/pause button -->
+                  <button
+                    id="projectToggle1"
+                    type="button"
+                    class="absolute inset-0 m-auto w-12 h-12 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-lg text-slate-50 hover:bg-black/80 transition"
+                  >
+                    ⏸
+                  </button>
                 </div>
               </div>
 
@@ -368,6 +378,7 @@
               <div class="relative bg-slate-950">
                 <div class="relative w-full aspect-[9/16] overflow-hidden rounded-none border-y border-white/10 bg-black">
                   <video
+                    id="projectVideo2"
                     src="example2.mp4"
                     playsinline
                     muted
@@ -375,6 +386,15 @@
                     autoplay
                     class="w-full h-full object-cover"
                   ></video>
+
+                  <!-- Centered play/pause button -->
+                  <button
+                    id="projectToggle2"
+                    type="button"
+                    class="absolute inset-0 m-auto w-12 h-12 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-lg text-slate-50 hover:bg-black/80 transition"
+                  >
+                    ⏸
+                  </button>
                 </div>
               </div>
 
@@ -412,6 +432,7 @@
               <div class="relative bg-slate-950">
                 <div class="relative w-full aspect-[9/16] overflow-hidden rounded-none border-y border-white/10 bg-black">
                   <video
+                    id="projectVideo3"
                     src="example3.mp4"
                     playsinline
                     muted
@@ -419,6 +440,15 @@
                     autoplay
                     class="w-full h-full object-cover"
                   ></video>
+
+                  <!-- Centered play/pause button -->
+                  <button
+                    id="projectToggle3"
+                    type="button"
+                    class="absolute inset-0 m-auto w-12 h-12 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-lg text-slate-50 hover:bg-black/80 transition"
+                  >
+                    ⏸
+                  </button>
                 </div>
               </div>
 
@@ -690,21 +720,29 @@
     // Simple current year for footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Play / Pause toggle for hero video with centered round button
-    const heroVideo = document.getElementById('heroVideo');
-    const overlayToggle = document.getElementById('videoOverlayToggle');
+    // Generic helper for play/pause toggles
+    function wireVideoToggle(videoId, buttonId) {
+      const video = document.getElementById(videoId);
+      const btn = document.getElementById(buttonId);
+      if (!video || !btn) return;
 
-    if (heroVideo && overlayToggle) {
-      overlayToggle.addEventListener('click', () => {
-        if (heroVideo.paused) {
-          heroVideo.play();
-          overlayToggle.textContent = '⏸';
+      btn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          btn.textContent = '⏸';
         } else {
-          heroVideo.pause();
-          overlayToggle.textContent = '▶';
+          video.pause();
+          btn.textContent = '▶';
         }
       });
     }
+
+    // Hero video
+    wireVideoToggle('heroVideo', 'videoOverlayToggle');
+    // Portfolio videos
+    wireVideoToggle('projectVideo1', 'projectToggle1');
+    wireVideoToggle('projectVideo2', 'projectToggle2');
+    wireVideoToggle('projectVideo3', 'projectToggle3');
   </script>
 </body>
 </html>
