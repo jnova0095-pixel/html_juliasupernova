@@ -1,301 +1,1053 @@
-<!-- =========================
-  index.html
-========================== -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Supernova UGC – Home</title>
+    <title>Supernova UGC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root {
+        /* Pitchbrand‑style SaaS palette */
+        --color-bg: #f9fafb;
+        --color-surface: #ffffff;
+        --color-border: #e5e7eb;
+        --color-border-strong: rgba(79, 70, 229, 0.3);
+
+        --color-text: #0f172a;
+        --color-text-muted: #6b7280;
+        --color-text-soft: #9ca3af;
+
+        --color-primary: #4f46e5;
+        --color-primary-hover: #4338ca;
+        --color-primary-soft: #eef2ff;
+
+        --color-footer-bg: #020617;
+        --color-footer-border: #111827;
+
+        --max-width: 1120px;
+        --radius-sm: 0.5rem;
+        --radius-md: 0.75rem;
+        --radius-lg: 1rem;
+        --radius-xl: 1.5rem;
+        --radius-pill: 9999px;
+
+        --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.04);
+        --shadow-strong: 0 20px 45px rgba(79, 70, 229, 0.18);
+        --shadow-frame: 0 25px 55px rgba(15, 23, 42, 0.25);
+
+        --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+          "Inter", "Segoe UI", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font-family: inherit;
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        margin: 0;
+      }
+
+      .h1 {
+        font-size: 3rem;
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .h2 {
+        font-size: 2.25rem;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .h3 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+        font-weight: 600;
+      }
+
+      .h4 {
+        font-size: 1.125rem;
+        line-height: 1.3;
+        font-weight: 600;
+      }
+
+      .text-body {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .text-sm {
+        font-size: 0.875rem;
+      }
+
+      .text-xs {
+        font-size: 0.75rem;
+      }
+
+      .text-muted {
+        color: var(--color-text-muted);
+      }
+
+      .text-soft {
+        color: var(--color-text-soft);
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .h1 {
+          font-size: 2.25rem;
+        }
+        .h2 {
+          font-size: 1.75rem;
+        }
+      }
+
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding-inline: 1.5rem;
+      }
+
+      .section {
+        padding-block: 4rem;
+      }
+
+      .section--large {
+        padding-block: 5rem;
+      }
+
+      @media (max-width: 768px) {
+        .section {
+          padding-block: 3rem;
+        }
+      }
+
+      .flex {
+        display: flex;
+      }
+
+      .flex-between {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .stack-sm > * + * {
+        margin-top: 0.75rem;
+      }
+
+      .stack-md > * + * {
+        margin-top: 1.25rem;
+      }
+
+      .stack-lg > * + * {
+        margin-top: 1.75rem;
+      }
+
+      .stack-xl > * + * {
+        margin-top: 2.5rem;
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--color-border);
+        background-color: #ffffff;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+      }
+
+      .site-header-inner {
+        padding-block: 0.9rem;
+      }
+
+      .site-logo {
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.04em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .nav-link {
+        font-size: 0.9rem;
+        color: var(--color-text-muted);
+      }
+
+      .nav-link--active {
+        color: var(--color-text);
+        font-weight: 600;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.65rem 1.4rem;
+        border-radius: var(--radius-pill);
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition:
+          background-color 150ms ease,
+          color 150ms ease,
+          transform 150ms ease,
+          box-shadow 150ms ease,
+          border-color 150ms ease;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background-color: var(--color-primary);
+        color: #ffffff;
+        box-shadow: 0 14px 30px rgba(79, 70, 229, 0.25);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--color-primary-hover);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background-color: #ffffff;
+        color: var(--color-text);
+        border: 1px solid var(--color-border);
+      }
+
+      .btn-secondary:hover {
+        background-color: #f9fafb;
+        border-color: #d1d5db;
+      }
+
+      .btn-nav {
+        border-radius: 0;
+        border: 1px solid var(--color-text);
+        background-color: #000000;
+        color: #ffffff;
+        padding-inline: 1.6rem;
+        padding-block: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .btn-nav:hover {
+        background-color: #111827;
+      }
+
+      .btn-full {
+        width: 100%;
+      }
+
+      .social-row,
+      .footer-social-row {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .social-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: 1px solid var(--color-border);
+        background-color: #f3f4f6;
+        color: #4b5563;
+        font-size: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background-color 150ms ease,
+          transform 150ms ease,
+          border-color 150ms ease;
+      }
+
+      .social-icon:hover {
+        background-color: #e5e7eb;
+        border-color: #d1d5db;
+        transform: translateY(-1px);
+      }
+
+      .card {
+        background-color: var(--color-surface);
+        border-radius: 0.75rem;
+        border: 1px solid var(--color-border);
+        padding: 1.5rem 1.5rem;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 3rem;
+        align-items: flex-start;
+      }
+
+      @media (min-width: 900px) {
+        .hero-grid {
+          grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+        }
+      }
+
+      .hero-photo-rect {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        border-radius: 0.75rem;
+        border: 1px solid var(--color-border);
+        background-color: #f3f4f6;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-photo-label {
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.75rem;
+        color: var(--color-text-soft);
+      }
+
+      .hero-intro-card {
+        background-color: #f9fafb;
+      }
+
+      .facts-grid-vert {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .fact-pill {
+        border-radius: 0.4rem;
+        border: 1px solid var(--color-border);
+        background-color: #f3f4f6;
+        padding: 0.7rem 0.9rem;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+      }
+
+      .section-header {
+        animation: fadeUp 500ms ease-out both;
+      }
+
+      .video-grid {
+        display: grid;
+        gap: 1.5rem;
+        margin-top: 1.75rem;
+      }
+
+      .video-grid--premium {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .video-grid--standard {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+      }
+
+      @media (max-width: 1100px) {
+        .video-grid--premium {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .video-grid--standard {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .video-grid--premium,
+        .video-grid--standard {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .video-card {
+        border-radius: 0.75rem;
+        border: 1px solid var(--color-border);
+        padding: 1rem;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        animation: fadeUp 500ms ease-out both;
+      }
+
+      .video-frame {
+        position: relative;
+        border-radius: 0.55rem;
+        overflow: hidden;
+        background-color: #f3f4f6;
+        height: 0;
+        padding-bottom: 170%;
+      }
+
+      .video-title {
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .premium-caption {
+        margin-top: 1.25rem;
+      }
+
+      .services-grid {
+        display: grid;
+        gap: 2rem;
+      }
+
+      @media (min-width: 900px) {
+        .services-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .includes-label {
+        margin-top: 1rem;
+      }
+
+      .services-list {
+        padding-left: 1.1rem;
+        margin: 0.5rem 0 0;
+      }
+
+      .services-list li {
+        margin-bottom: 0.35rem;
+        font-size: 0.95rem;
+        color: var(--color-text-muted);
+      }
+
+      .good-for {
+        margin-top: 1rem;
+      }
+
+      .testimonials-band {
+        border-radius: 1.25rem;
+        background-image: radial-gradient(
+          circle at top left,
+          #4f46e5 0,
+          #020617 55%
+        );
+        color: #ffffff;
+        padding: 2.75rem 2.25rem;
+        box-shadow: var(--shadow-frame);
+      }
+
+      .testimonials-grid {
+        display: grid;
+        gap: 2rem;
+        margin-top: 1.75rem;
+      }
+
+      @media (min-width: 768px) {
+        .testimonials-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .testimonial-name {
+        font-weight: 600;
+        margin-top: 0.75rem;
+      }
+
+      .testimonial-role {
+        font-size: 0.85rem;
+        color: #cbd5ff;
+      }
+
+      .cta-section {
+        padding-bottom: 5rem;
+      }
+
+      .cta-band {
+        border-radius: 1rem;
+        border: 1px solid var(--color-border);
+        background-color: #ffffff;
+        padding: 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .cta-heading {
+        font-size: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .cta-band {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+
+      .projects-hero {
+        padding-bottom: 1.5rem;
+      }
+
+      .projects-grid {
+        display: grid;
+        gap: 1.75rem;
+        margin-top: 2.5rem;
+      }
+
+      @media (min-width: 1024px) {
+        .projects-grid {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 1023px) and (min-width: 640px) {
+        .projects-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 639px) {
+        .projects-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .project-card {
+        border-radius: 0.75rem;
+        border: 1px solid var(--color-border);
+        padding: 0.9rem;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .project-frame {
+        position: relative;
+        border-radius: 0.55rem;
+        overflow: hidden;
+        background-color: #f3f4f6;
+        height: 0;
+        padding-bottom: 170%;
+      }
+
+      .project-title {
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .global-footer {
+        background-color: var(--color-footer-bg);
+        color: #e5e7eb;
+        border-top: 1px solid var(--color-footer-border);
+        padding-block: 1.75rem;
+      }
+
+      .global-footer-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .footer-nav {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .footer-nav a {
+        position: relative;
+      }
+
+      .footer-nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -4px;
+        height: 1px;
+        background-color: transparent;
+        transition: background-color 150ms ease;
+      }
+
+      .footer-nav a:hover::after {
+        background-color: #9ca3af;
+      }
+
+      @media (min-width: 640px) {
+        .global-footer-inner {
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+
+      .view {
+        display: none;
+      }
+
+      .view--active {
+        display: block;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
   </head>
-  <body>
-    <!-- Header / Navigation -->
+  <body id="top">
+    <!-- HEADER -->
     <header class="site-header">
       <div class="container site-header-inner flex-between">
-        <a href="index.html" class="site-logo">Supernova UGC</a>
+        <button
+          class="site-logo"
+          data-nav="home"
+          aria-label="Go to home view"
+        >
+          Supernova UGC
+        </button>
         <nav aria-label="Main navigation">
           <div class="nav-links">
-            <a href="projects.html" class="nav-link">Projects</a>
+            <button
+              class="nav-link"
+              data-nav="projects"
+              id="nav-projects-top"
+            >
+              Projects
+            </button>
             <a href="#ready-to-create" class="btn btn-nav">Book Me</a>
           </div>
         </nav>
       </div>
     </header>
 
+    <!-- MAIN -->
     <main>
-      <!-- Hero: Creator Photo + Intro + Facts -->
-      <section class="section section--large hero hero--home">
-        <div class="container hero-grid">
-          <!-- Left: Creator photo + portfolio button + socials -->
-          <div class="hero-left stack-lg">
-            <div class="hero-photo-rect" aria-hidden="true">
-              <span class="hero-photo-label">Creator Photo</span>
+      <!-- HOME VIEW -->
+      <div class="view view--active" id="view-home">
+        <!-- Hero: creator photo left, intro + facts right -->
+        <section class="section section--large hero hero--home">
+          <div class="container hero-grid">
+            <!-- Left column -->
+            <div class="stack-lg">
+              <div class="hero-photo-rect" aria-hidden="true">
+                <span class="hero-photo-label">Creator Photo</span>
+              </div>
+
+              <a href="#" class="btn btn-secondary btn-full" data-nav="projects">
+                View My Portfolio
+              </a>
+
+              <div class="social-row">
+                <button class="social-icon" aria-label="Instagram">IG</button>
+                <button class="social-icon" aria-label="TikTok">TT</button>
+                <button class="social-icon" aria-label="YouTube">YT</button>
+                <button class="social-icon" aria-label="LinkedIn">in</button>
+              </div>
             </div>
 
-            <a href="projects.html" class="btn btn-secondary btn-full">
-              View My Portfolio
-            </a>
-
-            <div class="social-row">
-              <button class="social-icon" aria-label="Instagram">IG</button>
-              <button class="social-icon" aria-label="TikTok">TT</button>
-              <button class="social-icon" aria-label="YouTube">YT</button>
-              <button class="social-icon" aria-label="LinkedIn">in</button>
-            </div>
-          </div>
-
-          <!-- Right: main text block + facts -->
-          <div class="hero-right stack-lg">
-            <div class="hero-intro card hero-intro-card">
-              <p class="text-body">
-                [Large text block for main introduction / key value
-                proposition]
-              </p>
-            </div>
-
-            <div class="facts-grid-vert">
-              <div class="fact-pill">[Fact 1]</div>
-              <div class="fact-pill">[Fact 2]</div>
-              <div class="fact-pill">[Fact 3]</div>
-              <div class="fact-pill">[Fact 4]</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Premium Video Ads -->
-      <section class="section">
-        <div class="container">
-          <header class="section-header stack-sm">
-            <h2 class="h2">Premium Video Ads</h2>
-          </header>
-
-          <div class="video-grid video-grid--premium">
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 1</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 2</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 3</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 4</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-          </div>
-
-          <p class="text-sm text-muted premium-caption">
-            Short descriptive text underneath
-          </p>
-        </div>
-      </section>
-
-      <!-- Standard UGC Ads -->
-      <section class="section">
-        <div class="container">
-          <header class="section-header stack-sm">
-            <h2 class="h2">Standard UGC Ads</h2>
-          </header>
-
-          <div class="video-grid video-grid--standard">
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 1</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 2</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 3</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 4</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-
-            <article class="video-card">
-              <div class="video-frame" aria-hidden="true"></div>
-              <div class="video-title">Video 5</div>
-              <p class="text-sm text-muted">[Video description]</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- What I Can Do for Your Brand -->
-      <section class="section">
-        <div class="container">
-          <header class="section-header stack-sm">
-            <h2 class="h2">What I Can Do for Your Brand</h2>
-          </header>
-
-          <div class="services-grid mt-lg">
-            <!-- 1️⃣ Native UGC -->
-            <article class="card service-card">
-              <header class="card-header stack-sm">
-                <h3 class="h3">1️⃣ Native UGC</h3>
-                <p class="text-body">Content that feels real, not like an ad.</p>
-              </header>
-
-              <div class="card-body">
+            <!-- Right column -->
+            <div class="stack-lg">
+              <div class="card hero-intro-card">
                 <p class="text-body">
-                  I create natural, creator-style videos that blend into the
-                  feed, build trust, and show your product in a real way.
-                </p>
-
-                <p class="text-sm text-muted includes-label">Includes:</p>
-                <ul class="services-list">
-                  <li>UGC video ideas + simple scripts</li>
-                  <li>Strong hooks to grab attention fast</li>
-                  <li>Filmed in real, everyday settings</li>
-                  <li>Clean edits made for each platform</li>
-                  <li>Ready-to-post videos</li>
-                </ul>
-
-                <p class="text-sm text-muted good-for">
-                  Good for: organic content, social proof, and testing products
-                  or offers
+                  [Large text block for main introduction / key value
+                  proposition]
                 </p>
               </div>
-            </article>
 
-            <!-- 2️⃣ Scroll-Stopping Ads -->
-            <article class="card service-card">
-              <header class="card-header stack-sm">
-                <h3 class="h3">2️⃣ Scroll-Stopping Ads</h3>
-                <p class="text-body">Ads made to stop the scroll.</p>
-              </header>
-
-              <div class="card-body">
-                <p class="text-body">
-                  This is more creative and bold — built to grab attention fast
-                  and clearly sell your offer.
-                </p>
-
-                <p class="text-sm text-muted includes-label">Includes:</p>
-                <ul class="services-list">
-                  <li>Ad concepts + scripts</li>
-                  <li>Clear messaging and strong hooks</li>
-                  <li>Intentional filming (angles, lighting, movement)</li>
-                  <li>High-quality editing with effects and animations</li>
-                  <li>Optimized for TikTok, Reels, and Shorts</li>
-                </ul>
-
-                <p class="text-sm text-muted good-for">
-                  Good for: paid ads, launches, and scaling brands
-                </p>
+              <div class="facts-grid-vert">
+                <div class="fact-pill">[Fact 1]</div>
+                <div class="fact-pill">[Fact 2]</div>
+                <div class="fact-pill">[Fact 3]</div>
+                <div class="fact-pill">[Fact 4]</div>
               </div>
-            </article>
-
-            <!-- 3️⃣ Brand Universe (Retainer) -->
-            <article class="card service-card">
-              <header class="card-header stack-sm">
-                <h3 class="h3">3️⃣ Brand Universe (Retainer)</h3>
-                <p class="text-body">Not just videos — a whole content vibe.</p>
-              </header>
-
-              <div class="card-body">
-                <p class="text-body">
-                  I help you build a recognizable style so your content feels
-                  connected, not random.
-                </p>
-
-                <p class="text-sm text-muted includes-label">Includes:</p>
-                <ul class="services-list">
-                  <li>Ongoing content ideas and planning</li>
-                  <li>Video series instead of one-off posts</li>
-                  <li>Consistent look, tone, and storytelling</li>
-                  <li>Creative support month to month</li>
-                </ul>
-
-                <p class="text-sm text-muted good-for">
-                  Good for: brands that want consistency and long-term growth
-                </p>
-              </div>
-            </article>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Don't Take My Word for It -->
-      <section class="section">
-        <div class="container">
-          <section class="testimonials-band">
-            <header class="stack-sm">
-              <h2 class="h2">Don't Take My Word for It</h2>
+        <!-- Premium Video Ads -->
+        <section class="section">
+          <div class="container">
+            <header class="section-header stack-sm">
+              <h2 class="h2">Premium Video Ads</h2>
             </header>
 
-            <div class="testimonials-grid">
-              <!-- Testimonial 1 -->
-              <article class="testimonial-card">
-                <p class="testimonial-quote">
-                  "Working with this creator has been amazing! The videos feel
-                  authentic and our engagement has skyrocketed."
-                </p>
-                <p class="testimonial-name">Sarah Johnson</p>
-                <p class="testimonial-role">TechStart Inc.</p>
+            <div class="video-grid video-grid--premium">
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 1</div>
+                <p class="text-sm text-muted">[Video description]</p>
               </article>
 
-              <!-- Testimonial 2 -->
-              <article class="testimonial-card">
-                <p class="testimonial-quote">
-                  "The quality and creativity exceeded our expectations. Highly
-                  recommend for any brand looking for real UGC content."
-                </p>
-                <p class="testimonial-name">Mike Chen</p>
-                <p class="testimonial-role">GrowthLabs</p>
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 2</div>
+                <p class="text-sm text-muted">[Video description]</p>
               </article>
 
-              <!-- Testimonial 3 -->
-              <article class="testimonial-card">
-                <p class="testimonial-quote">
-                  "Professional, reliable, and understands our brand voice
-                  perfectly. The ROI on these videos has been incredible."
-                </p>
-                <p class="testimonial-name">Emma Davis</p>
-                <p class="testimonial-role">BrandBoost Co.</p>
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 3</div>
+                <p class="text-sm text-muted">[Video description]</p>
+              </article>
+
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 4</div>
+                <p class="text-sm text-muted">[Video description]</p>
               </article>
             </div>
-          </section>
-        </div>
-      </section>
 
-      <!-- Ready to Create CTA -->
-      <section class="section cta-section" id="ready-to-create">
-        <div class="container">
-          <div class="cta-band">
-            <h2 class="h2 cta-heading">Ready to Create?</h2>
-            <a href="mailto:hello@example.com" class="btn btn-primary">
-              Book Me
-            </a>
+            <p class="text-sm text-muted premium-caption">
+              Short descriptive text underneath
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <!-- Standard UGC Ads -->
+        <section class="section">
+          <div class="container">
+            <header class="section-header stack-sm">
+              <h2 class="h2">Standard UGC Ads</h2>
+            </header>
+
+            <div class="video-grid video-grid--standard">
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 1</div>
+                <p class="text-sm text-muted">[Video description]</p>
+              </article>
+
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 2</div>
+                <p class="text-sm text-muted">[Video description]</p>
+              </article>
+
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 3</div>
+                <p class="text-sm text-muted">[Video description]</p>
+              </article>
+
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 4</div>
+                <p class="text-sm text-muted">[Video description]</p>
+              </article>
+
+              <article class="video-card">
+                <div class="video-frame" aria-hidden="true"></div>
+                <div class="video-title">Video 5</div>
+                <p class="text-sm text-muted">[Video description]</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- What I Can Do for Your Brand -->
+        <section class="section">
+          <div class="container">
+            <header class="section-header stack-sm">
+              <h2 class="h2">What I Can Do for Your Brand</h2>
+            </header>
+
+            <div class="services-grid stack-md" style="margin-top: 2rem">
+              <article class="card">
+                <header class="stack-sm">
+                  <h3 class="h3">1️⃣ Native UGC</h3>
+                  <p class="text-body">Content that feels real, not like an ad.</p>
+                </header>
+                <div class="card-body">
+                  <p class="text-body">
+                    I create natural, creator-style videos that blend into the
+                    feed, build trust, and show your product in a real way.
+                  </p>
+                  <p class="text-sm text-muted includes-label">Includes:</p>
+                  <ul class="services-list">
+                    <li>UGC video ideas + simple scripts</li>
+                    <li>Strong hooks to grab attention fast</li>
+                    <li>Filmed in real, everyday settings</li>
+                    <li>Clean edits made for each platform</li>
+                    <li>Ready-to-post videos</li>
+                  </ul>
+                  <p class="text-sm text-muted good-for">
+                    Good for: organic content, social proof, and testing products
+                    or offers
+                  </p>
+                </div>
+              </article>
+
+              <article class="card">
+                <header class="stack-sm">
+                  <h3 class="h3">2️⃣ Scroll-Stopping Ads</h3>
+                  <p class="text-body">Ads made to stop the scroll.</p>
+                </header>
+                <div class="card-body">
+                  <p class="text-body">
+                    This is more creative and bold — built to grab attention
+                    fast and clearly sell your offer.
+                  </p>
+                  <p class="text-sm text-muted includes-label">Includes:</p>
+                  <ul class="services-list">
+                    <li>Ad concepts + scripts</li>
+                    <li>Clear messaging and strong hooks</li>
+                    <li>Intentional filming (angles, lighting, movement)</li>
+                    <li>High-quality editing with effects and animations</li>
+                    <li>Optimized for TikTok, Reels, and Shorts</li>
+                  </ul>
+                  <p class="text-sm text-muted good-for">
+                    Good for: paid ads, launches, and scaling brands
+                  </p>
+                </div>
+              </article>
+
+              <article class="card">
+                <header class="stack-sm">
+                  <h3 class="h3">3️⃣ Brand Universe (Retainer)</h3>
+                  <p class="text-body">
+                    Not just videos — a whole content vibe.
+                  </p>
+                </header>
+                <div class="card-body">
+                  <p class="text-body">
+                    I help you build a recognizable style so your content feels
+                    connected, not random.
+                  </p>
+                  <p class="text-sm text-muted includes-label">Includes:</p>
+                  <ul class="services-list">
+                    <li>Ongoing content ideas and planning</li>
+                    <li>Video series instead of one-off posts</li>
+                    <li>Consistent look, tone, and storytelling</li>
+                    <li>Creative support month to month</li>
+                  </ul>
+                  <p class="text-sm text-muted good-for">
+                    Good for: brands that want consistency and long-term growth
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Don't Take My Word for It -->
+        <section class="section">
+          <div class="container">
+            <section class="testimonials-band">
+              <header class="stack-sm">
+                <h2 class="h2">Don't Take My Word for It</h2>
+              </header>
+
+              <div class="testimonials-grid">
+                <article>
+                  <p class="text-body">
+                    "Working with this creator has been amazing! The videos feel
+                    authentic and our engagement has skyrocketed."
+                  </p>
+                  <p class="testimonial-name">Sarah Johnson</p>
+                  <p class="testimonial-role">TechStart Inc.</p>
+                </article>
+
+                <article>
+                  <p class="text-body">
+                    "The quality and creativity exceeded our expectations.
+                    Highly recommend for any brand looking for real UGC
+                    content."
+                  </p>
+                  <p class="testimonial-name">Mike Chen</p>
+                  <p class="testimonial-role">GrowthLabs</p>
+                </article>
+
+                <article>
+                  <p class="text-body">
+                    "Professional, reliable, and understands our brand voice
+                    perfectly. The ROI on these videos has been incredible."
+                  </p>
+                  <p class="testimonial-name">Emma Davis</p>
+                  <p class="testimonial-role">BrandBoost Co.</p>
+                </article>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <!-- Ready to Create CTA -->
+        <section class="section cta-section" id="ready-to-create">
+          <div class="container">
+            <div class="cta-band">
+              <h2 class="h2 cta-heading">Ready to Create?</h2>
+              <a href="mailto:hello@example.com" class="btn btn-primary">
+                Book Me
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- PROJECTS VIEW -->
+      <div class="view" id="view-projects">
+        <section class="section projects-hero">
+          <div class="container stack-sm">
+            <h1 class="h1">Projects</h1>
+            <p class="text-body">
+              My portfolio of UGC work showcasing vertical video content
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container">
+            <div class="projects-grid">
+              <!-- 15 video cards, layout matches wireframe -->
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 1</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 2</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 3</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 4</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 5</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 6</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 7</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 8</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 9</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 10</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 11</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 12</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 13</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 14</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+
+              <article class="project-card">
+                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-title">Video 15</div>
+                <p class="text-xs text-muted">[Video description]</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
-    <!-- Global dark footer -->
+    <!-- FOOTER -->
     <footer class="global-footer">
       <div class="container global-footer-inner">
         <div class="footer-social-row">
@@ -305,865 +1057,46 @@
           <button class="social-icon" aria-label="LinkedIn">in</button>
         </div>
         <nav aria-label="Footer navigation" class="footer-nav">
-          <a href="projects.html">Projects</a>
+          <button class="nav-link" data-nav="projects">Projects</button>
           <a href="mailto:hello@example.com">Contact</a>
-          <a href="#top">About</a>
+          <button class="nav-link" data-nav="home">About</button>
         </nav>
       </div>
     </footer>
+
+    <script>
+      const homeView = document.getElementById("view-home");
+      const projectsView = document.getElementById("view-projects");
+      const navButtons = document.querySelectorAll("[data-nav]");
+
+      function setView(view) {
+        if (view === "projects") {
+          homeView.classList.remove("view--active");
+          projectsView.classList.add("view--active");
+        } else {
+          projectsView.classList.remove("view--active");
+          homeView.classList.add("view--active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document.querySelectorAll(".nav-link").forEach((el) => {
+          el.classList.remove("nav-link--active");
+        });
+
+        if (view === "projects") {
+          document
+            .querySelectorAll('[data-nav="projects"].nav-link')
+            .forEach((el) => el.classList.add("nav-link--active"));
+        }
+      }
+
+      navButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const view = btn.getAttribute("data-nav");
+          setView(view);
+        });
+      });
+    </script>
   </body>
 </html>
-
-<!-- =========================
-  projects.html
-========================== -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Supernova UGC – Projects</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- Header / Navigation -->
-    <header class="site-header">
-      <div class="container site-header-inner flex-between">
-        <a href="index.html" class="site-logo">Supernova UGC</a>
-        <nav aria-label="Main navigation">
-          <div class="nav-links">
-            <a href="projects.html" class="nav-link nav-link--active">
-              Projects
-            </a>
-            <a href="index.html#ready-to-create" class="btn btn-nav">
-              Book Me
-            </a>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <!-- Projects heading -->
-      <section class="section projects-hero">
-        <div class="container stack-sm">
-          <h1 class="h1">Projects</h1>
-          <p class="text-body">
-            My portfolio of UGC work showcasing vertical video content
-          </p>
-        </div>
-      </section>
-
-      <!-- Projects grid: 15 videos -->
-      <section class="section">
-        <div class="container">
-          <div class="projects-grid">
-            <!-- Repeating layout; placeholders for thumbnails & text -->
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 1</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 2</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 3</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 4</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 5</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 6</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 7</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 8</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 9</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 10</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 11</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 12</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 13</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 14</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-
-            <article class="project-card">
-              <div class="project-frame" aria-hidden="true"></div>
-              <div class="project-title">Video 15</div>
-              <p class="text-xs text-muted">[Video description]</p>
-            </article>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Global dark footer -->
-    <footer class="global-footer">
-      <div class="container global-footer-inner">
-        <div class="footer-social-row">
-          <button class="social-icon" aria-label="Instagram">IG</button>
-          <button class="social-icon" aria-label="TikTok">TT</button>
-          <button class="social-icon" aria-label="YouTube">YT</button>
-          <button class="social-icon" aria-label="LinkedIn">in</button>
-        </div>
-        <nav aria-label="Footer navigation" class="footer-nav">
-          <a href="projects.html">Projects</a>
-          <a href="mailto:hello@example.com">Contact</a>
-          <a href="index.html#ready-to-create">About</a>
-        </nav>
-      </div>
-    </footer>
-  </body>
-</html>
-
-<!-- =========================
-  styles.css
-========================== -->
-:root {
-  /* Colors based on PitchBrand-style SaaS */
-  --color-bg: #f9fafb;
-  --color-surface: #ffffff;
-  --color-border: #e5e7eb;
-  --color-border-strong: rgba(79, 70, 229, 0.3);
-
-  --color-text: #0f172a;
-  --color-text-muted: #6b7280;
-  --color-text-soft: #9ca3af;
-
-  --color-primary: #4f46e5;
-  --color-primary-hover: #4338ca;
-  --color-primary-soft: #eef2ff;
-
-  --color-footer-bg: #020617;
-  --color-footer-border: #111827;
-
-  /* Layout */
-  --max-width: 1120px;
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-pill: 9999px;
-
-  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.04);
-  --shadow-strong: 0 20px 45px rgba(79, 70, 229, 0.18);
-  --shadow-frame: 0 25px 55px rgba(15, 23, 42, 0.25);
-
-  /* Typography */
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Inter", "Segoe UI", sans-serif;
-}
-
-/* Reset / base */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-/* Typography utilities */
-
-h1,
-h2,
-h3,
-h4,
-p {
-  margin: 0;
-}
-
-.h1 {
-  font-size: 3rem;
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.h2 {
-  font-size: 2.25rem;
-  line-height: 1.2;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.h3 {
-  font-size: 1.5rem;
-  line-height: 1.3;
-  font-weight: 600;
-}
-
-.h4 {
-  font-size: 1.125rem;
-  line-height: 1.3;
-  font-weight: 600;
-}
-
-.text-body {
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-}
-
-.text-muted {
-  color: var(--color-text-muted);
-}
-
-.text-soft {
-  color: var(--color-text-soft);
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* Responsive heading adjustments */
-
-@media (max-width: 768px) {
-  .h1 {
-    font-size: 2.25rem;
-  }
-  .h2 {
-    font-size: 1.75rem;
-  }
-}
-
-/* Layout utilities */
-
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding-inline: 1.5rem;
-}
-
-.section {
-  padding-block: 4rem;
-}
-
-.section--large {
-  padding-block: 5rem;
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding-block: 3rem;
-  }
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Vertical stacks */
-
-.stack-sm > * + * {
-  margin-top: 0.75rem;
-}
-
-.stack-md > * + * {
-  margin-top: 1.25rem;
-}
-
-.stack-lg > * + * {
-  margin-top: 1.75rem;
-}
-
-.stack-xl > * + * {
-  margin-top: 2.5rem;
-}
-
-/* Header / navigation */
-
-.site-header {
-  border-bottom: 1px solid var(--color-border);
-  background-color: #ffffff;
-  position: sticky;
-  top: 0;
-  z-index: 20;
-}
-
-.site-header-inner {
-  padding-block: 0.9rem;
-}
-
-.site-logo {
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
-}
-
-.nav-links {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.nav-link {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-}
-
-.nav-link--active {
-  color: var(--color-text);
-  font-weight: 600;
-}
-
-/* Buttons */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.65rem 1.4rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition:
-    background-color 150ms ease,
-    color 150ms ease,
-    transform 150ms ease,
-    box-shadow 150ms ease,
-    border-color 150ms ease;
-  white-space: nowrap;
-}
-
-.btn-primary {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.25);
-}
-
-.btn-primary:hover {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-1px);
-}
-
-.btn-secondary {
-  background-color: #ffffff;
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-}
-
-.btn-secondary:hover {
-  background-color: #f9fafb;
-  border-color: #d1d5db;
-}
-
-.btn-nav {
-  border-radius: 0;
-  border: 1px solid var(--color-text);
-  background-color: #000000;
-  color: #ffffff;
-  padding-inline: 1.6rem;
-  padding-block: 0.5rem;
-  font-size: 0.8rem;
-}
-
-.btn-nav:hover {
-  background-color: #111827;
-}
-
-.btn-full {
-  width: 100%;
-}
-
-/* Social icons */
-
-.social-row,
-.footer-social-row {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-.social-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border);
-  background-color: #f3f4f6;
-  color: #4b5563;
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 150ms ease, transform 150ms ease,
-    border-color 150ms ease;
-}
-
-.social-icon:hover {
-  background-color: #e5e7eb;
-  border-color: #d1d5db;
-  transform: translateY(-1px);
-}
-
-/* Cards */
-
-.card {
-  background-color: var(--color-surface);
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
-  padding: 1.5rem 1.5rem;
-  box-shadow: var(--shadow-soft);
-}
-
-/* Hero layout */
-
-.hero-grid {
-  display: grid;
-  gap: 3rem;
-  align-items: flex-start;
-}
-
-.hero-left {
-  animation: fadeUp 500ms ease-out both;
-}
-
-.hero-right {
-  animation: fadeUp 600ms ease-out both;
-}
-
-@media (min-width: 900px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  }
-}
-
-/* Left: large rectangle photo */
-
-.hero-photo-rect {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
-  background-color: #f3f4f6;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-photo-label {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.75rem;
-  color: var(--color-text-soft);
-}
-
-/* Right: intro card + facts */
-
-.hero-intro-card {
-  background-color: #f9fafb;
-}
-
-.facts-grid-vert {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.fact-pill {
-  border-radius: 0.4rem;
-  border: 1px solid var(--color-border);
-  background-color: #f3f4f6;
-  padding: 0.7rem 0.9rem;
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-}
-
-/* Section headers */
-
-.section-header {
-  animation: fadeUp 500ms ease-out both;
-}
-
-/* Video grids */
-
-.video-grid {
-  display: grid;
-  gap: 1.5rem;
-  margin-top: 1.75rem;
-}
-
-.video-grid--premium {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.video-grid--standard {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-@media (max-width: 1100px) {
-  .video-grid--premium {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .video-grid--standard {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-  .video-grid--premium,
-  .video-grid--standard {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.video-card {
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
-  padding: 1rem;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  animation: fadeUp 500ms ease-out both;
-}
-
-.video-frame {
-  position: relative;
-  border-radius: 0.55rem;
-  overflow: hidden;
-  background-color: #f3f4f6;
-  height: 0;
-  padding-bottom: 170%; /* tall vertical cards */
-}
-
-.video-title {
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-/* Premium caption */
-
-.premium-caption {
-  margin-top: 1.25rem;
-}
-
-/* Services */
-
-.services-grid {
-  display: grid;
-  gap: 2rem;
-}
-
-@media (min-width: 900px) {
-  .services-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.service-card {
-  animation: fadeUp 500ms ease-out both;
-}
-
-.includes-label {
-  margin-top: 1rem;
-}
-
-.services-list {
-  padding-left: 1.1rem;
-  margin: 0.5rem 0 0;
-}
-
-.services-list li {
-  margin-bottom: 0.35rem;
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
-}
-
-.good-for {
-  margin-top: 1rem;
-}
-
-/* Testimonials */
-
-.testimonials-band {
-  border-radius: 1.25rem;
-  background-image: radial-gradient(circle at top left, #4f46e5 0, #020617 55%);
-  color: #ffffff;
-  padding: 2.75rem 2.25rem;
-  box-shadow: var(--shadow-frame);
-}
-
-.testimonials-grid {
-  display: grid;
-  gap: 2rem;
-  margin-top: 1.75rem;
-}
-
-@media (min-width: 768px) {
-  .testimonials-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.testimonial-card {
-  font-size: 0.95rem;
-}
-
-.testimonial-name {
-  font-weight: 600;
-  margin-top: 0.75rem;
-}
-
-.testimonial-role {
-  font-size: 0.85rem;
-  color: #cbd5ff;
-}
-
-/* CTA band */
-
-.cta-section {
-  padding-bottom: 5rem;
-}
-
-.cta-band {
-  border-radius: 1rem;
-  border: 1px solid var(--color-border);
-  background-color: #ffffff;
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-soft);
-}
-
-.cta-heading {
-  font-size: 1.5rem;
-}
-
-@media (min-width: 640px) {
-  .cta-band {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-/* Projects page */
-
-.projects-hero {
-  padding-bottom: 1.5rem;
-}
-
-.projects-grid {
-  display: grid;
-  gap: 1.75rem;
-  margin-top: 2.5rem;
-}
-
-@media (min-width: 1024px) {
-  .projects-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 1023px) and (min-width: 640px) {
-  .projects-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 639px) {
-  .projects-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.project-card {
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
-  padding: 0.9rem;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.project-frame {
-  position: relative;
-  border-radius: 0.55rem;
-  overflow: hidden;
-  background-color: #f3f4f6;
-  height: 0;
-  padding-bottom: 170%;
-}
-
-.project-title {
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-/* Global dark footer */
-
-.global-footer {
-  background-color: var(--color-footer-bg);
-  color: #e5e7eb;
-  border-top: 1px solid var(--color-footer-border);
-  padding-block: 1.75rem;
-}
-
-.global-footer-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.footer-nav {
-  display: flex;
-  gap: 1.5rem;
-  font-size: 0.8rem;
-  color: #9ca3af;
-}
-
-.footer-nav a {
-  position: relative;
-}
-
-.footer-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -4px;
-  height: 1px;
-  background-color: transparent;
-  transition: background-color 150ms ease;
-}
-
-.footer-nav a:hover::after {
-  background-color: #9ca3af;
-}
-
-@media (min-width: 640px) {
-  .global-footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-
-/* Animations */
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
