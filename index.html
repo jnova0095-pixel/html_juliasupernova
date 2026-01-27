@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
       :root {
-        /* Pitchbrand‑style SaaS palette */
+        /* Pitchbrand-style palette */
         --color-bg: #f9fafb;
         --color-surface: #ffffff;
         --color-border: #e5e7eb;
@@ -18,8 +18,6 @@
 
         --color-primary: #4f46e5;
         --color-primary-hover: #4338ca;
-        --color-primary-soft: #eef2ff;
-
         --color-footer-bg: #020617;
         --color-footer-border: #111827;
 
@@ -163,20 +161,10 @@
         }
       }
 
-      .flex {
-        display: flex;
-      }
-
       .flex-between {
         display: flex;
         align-items: center;
         justify-content: space-between;
-      }
-
-      .flex-center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
 
       .stack-sm > * + * {
@@ -195,6 +183,8 @@
         margin-top: 2.5rem;
       }
 
+      /* HEADER */
+
       .site-header {
         border-bottom: 1px solid var(--color-border);
         background-color: #ffffff;
@@ -204,7 +194,7 @@
       }
 
       .site-header-inner {
-        padding-block: 0.9rem;
+        padding-block: 0.8rem;
       }
 
       .site-logo {
@@ -228,6 +218,8 @@
         color: var(--color-text);
         font-weight: 600;
       }
+
+      /* BUTTONS */
 
       .btn {
         display: inline-flex;
@@ -286,6 +278,8 @@
         width: 100%;
       }
 
+      /* SOCIAL ICONS */
+
       .social-row,
       .footer-social-row {
         display: flex;
@@ -316,6 +310,8 @@
         transform: translateY(-1px);
       }
 
+      /* CARDS */
+
       .card {
         background-color: var(--color-surface);
         border-radius: 0.75rem;
@@ -323,6 +319,8 @@
         padding: 1.5rem 1.5rem;
         box-shadow: var(--shadow-soft);
       }
+
+      /* HERO */
 
       .hero-grid {
         display: grid;
@@ -373,9 +371,13 @@
         color: var(--color-text-muted);
       }
 
+      /* SECTIONS */
+
       .section-header {
         animation: fadeUp 500ms ease-out both;
       }
+
+      /* VIDEO GRIDS */
 
       .video-grid {
         display: grid;
@@ -436,6 +438,8 @@
         margin-top: 1.25rem;
       }
 
+      /* SERVICES */
+
       .services-grid {
         display: grid;
         gap: 2rem;
@@ -445,10 +449,6 @@
         .services-grid {
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
-      }
-
-      .includes-label {
-        margin-top: 1rem;
       }
 
       .services-list {
@@ -462,9 +462,15 @@
         color: var(--color-text-muted);
       }
 
+      .includes-label {
+        margin-top: 1rem;
+      }
+
       .good-for {
         margin-top: 1rem;
       }
+
+      /* TESTIMONIALS */
 
       .testimonials-band {
         border-radius: 1.25rem;
@@ -500,6 +506,8 @@
         color: #cbd5ff;
       }
 
+      /* CTA */
+
       .cta-section {
         padding-bottom: 5rem;
       }
@@ -527,6 +535,8 @@
           justify-content: space-between;
         }
       }
+
+      /* PROJECTS VIEW */
 
       .projects-hero {
         padding-bottom: 1.5rem;
@@ -580,6 +590,8 @@
         font-weight: 500;
       }
 
+      /* FOOTER */
+
       .global-footer {
         background-color: var(--color-footer-bg);
         color: #e5e7eb;
@@ -602,11 +614,18 @@
         color: #9ca3af;
       }
 
-      .footer-nav a {
+      .footer-nav a,
+      .footer-nav button.nav-link {
         position: relative;
+        background: none;
+        border: none;
+        padding: 0;
+        color: inherit;
+        cursor: pointer;
       }
 
-      .footer-nav a::after {
+      .footer-nav a::after,
+      .footer-nav button.nav-link::after {
         content: "";
         position: absolute;
         left: 0;
@@ -617,7 +636,8 @@
         transition: background-color 150ms ease;
       }
 
-      .footer-nav a:hover::after {
+      .footer-nav a:hover::after,
+      .footer-nav button.nav-link:hover::after {
         background-color: #9ca3af;
       }
 
@@ -628,6 +648,8 @@
         }
       }
 
+      /* VIEW SWITCHING (two-page behavior in one file) */
+
       .view {
         display: none;
       }
@@ -635,6 +657,8 @@
       .view--active {
         display: block;
       }
+
+      /* ANIMATION */
 
       @keyframes fadeUp {
         from {
@@ -674,11 +698,10 @@
       </div>
     </header>
 
-    <!-- MAIN -->
     <main>
       <!-- HOME VIEW -->
       <div class="view view--active" id="view-home">
-        <!-- Hero: creator photo left, intro + facts right -->
+        <!-- Hero -->
         <section class="section section--large hero hero--home">
           <div class="container hero-grid">
             <!-- Left column -->
@@ -805,17 +828,19 @@
               <h2 class="h2">What I Can Do for Your Brand</h2>
             </header>
 
-            <div class="services-grid stack-md" style="margin-top: 2rem">
+            <div class="services-grid" style="margin-top: 2rem">
+              <!-- 1️⃣ Native UGC -->
               <article class="card">
                 <header class="stack-sm">
                   <h3 class="h3">1️⃣ Native UGC</h3>
                   <p class="text-body">Content that feels real, not like an ad.</p>
                 </header>
-                <div class="card-body">
+                <div>
                   <p class="text-body">
                     I create natural, creator-style videos that blend into the
                     feed, build trust, and show your product in a real way.
                   </p>
+
                   <p class="text-sm text-muted includes-label">Includes:</p>
                   <ul class="services-list">
                     <li>UGC video ideas + simple scripts</li>
@@ -824,23 +849,26 @@
                     <li>Clean edits made for each platform</li>
                     <li>Ready-to-post videos</li>
                   </ul>
+
                   <p class="text-sm text-muted good-for">
-                    Good for: organic content, social proof, and testing products
-                    or offers
+                    Good for: organic content, social proof, and testing
+                    products or offers
                   </p>
                 </div>
               </article>
 
+              <!-- 2️⃣ Scroll-Stopping Ads -->
               <article class="card">
                 <header class="stack-sm">
                   <h3 class="h3">2️⃣ Scroll-Stopping Ads</h3>
                   <p class="text-body">Ads made to stop the scroll.</p>
                 </header>
-                <div class="card-body">
+                <div>
                   <p class="text-body">
                     This is more creative and bold — built to grab attention
                     fast and clearly sell your offer.
                   </p>
+
                   <p class="text-sm text-muted includes-label">Includes:</p>
                   <ul class="services-list">
                     <li>Ad concepts + scripts</li>
@@ -849,12 +877,14 @@
                     <li>High-quality editing with effects and animations</li>
                     <li>Optimized for TikTok, Reels, and Shorts</li>
                   </ul>
+
                   <p class="text-sm text-muted good-for">
                     Good for: paid ads, launches, and scaling brands
                   </p>
                 </div>
               </article>
 
+              <!-- 3️⃣ Brand Universe (Retainer) -->
               <article class="card">
                 <header class="stack-sm">
                   <h3 class="h3">3️⃣ Brand Universe (Retainer)</h3>
@@ -862,11 +892,12 @@
                     Not just videos — a whole content vibe.
                   </p>
                 </header>
-                <div class="card-body">
+                <div>
                   <p class="text-body">
                     I help you build a recognizable style so your content feels
                     connected, not random.
                   </p>
+
                   <p class="text-sm text-muted includes-label">Includes:</p>
                   <ul class="services-list">
                     <li>Ongoing content ideas and planning</li>
@@ -874,6 +905,7 @@
                     <li>Consistent look, tone, and storytelling</li>
                     <li>Creative support month to month</li>
                   </ul>
+
                   <p class="text-sm text-muted good-for">
                     Good for: brands that want consistency and long-term growth
                   </p>
@@ -951,93 +983,84 @@
         <section class="section">
           <div class="container">
             <div class="projects-grid">
-              <!-- 15 video cards, layout matches wireframe -->
+              <!-- 15 video placeholders -->
+              <!-- row 1 -->
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 1</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 2</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 3</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 4</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 5</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
 
+              <!-- row 2 -->
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 6</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 7</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 8</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 9</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 10</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
 
+              <!-- row 3 -->
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 11</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 12</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 13</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 14</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
-
               <article class="project-card">
-                <div class="project-frame" aria-hidden="true"></div>
+                <div class="project-frame"></div>
                 <div class="project-title">Video 15</div>
                 <p class="text-xs text-muted">[Video description]</p>
               </article>
@@ -1073,12 +1096,14 @@
         if (view === "projects") {
           homeView.classList.remove("view--active");
           projectsView.classList.add("view--active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
         } else {
           projectsView.classList.remove("view--active");
           homeView.classList.add("view--active");
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
+        // Update active state in top nav (only Projects link there)
         document.querySelectorAll(".nav-link").forEach((el) => {
           el.classList.remove("nav-link--active");
         });
