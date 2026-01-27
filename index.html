@@ -2,24 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Creator Video Advertising & UGC Content</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creator Video Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg: #f5f5f4;
-      --bg-alt: #ffffff;
-      --text: #111827;
-      --text-muted: #6b7280;
-      --border-subtle: #e5e7eb;
-      --accent: #111827;
-      --accent-soft: #e5e7eb;
-      --accent-strong: #111827;
-      --radius-lg: 16px;
+      /* Core palette inspired by Pitch + apple green accent */
+      --bg-main: #0f1014;
+      --bg-soft: #151720;
+      --bg-section: #151826;
+      --bg-card: #1c1f30;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+
+      --text-main: #f5f5f8;
+      --text-muted: #a3a7c0;
+      --text-soft: #888eb2;
+
+      --accent-green: #16ff47; /* apple green / bold accent */
+      --accent-green-soft: rgba(22, 255, 71, 0.12);
+      --accent-blue: #6b53ff;
+      --accent-blue-soft: rgba(107, 83, 255, 0.12);
+
+      --radius-lg: 18px;
       --radius-md: 12px;
       --radius-pill: 999px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
-      --shadow-subtle: 0 1px 3px rgba(15, 23, 42, 0.06);
-      --container-width: 1120px;
+
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-card: 0 18px 40px rgba(8, 10, 20, 0.9);
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.24s ease-out;
     }
 
     * {
@@ -30,16 +40,11 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+        "Inter", sans-serif;
+      background: radial-gradient(circle at top left, #1b1d29 0, #05060a 55%);
+      color: var(--text-main);
       -webkit-font-smoothing: antialiased;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
+      line-height: 1.5;
     }
 
     a {
@@ -47,852 +52,1009 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+
     .page {
       min-height: 100vh;
+      padding: 32px 40px 60px;
+      max-width: 1160px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
+      gap: 32px;
     }
 
-    .shell {
-      width: 100%;
-      max-width: var(--container-width);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* HEADER / NAV */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: color-mix(in srgb, var(--bg) 82%, #ffffff 18%);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
-    }
-
-    .site-header-inner {
+    header.page-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 1.5rem;
-      gap: 1rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+      gap: 24px;
     }
 
     .brand-mark {
-      width: 26px;
-      height: 26px;
-      border-radius: 9px;
-      border: 1px solid rgba(15, 23, 42, 0.12);
-      background: radial-gradient(circle at 10% 0%, #f97316, transparent 60%),
-        radial-gradient(circle at 90% 100%, #22c55e, transparent 55%),
-        #ffffff;
-      box-shadow: var(--shadow-subtle);
-    }
-
-    .brand-text-main {
-      font-size: 0.98rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
-    .brand-text-tagline {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .nav {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      gap: 10px;
     }
 
-    .nav a {
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 20% 20%, #16ff47 0, #6b53ff 40%, #0f1014 80%);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 12px 30px rgba(0, 0, 0, 0.6);
       position: relative;
-      padding-bottom: 2px;
+      overflow: hidden;
     }
 
-    .nav a::after {
+    .brand-logo::after {
       content: "";
       position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      height: 1px;
-      background: var(--accent-strong);
-      transition: width 0.18s ease-out;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0, rgba(255, 255, 255, 0.4) 0, transparent 45%);
+      mix-blend-mode: screen;
+      opacity: 0.65;
     }
 
-    .nav a:hover::after {
-      width: 100%;
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: var(--text-soft);
     }
 
-    .header-cta {
+    nav.page-nav {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 18px;
     }
 
-    .btn-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.45rem 0.95rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(17, 24, 39, 0.08);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.8);
-      cursor: pointer;
-      transition: background 0.15s ease, transform 0.1s ease,
-        box-shadow 0.1s ease;
-    }
-
-    .btn-pill span.dot {
-      width: 7px;
-      height: 7px;
+    .nav-link {
+      font-size: 13px;
+      color: var(--text-soft);
+      padding: 6px 10px;
       border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.28);
+      transition: color var(--transition-fast), background var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateY(-1px);
+    }
+
+    .nav-link.is-active {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      margin-left: 4px;
     }
 
     .btn-primary {
-      background: var(--accent-strong);
-      color: #f9fafb;
-      border: 1px solid #020617;
-      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.65);
-      font-size: 0.86rem;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
       font-weight: 500;
-      padding: 0.55rem 1.15rem;
+      color: #051106;
+      background: linear-gradient(135deg, #16ff47, #8affa3);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(17, 89, 31, 0.5);
+      transform: translateY(0);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast), filter var(--transition-fast);
     }
 
-    .btn-pill:hover {
-      background: #ffffff;
-      transform: translateY(-1px);
-      box-shadow: var(--shadow-subtle);
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.35), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .btn-primary span.icon {
+      font-size: 15px;
+      transform: translateX(0);
+      transition: transform var(--transition-fast);
     }
 
     .btn-primary:hover {
-      background: #020617;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.7);
+      transform: translateY(-1px) translateZ(0);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+      filter: brightness(1.02);
     }
 
-    .mobile-nav-toggle {
-      display: none;
+    .btn-primary:hover span.icon {
+      transform: translateX(2px);
     }
 
-    /* LAYOUT SECTIONS */
+    .btn-primary:active {
+      transform: translateY(1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.75);
+    }
 
-    main {
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(0, 1.05fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-main {
+      background: linear-gradient(145deg, var(--bg-section), #0e111f);
+      border-radius: var(--radius-lg);
+      padding: 26px 26px 24px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(22, 255, 71, 0.14), transparent 60%);
+      top: -120px;
+      right: -80px;
+      filter: blur(2px);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-header {
+      display: flex;
+      gap: 18px;
+    }
+
+    .hero-photo {
+      width: 82px;
+      min-width: 82px;
+      height: 82px;
+      border-radius: 26px;
+      background: radial-gradient(circle at 30% 20%, #16ff47, #6b53ff 45%, #151720 85%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.3),
+        transparent 35%,
+        rgba(0, 0, 0, 0.5)
+      );
+      mix-blend-mode: soft-light;
+    }
+
+    .hero-copy {
       flex: 1;
-      padding: 2rem 0 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    section {
-      padding: 3.5rem 0;
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-soft);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-label-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-green);
+      box-shadow: 0 0 0 5px var(--accent-green-soft);
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 450px;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .hero-fact {
+      border-radius: 13px;
+      padding: 10px 11px;
+      background: rgba(16, 18, 35, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 11px;
+      color: var(--text-soft);
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .hero-fact-label {
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 10px;
+      color: var(--text-soft);
+    }
+
+    .hero-fact-value {
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .hero-fact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(3, 5, 14, 0.85);
+      border-color: rgba(22, 255, 71, 0.3);
+      background: radial-gradient(circle at top, #181a2b, #090b15);
+    }
+
+    .hero-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      gap: 16px;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-ghost {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(9, 10, 18, 0.8);
+      color: var(--text-main);
+      font-size: 12px;
+      padding: 7px 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.24);
+      transform: translateY(-1px);
+    }
+
+    .hero-secondary {
+      background: radial-gradient(circle at top left, #22243d 0, #101321 50%, #090b13 100%);
+      border-radius: var(--radius-lg);
+      padding: 20px 20px 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-secondary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0, rgba(107, 83, 255, 0.25), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .hero-secondary-header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hero-secondary-badge {
+      align-self: flex-start;
+      padding: 4px 10px;
+      font-size: 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--text-soft);
+      background: rgba(3, 5, 18, 0.6);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-secondary-title {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .hero-secondary-title strong {
+      color: var(--text-main);
+    }
+
+    .hero-secondary-body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-secondary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .hero-secondary-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .hero-secondary-metric-value {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent-green);
+    }
+
+    .hero-secondary-note {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    /* Section shells */
+
+    .section {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, var(--bg-section), #0c0f1d);
+      border: 1px solid var(--border-subtle);
+      padding: 22px 22px 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .section-kicker {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
+      align-items: baseline;
+      gap: 12px;
     }
 
     .section-title {
-      font-size: 1.7rem;
-      letter-spacing: -0.03em;
-      font-weight: 620;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title-pill {
+      padding: 3px 8px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-soft);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .section-subtitle {
-      max-width: 460px;
-      font-size: 0.95rem;
-      color: var(--text-muted);
+      font-size: 12px;
+      color: var(--text-soft);
     }
 
-    /* HERO */
+    /* Premium / UGC grids */
 
-    .hero {
-      padding-top: 3.2rem;
-      padding-bottom: 3rem;
-    }
-
-    .hero-inner {
+    .video-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.18rem 0.55rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: color-mix(in srgb, #ffffff 78%, #e5e7eb 22%);
-      font-size: 0.73rem;
-      color: var(--text-muted);
-      margin-bottom: 1.1rem;
-    }
-
-    .hero-eyebrow strong {
-      font-weight: 600;
-      color: var(--accent-strong);
-    }
-
-    .hero-heading {
-      font-size: clamp(2.4rem, 3.1vw, 3rem);
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-      margin-bottom: 1rem;
-    }
-
-    .hero-heading span.accent {
-      background: linear-gradient(120deg, #020617, #111827);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-body {
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 33rem;
-      margin-bottom: 1.7rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-      margin-bottom: 1.7rem;
-    }
-
-    .hero-actions .btn-primary {
-      padding-inline: 1.4rem;
-      padding-block: 0.65rem;
-      font-size: 0.9rem;
-    }
-
-    .hero-secondary-link {
-      font-size: 0.86rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--text-muted);
-    }
-
-    .hero-secondary-link span.icon {
-      font-size: 1.1rem;
-      transform: translateY(1px);
-    }
-
-    .hero-facts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .hero-fact {
-      padding: 0.35rem 0.75rem;
-      border-radius: var(--radius-pill);
-      border: 1px dashed rgba(148, 163, 184, 0.8);
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    .hero-fact strong {
-      color: var(--accent-strong);
-      font-weight: 600;
-    }
-
-    .hero-visual {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .creator-card {
-      border-radius: var(--radius-lg);
-      background: radial-gradient(circle at top left, #f97316 0, transparent 52%),
-        radial-gradient(circle at bottom right, #06b6d4 0, transparent 50%),
-        #020617;
-      padding: 1.3rem;
-      color: #e5e7eb;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-      min-height: 240px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .creator-tag {
-      font-size: 0.8rem;
-      padding: 0.2rem 0.7rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      background: rgba(15, 23, 42, 0.75);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .creator-tag-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .creator-main {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .creator-text {
-      max-width: 60%;
-    }
-
-    .creator-text h2 {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .creator-text p {
-      font-size: 0.86rem;
-      color: #cbd5f5;
-    }
-
-    .creator-avatar {
-      width: 90px;
-      height: 120px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      background: linear-gradient(145deg, #0f172a, #020617);
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      text-align: center;
-      padding: 0.75rem;
-      color: #e5e7eb;
-    }
-
-    .creator-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 1.2rem;
-      font-size: 0.75rem;
-      color: #e5e7eb;
-      opacity: 0.9;
-    }
-
-    .creator-metrics {
-      display: flex;
-      gap: 1.2rem;
-    }
-
-    .creator-metric span.label {
-      display: block;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      opacity: 0.7;
-    }
-
-    .creator-metric span.value {
-      font-weight: 600;
-    }
-
-    .hero-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      padding-left: 0.3rem;
-    }
-
-    /* SERVICES / ADS */
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
-    }
-
-    .card-panel {
-      background: var(--bg-alt);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      padding: 1.2rem 1.3rem;
-      box-shadow: var(--shadow-subtle);
-    }
-
-    .card-panel h3 {
-      font-size: 1rem;
-      font-weight: 580;
-      margin-bottom: 0.25rem;
-      letter-spacing: -0.01em;
-    }
-
-    .card-panel p.lead {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 0.8rem;
-    }
-
-    .video-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.8rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
     }
 
     .video-card {
       border-radius: var(--radius-md);
-      border: 1px dashed rgba(148, 163, 184, 0.9);
-      background: linear-gradient(
-        145deg,
-        rgba(249, 250, 251, 1),
-        rgba(243, 244, 246, 0.6)
-      );
-      padding: 0.6rem 0.7rem;
-      font-size: 0.8rem;
+      background: radial-gradient(circle at top, #22243b, #111320 55%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+      position: relative;
+      overflow: hidden;
     }
 
-    .video-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      margin-bottom: 0.1rem;
+    .video-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(22, 255, 71, 0.09), transparent 50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-med);
+      mix-blend-mode: screen;
+    }
+
+    .video-thumb {
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0f1222, #404367);
+      aspect-ratio: 9 / 16;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0, rgba(255, 255, 255, 0.28), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+    }
+
+    .video-play {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(1, 4, 10, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      color: var(--accent-green);
+      font-size: 13px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+        border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .video-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 11px;
+    }
+
+    .video-title {
+      font-size: 13px;
+      font-weight: 500;
     }
 
     .video-desc {
-      font-size: 0.78rem;
-      color: var(--text-muted);
+      color: var(--text-soft);
     }
 
-    .card-footer-note {
-      margin-top: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .video-tag {
+      margin-top: 3px;
+      align-self: flex-start;
+      padding: 2px 7px;
+      font-size: 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-soft);
     }
 
-    /* WHAT I CAN DO / SERVICES DETAIL */
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(22, 255, 71, 0.6);
+      box-shadow: 0 18px 40px rgba(3, 6, 18, 0.92);
+      background: radial-gradient(circle at top, #262a4a, #0a0c16 55%);
+    }
 
-    .service-columns {
+    .video-card:hover::before {
+      opacity: 1;
+    }
+
+    .video-card:hover .video-play {
+      transform: scale(1.05);
+      border-color: rgba(22, 255, 71, 0.9);
+      background: rgba(1, 12, 6, 0.95);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.95);
+    }
+
+    .video-card:active {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85);
+    }
+
+    /* Standard UGC uses 5 cards, wrap nicely */
+
+    .video-grid-ugc {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    /* Service breakdown */
+
+    .services {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.25rem;
+      gap: 16px;
     }
 
     .service-card {
-      border-radius: var(--radius-lg);
-      background: var(--bg-alt);
-      border: 1px solid var(--border-subtle);
-      padding: 1.1rem 1.15rem 1.05rem;
-      box-shadow: var(--shadow-subtle);
+      background: radial-gradient(circle at top, #1f2236, #101222 50%);
+      border-radius: var(--radius-md);
+      padding: 16px 15px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
-      font-size: 0.88rem;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+      cursor: default;
     }
 
-    .service-label {
-      font-size: 0.8rem;
-      font-weight: 600;
+    .service-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 6px;
     }
 
-    .service-label span.icon {
-      font-size: 1rem;
+    .service-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-green);
+      box-shadow: 0 0 0 4px var(--accent-green-soft);
     }
 
     .service-title {
-      font-size: 0.95rem;
-      font-weight: 580;
+      font-size: 15px;
+      font-weight: 500;
     }
 
-    .service-body {
-      color: var(--text-muted);
+    .service-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+      max-width: 90%;
     }
 
     .service-list-title {
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-top: 0.35rem;
-      margin-bottom: 0.1rem;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--text-soft);
+      margin-top: 4px;
     }
 
     .service-list {
       list-style: none;
-      font-size: 0.8rem;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
     .service-list li::before {
-      content: "•";
-      margin-right: 0.35rem;
-      color: var(--accent-strong);
+      content: "–";
+      margin-right: 6px;
+      color: var(--accent-green);
     }
 
-    .service-tagline {
-      font-size: 0.78rem;
+    .service-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .chip {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-soft);
+      background: rgba(4, 6, 14, 0.8);
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(2, 5, 18, 0.95);
+      border-color: rgba(107, 83, 255, 0.5);
+      background: radial-gradient(circle at top, #292b4a, #090c18 55%);
+    }
+
+    .service-card:nth-child(3):hover {
+      border-color: rgba(22, 255, 71, 0.5);
+    }
+
+    /* Testimonials */
+
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .testimonial {
+      border-radius: var(--radius-md);
+      padding: 13px 13px 12px;
+      background: radial-gradient(circle at top, #212234, #101220 55%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med);
+    }
+
+    .testimonial::before {
+      content: "“";
+      position: absolute;
+      top: -16px;
+      left: 10px;
+      font-size: 72px;
+      color: rgba(255, 255, 255, 0.05);
+      pointer-events: none;
+    }
+
+    .testimonial-text {
+      font-size: 12px;
       color: var(--text-muted);
-      margin-top: auto;
-      padding-top: 0.4rem;
+      position: relative;
+      z-index: 1;
     }
 
-    /* PROJECTS / PORTFOLIO */
+    .testimonial-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      position: relative;
+      z-index: 1;
+    }
 
-    .projects-section {
-      border-radius: calc(var(--radius-lg) * 1.1);
-      background: radial-gradient(circle at top, #ffffff, #f9fafb 60%, #e5e7eb);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 1.6rem 1.7rem 1.7rem;
-      box-shadow: var(--shadow-soft);
+    .testimonial-name {
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    .testimonial-role {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(2, 5, 18, 0.95);
+      border-color: rgba(22, 255, 71, 0.5);
+    }
+
+    /* Final CTA */
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .cta-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .cta-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    /* Projects page styles */
+
+    .projects-page {
+      margin-top: 36px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #101320, #05060c);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 22px 22px 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     .projects-header {
       display: flex;
       justify-content: space-between;
-      gap: 1.3rem;
-      margin-bottom: 1.4rem;
+      align-items: baseline;
+      gap: 16px;
     }
 
     .projects-title {
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.25rem;
+      font-size: 18px;
+      font-weight: 500;
     }
 
     .projects-subtitle {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+      font-size: 12px;
+      color: var(--text-soft);
     }
 
-    .projects-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .projects-filter-row {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.2rem;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      font-size: 0.75rem;
-      background: rgba(255, 255, 255, 0.9);
+    .filter-pill {
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-soft);
+      background: rgba(4, 6, 14, 0.85);
+      cursor: pointer;
+      transition: background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .filter-pill.is-active {
+      background: var(--accent-green-soft);
+      border-color: rgba(22, 255, 71, 0.85);
+      color: var(--accent-green);
+    }
+
+    .filter-pill:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: var(--text-main);
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.85rem;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
     }
 
     .project-card {
-      border-radius: 14px;
-      background: #ffffff;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      padding: 0.7rem 0.75rem 0.7rem;
+      border-radius: var(--radius-md);
+      background: radial-gradient(circle at top, #191b30, #090b16 55%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 9px 9px 10px;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
-      font-size: 0.8rem;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform var(--transition-med),
+        box-shadow var(--transition-med),
+        border-color var(--transition-med),
+        background var(--transition-med);
+      position: relative;
+      overflow: hidden;
     }
 
-    .project-thumb {
-      border-radius: 11px;
-      background: linear-gradient(
-        135deg,
-        rgba(15, 23, 42, 0.94),
-        rgba(30, 64, 175, 0.9),
-        rgba(8, 47, 73, 0.9)
-      );
-      height: 130px;
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(2, 5, 18, 0.95);
+      border-color: rgba(107, 83, 255, 0.65);
+      background: radial-gradient(circle at top, #252849, #060812 55%);
+    }
+
+    .project-meta {
+      font-size: 11px;
+      color: var(--text-soft);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #e5e7eb;
-      font-size: 0.78rem;
-    }
-
-    .project-thumb::before {
-      content: "Vertical video placeholder";
-      opacity: 0.9;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .project-title {
-      font-weight: 600;
-      font-size: 0.82rem;
-    }
-
-    .project-desc {
-      color: var(--text-muted);
-      font-size: 0.78rem;
-    }
-
-    /* TESTIMONIALS */
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.1rem;
-    }
-
-    .testimonial-card {
-      border-radius: var(--radius-lg);
-      background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      padding: 1rem 1rem 0.9rem;
-      box-shadow: var(--shadow-subtle);
-      font-size: 0.86rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-
-    .testimonial-quote {
-      color: var(--text-muted);
-    }
-
-    .testimonial-name {
-      font-weight: 600;
-      font-size: 0.86rem;
-    }
-
-    .testimonial-role {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    /* CTA / CONTACT */
-
-    .cta-panel {
-      border-radius: calc(var(--radius-lg) * 1.1);
-      background: #020617;
-      color: #e5e7eb;
-      padding: 1.6rem 1.6rem 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.4rem;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .cta-main {
-      max-width: 440px;
-    }
-
-    .cta-kicker {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #9ca3af;
-      margin-bottom: 0.55rem;
-    }
-
-    .cta-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.4rem;
-    }
-
-    .cta-text {
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
-
-    .cta-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .cta-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.4rem;
-      border-radius: var(--radius-pill);
-      background: #f9fafb;
-      color: #020617;
-      font-size: 0.9rem;
+      font-size: 12px;
       font-weight: 500;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      cursor: pointer;
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.85);
+      color: var(--text-main);
     }
 
-    .cta-secondary {
-      font-size: 0.82rem;
-      color: #9ca3af;
-    }
-
-    .cta-secondary strong {
-      color: #e5e7eb;
-      font-weight: 500;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 1.3rem 0 1.6rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .footer-inner {
+    .project-tag-row {
       display: flex;
       justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      color: var(--text-soft);
     }
 
-    .footer-links {
-      display: flex;
-      gap: 1rem;
+    .project-length {
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
     }
 
-    .footer-links a {
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-underline-offset: 2px;
-    }
+    /* Responsive */
 
-    /* RESPONSIVE */
-
-    @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1.2fr);
+    @media (max-width: 1024px) {
+      .page {
+        padding: 24px 18px 40px;
       }
 
-      .creator-text {
-        max-width: 100%;
+      .hero {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
       }
 
-      .creator-main {
-        align-items: center;
+      .video-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
+      .video-grid-ugc {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .card-grid {
-        grid-template-columns: minmax(0, 1fr);
+      .services {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .service-columns {
+      .testimonials {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .projects-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .testimonials-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 768px) {
-      .site-header-inner {
-        padding-inline: 0;
+      header.page-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
-      .nav {
-        display: none;
-      }
-
-      .mobile-nav-toggle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.7);
-        font-size: 1.1rem;
-        background: rgba(255, 255, 255, 0.8);
+      .page-nav {
+        width: 100%;
+        justify-content: space-between;
       }
 
       .hero {
-        padding-top: 2.4rem;
-      }
-
-      .hero-heading {
-        font-size: 2.1rem;
-      }
-
-      .video-list {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .projects-section {
-        padding: 1.3rem 1.2rem 1.4rem;
+      .hero-secondary {
+        order: -1;
       }
 
-      .projects-header {
+      .hero-main {
+        padding: 20px 18px 18px;
+      }
+
+      .hero-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section {
+        padding: 18px 16px 16px;
+      }
+
+      .video-grid,
+      .video-grid-ugc {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .testimonials {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cta-row {
         flex-direction: column;
         align-items: flex-start;
       }
 
       .projects-grid {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+    }
 
-      .service-columns {
+    @media (max-width: 480px) {
+      .video-grid,
+      .video-grid-ugc,
+      .projects-grid {
         grid-template-columns: minmax(0, 1fr);
-      }
-
-      .testimonials-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .cta-panel {
-        padding: 1.3rem 1.1rem 1.3rem;
-        align-items: flex-start;
       }
     }
   </style>
@@ -900,541 +1062,697 @@
 <body>
   <div class="page">
     <!-- HEADER -->
-    <header class="site-header">
-      <div class="shell site-header-inner">
-        <div class="brand">
-          <div class="brand-mark"></div>
-          <div>
-            <!-- Change this to your name / brand -->
-            <div class="brand-text-main">Your Name</div>
-            <div class="brand-text-tagline">
-              UGC & vertical video creator
-            </div>
-          </div>
-        </div>
-        <nav class="nav">
-          <a href="#services">Services</a>
-          <a href="#premium">Premium Ads</a>
-          <a href="#ugc">UGC Ads</a>
-          <a href="#projects">Projects</a>
-          <a href="#testimonials">Results</a>
-        </nav>
-        <div class="header-cta">
-          <button class="btn-pill">
-            <span class="dot"></span>
-            <span>Taking new brand projects</span>
-          </button>
-          <a href="#contact" class="btn-pill btn-primary">Book a call</a>
-          <button class="mobile-nav-toggle" aria-label="Open navigation">
-            ☰
-          </button>
+    <header class="page-header">
+      <div class="brand-mark">
+        <div class="brand-logo"></div>
+        <div>
+          <div class="brand-name">Creator Studio</div>
         </div>
       </div>
+      <nav class="page-nav">
+        <a href="#services" class="nav-link is-active">Services</a>
+        <a href="#premium" class="nav-link">Premium Ads</a>
+        <a href="#ugc" class="nav-link">UGC Ads</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <div class="nav-cta">
+          <button class="btn-primary" type="button">
+            <span>Book a brief call</span>
+            <span class="icon">↗</span>
+          </button>
+        </div>
+      </nav>
     </header>
 
-    <main>
-      <!-- HERO / INTRO -->
-      <section class="hero" id="top">
-        <div class="shell hero-inner">
-          <div>
-            <div class="hero-eyebrow">
-              <span>Creator video ads & UGC for brands</span>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-header">
+          <div class="hero-photo"></div>
+          <div class="hero-copy">
+            <div class="hero-label">
+              <span class="hero-label-dot"></span>
+              <span>UGC Creator & Video Ads</span>
             </div>
-            <h1 class="hero-heading">
-              Creator‑led <span class="accent">video ads</span> that feel
-              native, not like ads.
+            <h1 class="hero-title">
+              High-converting UGC and vertical video ads your audience will actually watch.
             </h1>
-            <p class="hero-body">
-              I help brands turn vertical video into a performance channel —
-              from premium creator‑style ads to authentic UGC that actually
-              blends into the feed. Every video is built for TikTok, Reels, and
-              Shorts with clear hooks, story, and a clean edit.
-            </p>
-            <div class="hero-actions">
-              <a href="#contact" class="btn-pill btn-primary">
-                Work with me
-              </a>
-              <a href="#projects" class="hero-secondary-link">
-                <span>View UGC video portfolio</span>
-                <span class="icon">↗</span>
-              </a>
-            </div>
-            <div class="hero-facts">
-              <!-- Replace these Fact 1–4 items with your own stats -->
-              <div class="hero-fact">
-                <strong>Fact 1:</strong> e.g., 100M+ combined views
-              </div>
-              <div class="hero-fact">
-                <strong>Fact 2:</strong> e.g., 50+ videos for DTC brands
-              </div>
-              <div class="hero-fact">
-                <strong>Fact 3:</strong> e.g., Top‑performing ad in 7 days
-              </div>
-              <div class="hero-fact">
-                <strong>Fact 4:</strong> e.g., TikTok, Reels & Shorts native
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-visual">
-            <div class="creator-card">
-              <div class="creator-tag">
-                <span class="creator-tag-dot"></span>
-                <span>Creator video advertising & content creation</span>
-              </div>
-              <div class="creator-main">
-                <div class="creator-text">
-                  <h2>Creator Photo / Intro</h2>
-                  <p>
-                    Add your creator photo and a short, clear intro here. For
-                    example: “I’m a video creator focused on high‑performing UGC
-                    ads and native vertical content for brands.”
-                  </p>
-                </div>
-                <div class="creator-avatar">
-                  Your creator<br />
-                  photo here
-                </div>
-              </div>
-              <div class="creator-meta">
-                <div class="creator-metrics">
-                  <div class="creator-metric">
-                    <span class="label">Niche</span>
-                    <span class="value">UGC & ads</span>
-                  </div>
-                  <div class="creator-metric">
-                    <span class="label">Format</span>
-                    <span class="value">Vertical video</span>
-                  </div>
-                </div>
-                <div class="creator-metric">
-                  <span class="label">Platforms</span>
-                  <span class="value">TikTok, Reels, Shorts</span>
-                </div>
-              </div>
-            </div>
-            <p class="hero-note">
-              This hero section maps to: Creator Photo +
-              <strong>large text block for main introduction / key value
-                proposition</strong> + Fact 1–4 from your wireframe.
+            <p class="hero-subtitle">
+              I plan, script, film, and edit native-feeling content for TikTok, Reels, and Shorts that sells
+              without feeling like an ad.
             </p>
           </div>
         </div>
-      </section>
 
-      <!-- PREMIUM VIDEO ADS -->
-      <section id="premium">
-        <div class="shell">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">Premium video ads</div>
-              <h2 class="section-title">Premium Video Ads</h2>
-            </div>
-            <p class="section-subtitle">
-              High‑quality video advertisements created for brands, designed to
-              look and feel like top creator content while clearly selling your
-              offer.
-            </p>
+        <div class="hero-facts">
+          <div class="hero-fact">
+            <div class="hero-fact-label">Brands</div>
+            <div class="hero-fact-value">40+ partnered</div>
+            <div>From DTC to SaaS and apps across US, UK & EU.</div>
           </div>
-
-          <div class="card-grid">
-            <div class="card-panel">
-              <h3>Premium Ad – Video 1</h3>
-              <p class="lead">[Video description]</p>
-              <div class="video-list">
-                <div class="video-card">
-                  <div class="video-label">Video 1</div>
-                  <div class="video-desc">
-                    Replace with a short description of this premium video ad.
-                  </div>
-                </div>
-                <div class="video-card">
-                  <div class="video-label">Video 2</div>
-                  <div class="video-desc">
-                    [Video description]
-                  </div>
-                </div>
-                <div class="video-card">
-                  <div class="video-label">Video 3</div>
-                  <div class="video-desc">
-                    [Video description]
-                  </div>
-                </div>
-                <div class="video-card">
-                  <div class="video-label">Video 4</div>
-                  <div class="video-desc">
-                    [Video description]
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer-note">
-                Short descriptive text underneath: use this to explain what
-                makes your premium ads different (e.g., storytelling, higher
-                production, strong performance).
-              </div>
-            </div>
-
-            <div class="card-panel">
-              <h3>How brands use premium ads</h3>
-              <p class="lead">
-                Use premium video ads when you need high‑impact creative for
-                campaigns, launches, or scaling what already works.
-              </p>
-              <ul class="service-list">
-                <li>Hero ads for paid campaigns</li>
-                <li>Launch campaigns and new product drops</li>
-                <li>Retargeting with deeper storytelling</li>
-                <li>Editing variations for TikTok, Reels, and Shorts</li>
-              </ul>
-            </div>
+          <div class="hero-fact">
+            <div class="hero-fact-label">Assets Delivered</div>
+            <div class="hero-fact-value">250+ videos</div>
+            <div>UGC, ads, and social content ready to post.</div>
+          </div>
+          <div class="hero-fact">
+            <div class="hero-fact-label">Best Performer</div>
+            <div class="hero-fact-value">7.3x ROAS</div>
+            <div>Top TikTok ad for a skincare brand.</div>
+          </div>
+          <div class="hero-fact">
+            <div class="hero-fact-label">Turnaround</div>
+            <div class="hero-fact-value">5–7 days</div>
+            <div>From brief to polished vertical videos.</div>
           </div>
         </div>
-      </section>
 
-      <!-- STANDARD UGC ADS -->
-      <section id="ugc">
-        <div class="shell">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">Standard UGC ads</div>
-              <h2 class="section-title">Standard UGC Ads</h2>
-            </div>
-            <p class="section-subtitle">
-              User‑generated style ads designed for authentic promotion that
-              feels like a recommendation, not a traditional commercial.
-            </p>
+        <div class="hero-footer">
+          <p class="hero-note">
+            Send me your product and offer – I’ll turn it into scroll-stopping, native-feeling content your
+            paid and organic channels can rely on.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn-primary" type="button">
+              <span>Share a project idea</span>
+              <span class="icon">✳</span>
+            </button>
+            <button class="btn-ghost" type="button">
+              <span>View full portfolio</span>
+            </button>
           </div>
-
-          <div class="card-grid">
-            <div class="card-panel">
-              <h3>UGC Ads – Examples</h3>
-              <p class="lead">
-                From simple testimonials to native “day in the life” content.
-              </p>
-              <div class="video-list">
-                <div class="video-card">
-                  <div class="video-label">Video 1</div>
-                  <div class="video-desc">[Video description]</div>
-                </div>
-                <div class="video-card">
-                  <div class="video-label">Video 2</div>
-                  <div class="video-desc">[Video description]</div>
-                </div>
-                <div class="video-card">
-                  <div class="video-label">Video 3</div>
-                  <div class="video-desc">[Video description]</div>
-                </div>
-                <div class="video-card">
-                  <div class="video-label">Video 4</div>
-                  <div class="video-desc">[Video description]</div>
-                </div>
-                <div class="video-card">
-                  <div class="video-label">Video 5</div>
-                  <div class="video-desc">[Video description]</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card-panel">
-              <h3>Where UGC ads perform best</h3>
-              <p class="lead">
-                UGC ads are perfect for building trust quickly and showing your
-                product in real‑life use.
-              </p>
-              <ul class="service-list">
-                <li>Social proof for cold audiences</li>
-                <li>Testimonials, story‑time, and POV formats</li>
-                <li>Organic posts that double as ad creative</li>
-                <li>Fast testing of offers, hooks, and angles</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WHAT I CAN DO FOR YOUR BRAND -->
-      <section id="services">
-        <div class="shell">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">Services</div>
-              <h2 class="section-title">What I Can Do for Your Brand</h2>
-            </div>
-            <p class="section-subtitle">
-              From native UGC to scroll‑stopping ads and long‑term content
-              systems, here’s how we can work together.
-            </p>
-          </div>
-
-          <div class="service-columns">
-            <!-- 1️⃣ Native UGC -->
-            <article class="service-card">
-              <div class="service-label">
-                <span class="icon">1️⃣</span>
-                <span>Native UGC</span>
-              </div>
-              <div class="service-title">Content that feels real, not like an ad.</div>
-              <div class="service-body">
-                I create natural, creator‑style videos that blend into the feed,
-                build trust, and show your product in a real way.
-                <div class="service-list-title">Includes:</div>
-                <ul class="service-list">
-                  <li>UGC video ideas + simple scripts</li>
-                  <li>Strong hooks to grab attention fast</li>
-                  <li>Filmed in real, everyday settings</li>
-                  <li>Clean edits made for each platform</li>
-                  <li>Ready‑to‑post videos</li>
-                </ul>
-              </div>
-              <div class="service-tagline">
-                Good for: organic content, social proof, and testing products or
-                offers.
-              </div>
-            </article>
-
-            <!-- 2️⃣ Scroll-Stopping Ads -->
-            <article class="service-card">
-              <div class="service-label">
-                <span class="icon">2️⃣</span>
-                <span>Scroll‑Stopping Ads</span>
-              </div>
-              <div class="service-title">Ads made to stop the scroll.</div>
-              <div class="service-body">
-                This is more creative and bold — built to grab attention fast
-                and clearly sell your offer.
-                <div class="service-list-title">Includes:</div>
-                <ul class="service-list">
-                  <li>Ad concepts + scripts</li>
-                  <li>Clear messaging and strong hooks</li>
-                  <li>Intentional filming (angles, lighting, movement)</li>
-                  <li>High‑quality editing with effects and animations</li>
-                  <li>Optimized for TikTok, Reels, and Shorts</li>
-                </ul>
-              </div>
-              <div class="service-tagline">
-                Good for: paid ads, launches, and scaling brands.
-              </div>
-            </article>
-
-            <!-- 3️⃣ Brand Universe (Retainer) -->
-            <article class="service-card">
-              <div class="service-label">
-                <span class="icon">3️⃣</span>
-                <span>Brand Universe (Retainer)</span>
-              </div>
-              <div class="service-title">
-                Not just videos — a whole content vibe.
-              </div>
-              <div class="service-body">
-                I help you build a recognizable style so your content feels
-                connected, not random.
-                <div class="service-list-title">Includes:</div>
-                <ul class="service-list">
-                  <li>Ongoing content ideas and planning</li>
-                  <li>Video series instead of one‑off posts</li>
-                  <li>Consistent look, tone, and storytelling</li>
-                  <li>Creative support month to month</li>
-                </ul>
-              </div>
-              <div class="service-tagline">
-                Good for: brands that want consistency and long‑term growth.
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- PROJECTS / PORTFOLIO -->
-      <section id="projects">
-        <div class="shell">
-          <div class="projects-section">
-            <div class="projects-header">
-              <div>
-                <div class="projects-title">Projects</div>
-                <div class="projects-subtitle">
-                  My portfolio of UGC work showcasing vertical video content.
-                </div>
-              </div>
-              <div class="projects-meta">
-                <span class="pill">
-                  <span>◼</span>
-                  <span>15 vertical video pieces</span>
-                </span>
-                <span>Tap any card to replace with your own video embed.</span>
-              </div>
-            </div>
-
-            <div class="projects-grid">
-              <!-- Video 1–15 based on your wireframe -->
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 1</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 2</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 3</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 4</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 5</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 6</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 7</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 8</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 9</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 10</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 11</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 12</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 13</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 14</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-              <article class="project-card">
-                <div class="project-thumb"></div>
-                <div class="project-title">Video 15</div>
-                <div class="project-desc">[Video description]</div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TESTIMONIALS -->
-      <section id="testimonials">
-        <div class="shell">
-          <div class="section-header">
-            <div>
-              <div class="section-kicker">Client results</div>
-              <h2 class="section-title">Don’t Take My Word for It</h2>
-            </div>
-          </div>
-
-          <div class="testimonials-grid">
-            <article class="testimonial-card">
-              <div class="testimonial-quote">
-                “Working with this creator has been amazing! The videos feel
-                authentic and our engagement has skyrocketed.”
-              </div>
-              <div>
-                <div class="testimonial-name">Sarah Johnson</div>
-                <div class="testimonial-role">TechStart Inc.</div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-quote">
-                “The quality and creativity exceeded our expectations. Highly
-                recommend for any brand looking for real UGC content.”
-              </div>
-              <div>
-                <div class="testimonial-name">Mike Chen</div>
-                <div class="testimonial-role">GrowthLabs</div>
-              </div>
-            </article>
-            <article class="testimonial-card">
-              <div class="testimonial-quote">
-                “Professional, reliable, and understands our brand voice
-                perfectly. The ROI on these videos has been incredible.”
-              </div>
-              <div>
-                <div class="testimonial-name">Emma Davis</div>
-                <div class="testimonial-role">BrandBoost Co.</div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA / CONTACT -->
-      <section id="contact">
-        <div class="shell">
-          <div class="cta-panel">
-            <div class="cta-main">
-              <div class="cta-kicker">Ready to create?</div>
-              <div class="cta-title">Let’s build your next top‑performing video.</div>
-              <div class="cta-text">
-                Tell me about your brand, product, and goals — I’ll come back
-                with concepts, formats, and a simple plan for your next set of
-                videos.
-              </div>
-            </div>
-            <div class="cta-actions">
-              <!-- Replace the href with your real booking link or email -->
-              <a href="mailto:you@example.com" class="cta-primary">
-                <span>Send brief / request rates</span>
-              </a>
-              <div class="cta-secondary">
-                Or book a call at <strong>yourlink.com</strong> and we’ll map
-                out your first videos.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="shell footer-inner">
-        <div>© <span id="year"></span> Your Name — UGC & vertical video creator.</div>
-        <div class="footer-links">
-          <!-- Optional: add real links -->
-          <a href="#top">Back to top</a>
-          <a href="#projects">Projects</a>
         </div>
       </div>
-    </footer>
+
+      <aside class="hero-secondary">
+        <div class="hero-secondary-header">
+          <span class="hero-secondary-badge">Performance snapshot</span>
+          <div class="hero-secondary-title">
+            <strong>Premium video ads</strong> + native UGC built for testing, learning, and scaling.
+          </div>
+        </div>
+        <div class="hero-secondary-body">
+          <div class="hero-secondary-row">
+            <div class="hero-secondary-metric">
+              <span>Average watch time (paid)</span>
+              <span class="hero-secondary-metric-value">+34%</span>
+              <span>vs. previous creatives</span>
+            </div>
+            <div class="hero-secondary-metric">
+              <span>Hook retention</span>
+              <span class="hero-secondary-metric-value">1.7s → 3.4s</span>
+              <span>on winning variations</span>
+            </div>
+          </div>
+          <p class="hero-secondary-note">
+            Every video is delivered in platform-native formats (9:16 for TikTok, Reels, Shorts) with clean
+            hooks, pacing, subtitles, and cutdowns you can iterate on fast.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- PREMIUM VIDEO ADS -->
+    <section id="premium" class="section">
+      <div class="section-header">
+        <div class="section-title">
+          Premium Video Ads
+          <span class="section-title-pill">Polished & campaign-ready</span>
+        </div>
+        <div class="section-subtitle">
+          Scripted, performance-focused creatives with higher production value, built for launches and scaling.
+        </div>
+      </div>
+
+      <div class="video-grid">
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">Founder-led story ad</div>
+            <div class="video-desc">
+              45s narrative spot combining founder voiceover, product close-ups, and on-screen proof.
+            </div>
+            <div class="video-tag">DTC • Launch</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">Benefits breakdown</div>
+            <div class="video-desc">
+              Structured, chaptered ad with bold text overlays that walk through 3–4 core product wins.
+            </div>
+            <div class="video-tag">SaaS • Explainer</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">Before / after hook</div>
+            <div class="video-desc">
+              Side-by-side transformation format with tight pacing and satisfying final reveal.
+            </div>
+            <div class="video-tag">Beauty • Paid social</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">UGC-compilation ad</div>
+            <div class="video-desc">
+              Multi-creator mashup edited into one cohesive, high-energy spot for cold audiences.
+            </div>
+            <div class="video-tag">Multi-market</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- STANDARD UGC ADS -->
+    <section id="ugc" class="section">
+      <div class="section-header">
+        <div class="section-title">
+          Standard UGC Ads
+          <span class="section-title-pill">Native & test-friendly</span>
+        </div>
+        <div class="section-subtitle">
+          Lo-fi, highly testable creator content that blends into the feed but still sells clearly.
+        </div>
+      </div>
+
+      <div class="video-grid-ugc">
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">Talk-to-camera testimonial</div>
+            <div class="video-desc">
+              Simple, handheld review that focuses on one clear problem and outcome.
+            </div>
+            <div class="video-tag">Native testimonial</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">Day-in-the-life</div>
+            <div class="video-desc">
+              POV-style routine showing how your product fits naturally into my day.
+            </div>
+            <div class="video-tag">Lifestyle</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">Unboxing + first impressions</div>
+            <div class="video-desc">
+              Organic unboxing focused on packaging, first feel, and immediate “wow” moments.
+            </div>
+            <div class="video-tag">Top-of-funnel</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">How-to / tutorial</div>
+            <div class="video-desc">
+              Quick, step-by-step format that teaches one specific use case or feature.
+            </div>
+            <div class="video-tag">Education</div>
+          </div>
+        </article>
+
+        <article class="video-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="video-meta">
+            <div class="video-title">Reaction-style hook</div>
+            <div class="video-desc">
+              Punchy reaction intro, then simple explanation of what makes your offer different.
+            </div>
+            <div class="video-tag">Hook testing</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHAT I CAN DO FOR YOUR BRAND -->
+    <section id="services" class="section">
+      <div class="section-header">
+        <div class="section-title">
+          What I Can Do for Your Brand
+          <span class="section-title-pill">Strategy + production</span>
+        </div>
+        <div class="section-subtitle">
+          Three ways we can work together depending on whether you need one-off tests or an ongoing content
+          engine.
+        </div>
+      </div>
+
+      <div class="services">
+        <!-- 1. Native UGC -->
+        <article class="service-card">
+          <div class="service-tag">
+            <span class="service-tag-dot"></span>
+            <span>Native UGC</span>
+          </div>
+          <h3 class="service-title">Content that feels real, not like an ad.</h3>
+          <p class="service-subtitle">
+            Creator-first videos that blend into TikTok, Reels, and Shorts feeds while still making the
+            message clear.
+          </p>
+
+          <div class="service-list-title">What’s included</div>
+          <ul class="service-list">
+            <li>UGC video ideas and simple scripts tailored to your offer</li>
+            <li>Strong hooks that feel like posts, not commercials</li>
+            <li>Filmed in real, everyday settings (home, desk, on-the-go)</li>
+            <li>Clean, platform-native edits with captions and sound</li>
+            <li>Ready-to-post files for organic or whitelisting</li>
+          </ul>
+
+          <div class="service-chip-row">
+            <span class="chip">Great for organic</span>
+            <span class="chip">Feed-native paid ads</span>
+            <span class="chip">Social proof content</span>
+          </div>
+        </article>
+
+        <!-- 2. Scroll-stopping ads -->
+        <article class="service-card">
+          <div class="service-tag">
+            <span class="service-tag-dot"></span>
+            <span>Scroll-stopping ads</span>
+          </div>
+          <h3 class="service-title">Performance creatives made to win in paid.</h3>
+          <p class="service-subtitle">
+            Concepted, scripted, and edited to test hooks, offers, angles, and structures that move real
+            numbers.
+          </p>
+
+          <div class="service-list-title">What’s included</div>
+          <ul class="service-list">
+            <li>Ad concepts and scripts aligned with your funnels and ICP</li>
+            <li>Deliberate filming: angles, lighting, movement, product framing</li>
+            <li>High-quality edits with transitions, overlays, and motion</li>
+            <li>Multiple variations so you can test hooks and CTAs</li>
+            <li>Deliverables formatted for TikTok Ads, Meta, and Shorts</li>
+          </ul>
+
+          <div class="service-chip-row">
+            <span class="chip">Launch campaigns</span>
+            <span class="chip">Creative testing</span>
+            <span class="chip">Scaling winners</span>
+          </div>
+        </article>
+
+        <!-- 3. Brand universe (retainer) -->
+        <article class="service-card">
+          <div class="service-tag">
+            <span class="service-tag-dot"></span>
+            <span>Brand universe</span>
+          </div>
+          <h3 class="service-title">An ongoing content universe, not just one-off videos.</h3>
+          <p class="service-subtitle">
+            Month-to-month partnership where we build a consistent look, tone, and storyline around your
+            brand.
+          </p>
+
+          <div class="service-list-title">What’s included</div>
+          <ul class="service-list">
+            <li>Ongoing content planning: series, themes, and recurring formats</li>
+            <li>A consistent visual and storytelling style across all videos</li>
+            <li>Recurring shoots to keep your library fresh and seasonal</li>
+            <li>Ad-ready variations, hooks, and cutdowns each month</li>
+            <li>Room for experiments based on what’s working in your accounts</li>
+          </ul>
+
+          <div class="service-chip-row">
+            <span class="chip">Retainer</span>
+            <span class="chip">Long-term growth</span>
+            <span class="chip">Brand-building</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section">
+      <div class="section-header">
+        <div class="section-title">
+          Don’t Take My Word for It
+          <span class="section-title-pill">Client results</span>
+        </div>
+        <div class="section-subtitle">
+          A few notes from teams I’ve worked with on launches, evergreen paid social, and ongoing content.
+        </div>
+      </div>
+
+      <div class="testimonials">
+        <article class="testimonial">
+          <p class="testimonial-text">
+            “The content felt like something you’d genuinely see in your feed, but it still drove signups.
+            Her scripts and creative angles gave us multiple winners to scale on TikTok.”
+          </p>
+          <div class="testimonial-meta">
+            <div>
+              <div class="testimonial-name">Sarah Johnson</div>
+              <div class="testimonial-role">Head of Growth, TechStart Inc.</div>
+            </div>
+            <span>Paid social</span>
+          </div>
+        </article>
+
+        <article class="testimonial">
+          <p class="testimonial-text">
+            “We briefed a handful of concepts and she came back with way more ideas than we expected.
+            Turnaround was fast, communication was clear, and the videos slotted straight into our
+            campaigns.”
+          </p>
+          <div class="testimonial-meta">
+            <div>
+              <div class="testimonial-name">Mike Chen</div>
+              <div class="testimonial-role">Founder, GrowthLabs</div>
+            </div>
+            <span>UGC + ads</span>
+          </div>
+        </article>
+
+        <article class="testimonial">
+          <p class="testimonial-text">
+            “She quickly understood our brand voice and boundaries, then delivered content that felt
+            totally on-brand. The videos are now core to our always-on creative mix.”
+          </p>
+          <div class="testimonial-meta">
+            <div>
+              <div class="testimonial-name">Emma Davis</div>
+              <div class="testimonial-role">Brand Lead, BrandBoost Co.</div>
+            </div>
+            <span>Brand universe</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-row" style="margin-top: 4px;">
+        <div>
+          <div class="cta-title">Ready to create?</div>
+          <p class="cta-subtitle">
+            Share a quick brief, a link to your product, or your current creatives and I’ll send back a
+            concrete idea for what we could film next.
+          </p>
+        </div>
+        <div class="hero-cta-group">
+          <button class="btn-primary" type="button">
+            <span>Start a project</span>
+            <span class="icon">▶</span>
+          </button>
+          <button class="btn-ghost" type="button">
+            <span>Download media kit</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS / PORTFOLIO PAGE -->
+    <section id="projects" class="projects-page">
+      <div class="projects-header">
+        <div>
+          <h2 class="projects-title">Projects</h2>
+          <p class="projects-subtitle">
+            Portfolio of UGC and vertical video work — 15 selected videos across DTC, apps, and SaaS.
+          </p>
+        </div>
+        <div class="projects-filter-row">
+          <button class="filter-pill is-active" type="button">All</button>
+          <button class="filter-pill" type="button">DTC</button>
+          <button class="filter-pill" type="button">SaaS</button>
+          <button class="filter-pill" type="button">Apps</button>
+          <button class="filter-pill" type="button">Hooks</button>
+        </div>
+      </div>
+
+      <div class="projects-grid">
+        <!-- 15 project cards (wireframe: 15 videos) -->
+        <!-- For brevity, text is short but layout matches: 15 similar cards -->
+        <!-- 1 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 1 · Skincare UGC</div>
+            <div>Talk-to-camera review + close-ups, optimized for TikTok.</div>
+            <div class="project-tag-row">
+              <span>#UGC #DTC</span>
+              <span class="project-length">0:26</span>
+            </div>
+          </div>
+        </article>
+        <!-- 2 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 2 · App walkthrough</div>
+            <div>Screen-record plus face-cam, showing core feature in 3 steps.</div>
+            <div class="project-tag-row">
+              <span>#SaaS #Onboarding</span>
+              <span class="project-length">0:32</span>
+            </div>
+          </div>
+        </article>
+        <!-- 3 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 3 · Before / after</div>
+            <div>Transformation format with text overlays and clear CTA.</div>
+            <div class="project-tag-row">
+              <span>#Beauty #Paid</span>
+              <span class="project-length">0:29</span>
+            </div>
+          </div>
+        </article>
+        <!-- 4 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 4 · Founder intro</div>
+            <div>Founder explains “why this product exists” in under 30s.</div>
+            <div class="project-tag-row">
+              <span>#Story #TopOfFunnel</span>
+              <span class="project-length">0:24</span>
+            </div>
+          </div>
+        </article>
+        <!-- 5 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 5 · Day-in-the-life</div>
+            <div>POV routine integrating product moments throughout the day.</div>
+            <div class="project-tag-row">
+              <span>#Lifestyle</span>
+              <span class="project-length">0:35</span>
+            </div>
+          </div>
+        </article>
+        <!-- 6 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 6 · Hook testing edit</div>
+            <div>Same body, three different openings to test hooks.</div>
+            <div class="project-tag-row">
+              <span>#Testing</span>
+              <span class="project-length">0:31</span>
+            </div>
+          </div>
+        </article>
+        <!-- 7 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 7 · Unboxing</div>
+            <div>Packaging-focused unboxing with honest first impressions.</div>
+            <div class="project-tag-row">
+              <span>#Unboxing</span>
+              <span class="project-length">0:28</span>
+            </div>
+          </div>
+        </article>
+        <!-- 8 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 8 · How-to</div>
+            <div>Clear, step-by-step tutorial for one key use case.</div>
+            <div class="project-tag-row">
+              <span>#Tutorial</span>
+              <span class="project-length">0:33</span>
+            </div>
+          </div>
+        </article>
+        <!-- 9 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 9 · POV reaction</div>
+            <div>Reaction-style intro that leads into product demo.</div>
+            <div class="project-tag-row">
+              <span>#Hook</span>
+              <span class="project-length">0:22</span>
+            </div>
+          </div>
+        </article>
+        <!-- 10 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 10 · Problem / solution</div>
+            <div>Problem statement up front, solution payoff by second 5.</div>
+            <div class="project-tag-row">
+              <span>#Performance</span>
+              <span class="project-length">0:27</span>
+            </div>
+          </div>
+        </article>
+        <!-- 11 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 11 · Split-screen demo</div>
+            <div>Side-by-side comparison vs. old way of doing things.</div>
+            <div class="project-tag-row">
+              <span>#Comparison</span>
+              <span class="project-length">0:30</span>
+            </div>
+          </div>
+        </article>
+        <!-- 12 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 12 · Social proof stack</div>
+            <div>Review screenshots composited into one narrative ad.</div>
+            <div class="project-tag-row">
+              <span>#SocialProof</span>
+              <span class="project-length">0:25</span>
+            </div>
+          </div>
+        </article>
+        <!-- 13 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 13 · Creator mashup</div>
+            <div>Multiple creators stitched into one fast-paced spot.</div>
+            <div class="project-tag-row">
+              <span>#Multi-UGC</span>
+              <span class="project-length">0:36</span>
+            </div>
+          </div>
+        </article>
+        <!-- 14 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 14 · Retargeting angle</div>
+            <div>Addressing objections directly with casual delivery.</div>
+            <div class="project-tag-row">
+              <span>#Retargeting</span>
+              <span class="project-length">0:23</span>
+            </div>
+          </div>
+        </article>
+        <!-- 15 -->
+        <article class="project-card">
+          <div class="video-thumb">
+            <div class="video-play">▶</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-title">Video 15 · Brand story mini-doc</div>
+            <div>Short, cinematic-style brand narrative cut for vertical.</div>
+            <div class="project-tag-row">
+              <span>#Brand</span>
+              <span class="project-length">0:40</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
   </div>
 
   <script>
-    // Simple year updater
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Simple interactive touches: filter pills "active" state
+    const filterPills = document.querySelectorAll(".filter-pill");
+    filterPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        filterPills.forEach((p) => p.classList.remove("is-active"));
+        pill.classList.add("is-active");
+        // Hook up real filtering here if needed
+      });
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.page-nav a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute("href"));
+        if (!target) return;
+        window.scrollTo({
+          top: target.offsetTop - 70,
+          behavior: "smooth",
+        });
+      });
+    });
   </script>
 </body>
 </html>
