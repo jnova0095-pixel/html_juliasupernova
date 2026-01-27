@@ -1,164 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>supernova UGC | Julia Superintendent</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #fafafb;
-      --text: #222222;
-      --gray: #f3f3f4;
-      --accent: #7048e8;
-      --radius: 10px;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 40px 20px 24px 20px;
-      flex: 1;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 2rem;
-      color: var(--accent);
-      letter-spacing: -1px;
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      user-select: none;
-    }
-    .logo::before {
-      content: "★";
-      color: gold;
-      font-size: 1.4em;
-      margin-right: 2px;
-    }
-    .name {
-      font-weight: 400;
-      font-size: 1.2rem;
-      color: #888;
-      margin-bottom: 14px;
-    }
-    .intro {
-      font-size: 1.12rem;
-      margin-bottom: 32px;
-      line-height: 1.6;
-      background: var(--gray);
-      padding: 18px 20px;
-      border-radius: var(--radius);
-    }
-    .section-title {
-      font-weight: 600;
-      margin-top: 32px;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-      color: var(--accent);
-    }
-    .ugc-list {
-      display: grid;
-      gap: 24px;
-      grid-template-columns: 1fr;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-    .ugc-item {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: 0 1px 6px rgba(60,60,80,0.06);
-      padding: 16px;
-      transition: transform 0.12s;
-    }
-    .ugc-item:hover {
-      transform: translateY(-2px) scale(1.01);
-      box-shadow: 0 2px 10px rgba(60,60,80,0.13);
-    }
-    .ugc-video {
-      display: block;
-      background: #eee;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 100%;
-      height: 180px;
-      margin-bottom: 10px;
-      object-fit: cover;
-    }
-    footer {
-      text-align: right;
-      padding: 14px 24px 6px 24px;
-      font-size: 0.97rem;
-      color: #888;
-      border-top: 1px solid #ececf0;
-      opacity: 0.85;
-    }
-    @media (max-width: 600px) {
-      .container {
-        padding: 28px 6vw 16px 6vw;
-      }
-      .ugc-video {
-        height: 120px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="logo">supernova UGC</div>
-    <div class="name">by Julia Supeernova</div>
-    <div class="intro">
-      Hi, I'm Julia! I create high-quality, authentic user-generated video content that helps brands connect with real people. Lets make your brand unforgettable!
-    </div>
-    <div class="section-title">Selected UGC Work</div>
-    <ul class="ugc-list" id="ugc-list">
-      <!-- Example UGC item (update src URLs and captions as you upload your work) -->
-      <li class="ugc-item">
-        <video class="ugc-video" src="https://www.w3schools.com/html/mov_bbb.mp4" controls poster="https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?auto=format&fit=crop&w=400&q=80"></video>
-        <div class="ugc-caption">Sample Ad: Skincare Routine for GlowBrand</div>
-      </li>
-      <li class="ugc-item">
-        <video class="ugc-video" src="https://www.w3schools.com/html/movie.mp4" controls poster="https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?auto=format&fit=crop&w=400&q=80"></video>
-        <div class="ugc-caption">Unboxing Experience: TechieX earbuds</div>
-      </li>
-      <!-- Add more items as needed -->
-    </ul>
-  </div>
-  <footer>
-    &copy; 2026 Julia Supeernova | supernova UGC
-  </footer>
+  <meta charset="UTF-8" />
+  <title>Iuliia Novoselova | Freelance Video Editor & UGC Creator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Iuliia Novoselova – freelance video editor, content creator, and UGC specialist helping brands turn viewers into loyal customers."
+  />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Example: Add more UGC items dynamically, update or remove as desired!
-    // const moreUGC = [
-    //   {
-    //     src: 'link-to-your-video.mp4',
-    //     poster: 'thumbnail-image.jpg',
-    //     caption: 'Your new video caption',
-    //   },
-    // ];
-    // const ugcList = document.getElementById('ugc-list');
-    // moreUGC.forEach(item => {
-    //   const li = document.createElement('li');
-    //   li.className = 'ugc-item';
-    //   li.innerHTML = `<video class="ugc-video" src="${item.src}" controls poster="${item.poster}"></video>
-    //     <div class="ugc-caption">${item.caption}</div>`;
-    //   ugcList.appendChild(li);
-    // });
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              500: '#7c3aed',
+              600: '#6d28d9',
+              700: '#5b21b6',
+            },
+            accent: {
+              100: '#fef3c7',
+              400: '#fbbf24',
+            },
+            dark: '#050816',
+          },
+          fontFamily: {
+            sans: ['system-ui', 'ui-sans-serif', 'Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 24px 60px rgba(15, 23, 42, 0.35)',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-slate-950 text-slate-50 font-sans antialiased">
+  <!-- Page wrapper -->
+  <div class="min-h-screen flex flex-col">
+
+    <!-- Navigation -->
+    <header class="border-b border-white/5 bg-slate-950/70 backdrop-blur">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-primary-500 to-accent-400 flex items-center justify-center text-xs font-bold shadow-lg shadow-primary-500/40">
+            IN
+          </div>
+          <span class="font-semibold tracking-tight">Iuliia Novoselova</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-sm text-slate-200/80">
+          <a href="#services" class="hover:text-white transition">Services</a>
+          <a href="#portfolio" class="hover:text-white transition">Portfolio</a>
+          <a href="#process" class="hover:text-white transition">Process</a>
+          <a href="#testimonials" class="hover:text-white transition">Clients</a>
+        </nav>
+
+        <a
+          href="#contact"
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm rounded-full bg-primary-600 hover:bg-primary-700 transition shadow-md shadow-primary-600/40"
+        >
+          Let’s work together
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <main class="flex-1">
+      <section class="relative overflow-hidden">
+        <!-- Glow background -->
+        <div class="pointer-events-none absolute inset-0">
+          <div class="absolute -top-32 -left-32 w-80 h-80 bg-primary-600/30 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-32 -right-40 w-96 h-96 bg-accent-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-16 pb-24 relative">
+          <div class="grid gap-14 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] items-center">
+            <!-- Left: text -->
+            <div>
+              <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-slate-900/60 text-xs text-slate-200/80 mb-5">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Available for new projects
+              </span>
+
+              <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-tight">
+                Scroll-stopping
+                <span class="bg-gradient-to-r from-primary-400 via-accent-400 to-primary-500 bg-clip-text text-transparent">
+                  video content
+                </span>
+                that sells.
+              </h1>
+
+              <p class="mt-5 text-base sm:text-lg text-slate-200/80 max-w-xl">
+                I’m <span class="font-semibold text-slate-50">Iuliia Novoselova</span>, a freelance video editor and UGC
+                creator helping brands turn casual viewers into loyal customers with short-form content that feels
+                native, not like ads.
+              </p>
+
+              <div class="mt-7 flex flex-wrap items-center gap-4">
+                <a
+                  href="#contact"
+                  class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary-600 hover:bg-primary-700 text-sm font-medium shadow-soft shadow-primary-600/40"
+                >
+                  Book a free strategy call
+                  <span aria-hidden="true">↗</span>
+                </a>
+
+                <a
+                  href="#portfolio"
+                  class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/15 hover:border-white/40 text-sm"
+                >
+                  Watch examples
+                  <span class="text-xs opacity-70">00:30 – 00:45 clips</span>
+                </a>
+              </div>
+
+              <div class="mt-8 flex flex-wrap gap-6 text-xs sm:text-sm text-slate-300/80">
+                <div>
+                  <p class="font-semibold text-slate-100">+10M</p>
+                  <p class="text-slate-400">Organic views across TikTok & Reels</p>
+                </div>
+                <div>
+                  <p class="font-semibold text-slate-100">200+</p>
+                  <p class="text-slate-400">Short-form videos delivered</p>
+                </div>
+                <div>
+                  <p class="font-semibold text-slate-100">48h</p>
+                  <p class="text-slate-400">Typical turnaround time</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: mockup / video frame -->
+            <div class="lg:justify-self-end">
+              <div class="relative max-w-md mx-auto">
+                <div class="absolute -top-6 -left-6 w-24 h-24 border border-white/10 rounded-3xl"></div>
+                <div class="absolute -bottom-6 -right-4 w-28 h-28 border border-white/10 rounded-3xl"></div>
+
+                <div class="relative rounded-[2rem] border border-white/10 bg-slate-900/80 shadow-soft overflow-hidden">
+                  <!-- Fake phone notch -->
+                  <div class="flex justify-center pt-4">
+                    <div class="h-1 w-16 rounded-full bg-slate-700/60"></div>
+                  </div>
+
+                  <!-- Local video inside phone mockup -->
+                  <div class="mt-4 px-4 pb-4">
+                    <div class="relative aspect-[9/16] rounded-3xl overflow-hidden bg-black">
+                      <video
+                        id="heroVideo"
+                        src="herovideo.mp4"
+                        muted
+                        playsinline
+                        autoplay
+                        loop
+                        class="w-full h-full object-cover"
+                      ></video>
+
+                      <!-- Centered round play/pause button -->
+                      <button
+                        id="videoOverlayToggle"
+                        type="button"
+                        class="absolute inset-0 m-auto w-14 h-14 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-xl text-slate-50 hover:bg-black/80 transition"
+                      >
+                        ⏸
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Soft radial glow only -->
+                  <div class="absolute inset-0 pointer-events-none">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(248,250,252,0.08),transparent)]"></div>
+                  </div>
+
+                  <!-- Stats pill -->
+                  <div
+                    class="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur text-[11px] flex items-center gap-2"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>+312% increase in saves</span>
+                  </div>
+
+                  <!-- Duration badge -->
+                  <div class="absolute top-4 right-4 px-2 py-1 rounded-full bg-black/70 text-[11px]">
+                    0:34
+                  </div>
+
+                  <!-- Bottom meta with chips -->
+                  <div class="border-t border-white/5 px-4 py-3 flex flex-col gap-2 text-[11px] text-slate-300/80">
+                    <div class="flex items-center gap-2">
+                      <span class="inline-flex items-center justify-center w-7 h-7 rounded-xl bg-slate-800 text-[10px]">
+                        4K
+                      </span>
+                      <div>
+                        <p class="font-medium text-slate-100">Premium short-form edits</p>
+                        <p class="text-[11px] text-slate-400">TikTok • Reels • Shorts</p>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class="px-2 py-1 rounded-full border border-white/10">
+                        UGC • Editing • Strategy
+                      </span>
+                      <span class="px-2 py-1 rounded-full bg-black/50 border border-white/10">
+                        Hook in first 2s
+                      </span>
+                      <span class="px-2 py-1 rounded-full bg-black/50 border border-white/10">
+                        Native-feel storytelling
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services" class="border-y border-white/5 bg-slate-950/80">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-10">
+            <div>
+              <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">What I can do for your brand</h2>
+              <p class="mt-3 text-slate-300/80 max-w-xl">
+                From raw footage to polished, platform-optimized content tailored to TikTok, Instagram Reels, and YouTube Shorts.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <!-- Service card -->
+            <article class="p-6 rounded-2xl border border-white/10 bg-slate-900/40 hover:bg-slate-900/70 transition group">
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <h3 class="font-semibold">Short-Form Video Editing</h3>
+                <span class="text-[11px] px-2 py-1 rounded-full bg-primary-600/15 text-primary-200 border border-primary-500/40">
+                  Most popular
+                </span>
+              </div>
+              <p class="text-sm text-slate-300/80 mb-4">
+                Turn long-form content, talking-head videos, or raw footage into high-retention shorts ready to post.
+              </p>
+              <ul class="space-y-2 text-sm text-slate-300/90">
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Dynamic captions & motion graphics
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Jump cuts, pacing, and sound design
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> TikTok, Reels, Shorts exports
+                </li>
+              </ul>
+            </article>
+
+            <article class="p-6 rounded-2xl border border-white/10 bg-slate-900/40 hover:bg-slate-900/70 transition group">
+              <h3 class="font-semibold mb-3">UGC Concept & Creation</h3>
+              <p class="text-sm text-slate-300/80 mb-4">
+                Native-feeling creator content that builds trust, highlights your product, and doesn’t scream “ad”.
+              </p>
+              <ul class="space-y-2 text-sm text-slate-300/90">
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Scripting & hooks based on your offer
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Filmed in natural, real-life settings
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Includes edited, ready-to-run assets
+                </li>
+              </ul>
+            </article>
+
+            <article class="p-6 rounded-2xl border border-white/10 bg-slate-900/40 hover:bg-slate-900/70 transition group">
+              <h3 class="font-semibold mb-3">Content Strategy Support</h3>
+              <p class="text-sm text-slate-300/80 mb-4">
+                Not sure what to post? I’ll help you align content ideas with your funnel and metrics.
+              </p>
+              <ul class="space-y-2 text-sm text-slate-300/90">
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Hook ideas & content pillars
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Thumbnail & headline suggestions
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-1 text-primary-400">•</span> Simple content calendar guidance
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Portfolio -->
+      <section id="portfolio" class="bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+            <div>
+              <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Featured projects</h2>
+              <p class="mt-3 text-slate-300/80 max-w-xl">
+                A few examples of how I’ve helped brands increase watch time, CTR, and conversions.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <!-- Project 1 – full-width vertical video example1.mp4 -->
+            <a href="#" class="group rounded-2xl overflow-hidden border border-white/10 bg-slate-900/40 hover:border-primary-500/60 transition flex flex-col">
+              <!-- Title above video -->
+              <div class="px-4 pt-4 pb-2">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                  E-commerce brand
+                </p>
+              </div>
+
+              <!-- Full-width video wrapper -->
+              <div class="relative bg-slate-950">
+                <div class="relative w-full aspect-[9/16] overflow-hidden rounded-none border-y border-white/10 bg-black">
+                  <video
+                    id="projectVideo1"
+                    src="example1.mp4"
+                    playsinline
+                    muted
+                    loop
+                    autoplay
+                    class="w-full h-full object-cover"
+                  ></video>
+
+                  <!-- Centered play/pause button -->
+                  <button
+                    id="projectToggle1"
+                    type="button"
+                    class="absolute inset-0 m-auto w-12 h-12 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-lg text-slate-50 hover:bg-black/80 transition"
+                  >
+                    ⏸
+                  </button>
+                </div>
+              </div>
+
+              <!-- Meta row with nice padding -->
+              <div class="px-4 pt-3 pb-1 flex items-center justify-between gap-3 text-[11px] text-slate-300/90">
+                <span class="px-3 py-1 rounded-full bg-black/60 border border-white/10 whitespace-nowrap">
+                  0:32 • Ad &amp; UGC edit
+                </span>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/90 text-slate-900 font-semibold whitespace-nowrap">
+                  +184% CTR
+                </span>
+              </div>
+
+              <!-- Text block -->
+              <div class="px-4 pb-4 pt-2 flex flex-col gap-1.5 text-sm">
+                <p class="font-medium text-slate-50">
+                  Skincare brand TikTok campaign
+                </p>
+                <p class="text-slate-300/80 text-[13px] leading-snug">
+                  3x ROAS on TikTok ads with native UGC style content
+                </p>
+              </div>
+            </a>
+
+            <!-- Project 2 – full-width vertical video example2.mp4 -->
+            <a href="#" class="group rounded-2xl overflow-hidden border border-white/10 bg-slate-900/40 hover:border-primary-500/60 transition flex flex-col">
+              <!-- Title above video -->
+              <div class="px-4 pt-4 pb-2">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                  Digital product
+                </p>
+              </div>
+
+              <!-- Full-width video wrapper -->
+              <div class="relative bg-slate-950">
+                <div class="relative w-full aspect-[9/16] overflow-hidden rounded-none border-y border-white/10 bg-black">
+                  <video
+                    id="projectVideo2"
+                    src="example2.mp4"
+                    playsinline
+                    muted
+                    loop
+                    autoplay
+                    class="w-full h-full object-cover"
+                  ></video>
+
+                  <!-- Centered play/pause button -->
+                  <button
+                    id="projectToggle2"
+                    type="button"
+                    class="absolute inset-0 m-auto w-12 h-12 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-lg text-slate-50 hover:bg-black/80 transition"
+                  >
+                    ⏸
+                  </button>
+                </div>
+              </div>
+
+              <!-- Meta row with nice padding -->
+              <div class="px-4 pt-3 pb-1 flex items-center justify-between gap-3 text-[11px] text-slate-300/90">
+                <span class="px-3 py-1 rounded-full bg-black/60 border border-white/10 whitespace-nowrap">
+                  0:21 • Ad &amp; UGC edit
+                </span>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/90 text-slate-900 font-semibold whitespace-nowrap">
+                  +230% watch time
+                </span>
+              </div>
+
+              <!-- Text block -->
+              <div class="px-4 pb-4 pt-2 flex flex-col gap-1.5 text-sm">
+                <p class="font-medium text-slate-50">
+                  Product demo
+                </p>
+                <p class="text-slate-300/80 text-[13px] leading-snug">
+                  Boosted signups and download of the app
+                </p>
+              </div>
+            </a>
+
+            <!-- Project 3 – full-width vertical video example3.mp4 -->
+            <a href="#" class="group rounded-2xl overflow-hidden border border-white/10 bg-slate-900/40 hover:border-primary-500/60 transition flex flex-col">
+              <!-- Title above video -->
+              <div class="px-4 pt-4 pb-2">
+                <p class="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+                  Lifestyle app
+                </p>
+              </div>
+
+              <!-- Full-width video wrapper -->
+              <div class="relative bg-slate-950">
+                <div class="relative w-full aspect-[9/16] overflow-hidden rounded-none border-y border-white/10 bg-black">
+                  <video
+                    id="projectVideo3"
+                    src="example3.mp4"
+                    playsinline
+                    muted
+                    loop
+                    autoplay
+                    class="w-full h-full object-cover"
+                  ></video>
+
+                  <!-- Centered play/pause button -->
+                  <button
+                    id="projectToggle3"
+                    type="button"
+                    class="absolute inset-0 m-auto w-12 h-12 flex items-center justify-center rounded-full bg-black/60 border border-white/40 text-lg text-slate-50 hover:bg-black/80 transition"
+                  >
+                    ⏸
+                  </button>
+                </div>
+              </div>
+
+              <!-- Meta row with nice padding -->
+              <div class="px-4 pt-3 pb-1 flex items-center justify-between gap-3 text-[11px] text-slate-300/90">
+                <span class="px-3 py-1 rounded-full bg-black/60 border border-white/10 whitespace-nowrap">
+                  0:28 • Ad &amp; UGC edit
+                </span>
+                <span class="px-3 py-1 rounded-full bg-emerald-500/90 text-slate-900 font-semibold whitespace-nowrap">
+                  +2K downloads
+                </span>
+              </div>
+
+              <!-- Text block -->
+              <div class="px-4 pb-4 pt-2 flex flex-col gap-1.5 text-sm">
+                <p class="font-medium text-slate-50">
+                  Product demo in creators’ style
+                </p>
+                <p class="text-slate-300/80 text-[13px] leading-snug">
+                  Boosted downloads of the app and in-app purchases
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section id="process" class="bg-slate-950/90 border-y border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+          <div class="mb-10 max-w-xl">
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Simple, creator-friendly process</h2>
+            <p class="mt-3 text-slate-300/80">
+              No endless back-and-forth. Clear steps, fast delivery, and transparent feedback loops.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="relative p-6 rounded-2xl border border-white/10 bg-slate-900/40">
+              <div class="absolute -top-3 left-6 px-2 py-0.5 text-[11px] rounded-full bg-slate-950 border border-white/10">
+                01
+              </div>
+              <h3 class="font-semibold mb-2">Discovery & brief</h3>
+              <p class="text-sm text-slate-300/80">
+                We define your goals, platforms, and what “success” looks like. You send brand assets and references.
+              </p>
+            </div>
+            <div class="relative p-6 rounded-2xl border border-white/10 bg-slate-900/40">
+              <div class="absolute -top-3 left-6 px-2 py-0.5 text-[11px] rounded-full bg-slate-950 border border-white/10">
+                02
+              </div>
+              <h3 class="font-semibold mb-2">Creation & editing</h3>
+              <p class="text-sm text-slate-300/80">
+                I handle scripting (if needed), shooting UGC, and/or editing your footage into platform-ready assets.
+              </p>
+            </div>
+            <div class="relative p-6 rounded-2xl border border-white/10 bg-slate-900/40">
+              <div class="absolute -top-3 left-6 px-2 py-0.5 text-[11px] rounded-full bg-slate-950 border border-white/10">
+                03
+              </div>
+              <h3 class="font-semibold mb-2">Review & delivery</h3>
+              <p class="text-sm text-slate-300/80">
+                You get preview links, we apply refinements, and then I deliver final exports for each platform.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section id="testimonials" class="bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+          <div class="mb-10 max-w-xl">
+            <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Loved by brands & creators</h2>
+            <p class="mt-3 text-slate-300/80">
+              Here’s what a few of my clients say about working together.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <figure class="p-6 rounded-2xl border border-white/10 bg-slate-900/40">
+              <blockquote class="text-sm text-slate-200/90 mb-4">
+                “Iuliia completely transformed our TikTok presence. Her edits feel native to the platform and our best
+                performing video came from her UGC concept.”
+              </blockquote>
+              <figcaption class="text-sm">
+                <p class="font-medium">Mia Laurent</p>
+                <p class="text-slate-400 text-xs">Founder, GlowUp Skincare</p>
+              </figcaption>
+            </figure>
+
+            <figure class="p-6 rounded-2xl border border-white/10 bg-slate-900/40">
+              <blockquote class="text-sm text-slate-200/90 mb-4">
+                “We repurpose our weekly podcast into shorts and Iuliia handles everything. The increase in YouTube
+                subscribers has been insane.”
+              </blockquote>
+              <figcaption class="text-sm">
+                <p class="font-medium">Alex Carter</p>
+                <p class="text-slate-400 text-xs">Host, Creator’s Corner</p>
+              </figcaption>
+            </figure>
+
+            <figure class="p-6 rounded-2xl border border-white/10 bg-slate-900/40">
+              <blockquote class="text-sm text-slate-200/90 mb-4">
+                “Fast, reliable, and she actually understands marketing. Her ideas for hooks and CTAs made a huge
+                difference to our ad performance.”
+              </blockquote>
+              <figcaption class="text-sm">
+                <p class="font-medium">Daniel Kim</p>
+                <p class="text-slate-400 text-xs">CMO, Flow SaaS</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact / CTA -->
+      <section id="contact" class="bg-slate-950/90 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-16">
+          <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+            <div>
+              <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">
+                Ready to create content your audience actually wants to watch?
+              </h2>
+              <p class="mt-3 text-slate-300/80 max-w-xl">
+                Tell me a bit about your brand, your goals, and your timelines. I’ll get back to you with options within 24–48 hours.
+              </p>
+
+              <div class="mt-6 space-y-2 text-sm text-slate-300/90">
+                <p><span class="text-slate-400">Email:</span> jnova0095@gmail.com</p>
+                <p><span class="text-slate-400">Based in:</span> Remote • open to worldwide brands</p>
+                <p>
+                  <span class="text-slate-400">Platforms:</span>
+                  <a
+                    href="https://www.tiktok.com/@julia_supernova"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="underline underline-offset-2 hover:text-slate-100 transition"
+                  >
+                    TikTok
+                  </a>,
+                  <a
+                    href="https://www.instagram.com/juliia_supernova/"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="underline underline-offset-2 hover:text-slate-100 transition"
+                  >
+                    Instagram
+                  </a>,
+                  <a
+                    href="https://www.youtube.com/@juliia_supernova"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="underline underline-offset-2 hover:text-slate-100 transition"
+                  >
+                    YouTube Shorts
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Contact form -->
+            <div class="p-6 rounded-2xl border border-white/10 bg-slate-900/60 shadow-soft">
+              <form class="space-y-4">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label class="block text-xs font-medium text-slate-200 mb-1" for="name">Name</label>
+                    <input
+                      id="name"
+                      type="text"
+                      placeholder="Your name"
+                      class="w-full rounded-xl bg-slate-950/60 border border-white/10 px-3 py-2.5 text-sm outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-medium text-slate-200 mb-1" for="brand">Brand / Company</label>
+                    <input
+                      id="brand"
+                      type="text"
+                      placeholder="Brand / company name"
+                      class="w-full rounded-xl bg-slate-950/60 border border-white/10 px-3 py-2.5 text-sm outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-200 mb-1" for="email">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    class="w-full rounded-xl bg-slate-950/60 border border-white/10 px-3 py-2.5 text-sm outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                  />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-200 mb-1" for="service">What are you looking for?</label>
+                  <select
+                    id="service"
+                    class="w-full rounded-xl bg-slate-950/60 border border-white/10 px-3 py-2.5 text-sm outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                  >
+                    <option>Short-form editing (Reels, TikTok, Shorts)</option>
+                    <option>UGC creation (script + shoot + edit)</option>
+                    <option>Both editing & UGC</option>
+                    <option>Ongoing monthly partnership</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-200 mb-1" for="budget">Approx. monthly budget</label>
+                  <select
+                    id="budget"
+                    class="w-full rounded-xl bg-slate-950/60 border border-white/10 px-3 py-2.5 text-sm outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                  >
+                    <option>Up to $500</option>
+                    <option>$500 – $1,500</option>
+                    <option>$1,500 – $3,000</option>
+                    <option>$3,000+</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-medium text-slate-200 mb-1" for="message">Tell me about your project</label>
+                  <textarea
+                    id="message"
+                    rows="4"
+                    placeholder="Share who your audience is, what you sell, and what you’d like to achieve."
+                    class="w-full rounded-xl bg-slate-950/60 border border-white/10 px-3 py-2.5 text-sm outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 resize-none"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-sm font-medium shadow-md shadow-primary-600/40"
+                >
+                  Send inquiry
+                </button>
+
+                <p class="text-[11px] text-slate-500 text-center">
+                  By submitting, you agree to be contacted back about your inquiry. No spam, ever.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-slate-950">
+      <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <p>© <span id="year"></span> Iuliia Novoselova. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="https://www.instagram.com/juliia_supernova/" target="_blank" rel="noreferrer" class="hover:text-slate-300 transition">
+            Instagram
+          </a>
+          <a href="https://www.tiktok.com/@julia_supernova" target="_blank" rel="noreferrer" class="hover:text-slate-300 transition">
+            TikTok
+          </a>
+          <a href="https://www.youtube.com/@juliia_supernova" target="_blank" rel="noreferrer" class="hover:text-slate-300 transition">
+            YouTube
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple current year for footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Generic helper for play/pause toggles
+    function wireVideoToggle(videoId, buttonId) {
+      const video = document.getElementById(videoId);
+      const btn = document.getElementById(buttonId);
+      if (!video || !btn) return;
+
+      btn.addEventListener('click', (e) => {
+        // Prevent the parent <a href="#"> from scrolling to top
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (video.paused) {
+          video.play();
+          btn.textContent = '⏸';
+        } else {
+          video.pause();
+          btn.textContent = '▶';
+        }
+      });
+    }
+
+    // Hero video
+    wireVideoToggle('heroVideo', 'videoOverlayToggle');
+    // Portfolio videos
+    wireVideoToggle('projectVideo1', 'projectToggle1');
+    wireVideoToggle('projectVideo2', 'projectToggle2');
+    wireVideoToggle('projectVideo3', 'projectToggle3');
   </script>
 </body>
 </html>
