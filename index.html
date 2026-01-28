@@ -393,7 +393,7 @@
         .content-column {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 1rem;
         }
 
         .badge {
@@ -437,7 +437,7 @@
         .social-stats {
             display: flex;
             justify-content: space-between;
-            margin-top: 1.5rem;
+            margin-top: 0.5rem;
             align-items: center;
             background: white;
             border: 1px solid var(--border-color);
@@ -525,12 +525,18 @@
 
         .section-title {
             font-family: 'Brigesta', sans-serif;
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 400;
             color: var(--text-primary);
             margin-bottom: 1rem;
             letter-spacing: -0.02em;
             line-height: 1.1;
+        }
+
+        .section-highlight {
+            background: rgba(190, 242, 124, 0.4);
+            padding: 0 0.25rem;
+            border-radius: 4px;
         }
 
         .section-subtitle {
@@ -575,7 +581,7 @@
             border-radius: var(--radius-lg);
             overflow: hidden;
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            border: 1px solid #1C1B1B;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -583,7 +589,7 @@
 
         .video-wrapper:hover {
             transform: translateY(-12px);
-            border-color: var(--accent-green);
+            border-color: #1C1B1B;
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
         }
 
@@ -662,7 +668,7 @@
 
         .service-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            border: 1px solid #1C1B1B;
             border-radius: var(--radius-lg);
             padding: 3rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -842,7 +848,7 @@
 
         .review-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            border: 1px solid #1C1B1B;
             border-radius: var(--radius-lg);
             padding: 3rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1379,7 +1385,7 @@
                     <div class="profile-info-card">Expert UGC creator, filmmaker and editing wizard with 3+ years of experience</div>
                     
                     <p class="hero-description">
-                        I'm your go-to <em>versatile creator</em>, handling everything from natural, scroll-stopping UGC to advanced animations and visual effects. Instead of juggling multiple creatives, you get one partner who understands both authenticity and polish—so your content stays cohesive, creative, and impactful.
+                        I'm your <em>go-to versatile</em> creator, making everything from UGC videos that don't feel like ads to jaw-dropping animations and visual effects.
                     </p>
 
                     <div class="social-stats">
@@ -1428,7 +1434,7 @@
         <section class="videos-section" id="projects">
             <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">Premium Video Ads</h2>
+                    <h2 class="section-title"><span class="section-highlight">Premium</span> Video Ads</h2>
                     <p class="section-subtitle">High-performing content designed to captivate and convert your audience</p>
                 </div>
 
@@ -1443,11 +1449,8 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="video-label">Skincare • 30s</div>
+                            <div class="video-label">Notion • Productivity software • 38s</div>
                         </div>
-                        <p class="video-description">
-                            Morning routine showcase driving 3.2% CTR for premium skincare brand
-                        </p>
                     </div>
 
                     <!-- Video 2 -->
@@ -1460,11 +1463,8 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="video-label">Tech • 45s</div>
+                            <div class="video-label">Headspace • Meditation app • 31s</div>
                         </div>
-                        <p class="video-description">
-                            Unboxing & first impressions that generated 500K+ organic views
-                        </p>
                     </div>
 
                     <!-- Video 3 -->
@@ -1477,11 +1477,8 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="video-label">Fashion • 20s</div>
+                            <div class="video-label">Vinted • Marketplace • 32s</div>
                         </div>
-                        <p class="video-description">
-                            Try-on haul format that increased ROAS by 2.4x for clothing brand
-                        </p>
                     </div>
 
                     <!-- Video 4 -->
@@ -1494,11 +1491,8 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="video-label">Food & Bev • 15s</div>
+                            <div class="video-label">Erborian • Make up • 49s</div>
                         </div>
-                        <p class="video-description">
-                            Taste test reaction that became brand's top-performing creative
-                        </p>
                     </div>
                 </div>
             </div>
@@ -1508,7 +1502,7 @@
         <section class="videos-section">
             <div class="section-container">
                 <div class="section-header">
-                    <h2 class="section-title">Standard UGC Ads</h2>
+                    <h2 class="section-title"><span class="section-highlight">Standard</span> UGC Ads</h2>
                     <p class="section-subtitle">Authentic, relatable content that connects with your audience</p>
                 </div>
 
@@ -1525,9 +1519,6 @@
                             </div>
                             <div class="video-label">Lifestyle • 25s</div>
                         </div>
-                        <p class="video-description">
-                            Day-in-the-life content showcasing everyday product use
-                        </p>
                     </div>
 
                     <!-- Video 2 -->
@@ -1542,9 +1533,6 @@
                             </div>
                             <div class="video-label">Review • 35s</div>
                         </div>
-                        <p class="video-description">
-                            Honest testimonial format that builds trust and credibility
-                        </p>
                     </div>
 
                     <!-- Video 3 -->
@@ -1559,9 +1547,6 @@
                             </div>
                             <div class="video-label">Demo • 30s</div>
                         </div>
-                        <p class="video-description">
-                            Product demonstration highlighting key features and benefits
-                        </p>
                     </div>
 
                     <!-- Video 4 -->
@@ -1576,9 +1561,6 @@
                             </div>
                             <div class="video-label">Tutorial • 40s</div>
                         </div>
-                        <p class="video-description">
-                            Step-by-step guide showing practical application and results
-                        </p>
                     </div>
                 </div>
             </div>
