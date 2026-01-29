@@ -447,7 +447,7 @@
             background: var(--accent-green);
             color: #1C1B1B;
             border-radius: var(--radius-button);
-            font-size: 0.875rem;
+            font-size: 1rem;
             font-weight: 600;
             letter-spacing: 0.02em;
             width: fit-content;
@@ -552,7 +552,7 @@
         }
 
         .stat-label {
-            font-size: 0.875rem;
+            font-size: 1rem;
             color: var(--text-muted);
         }
 
@@ -755,9 +755,9 @@
         }
 
         .video-logo {
-            margin-bottom: 1rem;
-            width: 120px;
-            height: 120px;
+            margin-bottom: 0.5rem;
+            width: 180px;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -769,6 +769,10 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+        }
+        
+        .video-logo img[alt="Headspace"] {
+            transform: scale(1.5);
         }
 
         .video-description {
@@ -879,7 +883,7 @@
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.75rem;
-            font-size: 0.875rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -933,7 +937,7 @@
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
-            font-size: 0.875rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -1066,7 +1070,7 @@
 
         .review-author-company {
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 1rem;
         }
 
         /* CTA Section */
@@ -1261,7 +1265,7 @@
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
-            font-size: 0.875rem;
+            font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
@@ -1320,7 +1324,7 @@
             border-top: 1px solid var(--border-color);
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.875rem;
+            font-size: 1rem;
         }
 
         /* Responsive */
@@ -1376,13 +1380,19 @@
             }
 
             .videos-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.75rem;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .video-logo {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 1rem;
             }
 
             .video-label {
-                padding: 0.5rem;
-                font-size: 0.65rem;
+                padding: 0.75rem 1rem;
+                font-size: 0.7rem;
             }
 
             .services-grid {
@@ -1619,6 +1629,9 @@
                         <div class="video-label">Gamified story • 60s</div>
                     </div>
                 </div>
+                <p style="text-align: center; margin-top: 2rem; color: #a3a3a3; font-size: 1rem;">
+                    * Some projects shown were independent spec work
+                </p>
             </div>
         </section>
 
@@ -1675,6 +1688,9 @@
                         <div class="video-label">Tips and tricks + trendy edit • 44s</div>
                     </div>
                 </div>
+                <p style="text-align: center; margin-top: 2rem; color: #a3a3a3; font-size: 1rem;">
+                    * Some projects shown were independent spec work
+                </p>
             </div>
         </section>
 
@@ -1913,8 +1929,8 @@
                             </svg>
                         </a>
                         <!-- Email -->
-                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
-                        <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-secondary); text-decoration: none;">juliasupernova0@gmail.com</a>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 1rem;">
+                        <a href="/cdn-cgi/l/email-protection#d0baa5bcb9b1a3a5a0b5a2bebfa6b1e090b7bdb1b9bcfeb3bfbd" style="color: var(--text-secondary); text-decoration: none;"><span class="__cf_email__" data-cfemail="a8c2ddc4c1c9dbddd8cddac6c7dec998e8cfc5c9c1c486cbc7c5">[email&#160;protected]</span></a>
                     </p>
                     </div>
                 </div>
@@ -1931,185 +1947,67 @@
         <!-- Portfolio Header -->
         <section class="portfolio-header">
             <div class="portfolio-header-content">
-                <h1 class="portfolio-title">
-                    My <span class="gradient-text">Portfolio</span>
+                <h1 class="portfolio-title" style="font-family: 'Brigesta', sans-serif;">
+                    UGC Examples
                 </h1>
                 <p class="portfolio-description">
-                    A collection of scroll-stopping video content that drives results for brands across industries.
+                    A selection of my best UGC video work across different styles and brands.
                 </p>
             </div>
         </section>
 
         <!-- Portfolio Grid -->
         <section class="portfolio-section">
-            <div class="portfolio-container">
-                <div class="portfolio-grid">
-                    <!-- Video 1 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Skincare • 30s</div>
+            <div class="section-container">
+                <div class="videos-grid">
+                    <!-- Video 1: Notion -->
+                    <div class="video-card">
+                        <div class="video-logo">
+                            <img src="Notion logo.png" alt="Notion">
                         </div>
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Notion.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-label">Mixed Media animation • 38s</div>
                     </div>
 
-                    <!-- Video 2 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Tech • 45s</div>
+                    <!-- Video 2: Vinted -->
+                    <div class="video-card">
+                        <div class="video-logo">
+                            <img src="Vinted logo.png" alt="Vinted">
                         </div>
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Vinted.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-label">Mixed media ad • 32s</div>
                     </div>
 
-                    <!-- Video 3 -->
-                    <div class="portfolio-video-card">
+                    <!-- Video 3: Orange Cleaner -->
+                    <div class="video-card">
                         <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Fashion • 20s</div>
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Orange cleaner.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
+                        <div class="video-label">Lifestyle + trendy edit • 30s</div>
                     </div>
 
-                    <!-- Video 4 -->
-                    <div class="portfolio-video-card">
+                    <!-- Video 4: Lipstain -->
+                    <div class="video-card">
                         <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Food & Bev • 15s</div>
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Lipstain.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
-                    </div>
-
-                    <!-- Video 5 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Wellness • 25s</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 6 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Fitness • 35s</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 7 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Beauty • 40s</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 8 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Home & Living • 30s</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 9 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Lifestyle • 25s</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 10 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Travel • 50s</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 11 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Pet Care • 20s</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 12 -->
-                    <div class="portfolio-video-card">
-                        <div class="video-wrapper">
-                            <div class="video-placeholder">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Accessories • 15s</div>
-                        </div>
+                        <div class="video-label">Lifestyle • 52s</div>
                     </div>
                 </div>
             </div>
@@ -2164,8 +2062,8 @@
                             </svg>
                         </a>
                         </a>
-                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
-                        <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-secondary); text-decoration: none;">juliasupernova0@gmail.com</a>
+                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 1rem;">
+                        <a href="/cdn-cgi/l/email-protection#472d322b2e263432372235292831267707202a262e2b6924282a" style="color: var(--text-secondary); text-decoration: none;"><span class="__cf_email__" data-cfemail="e68c938a8f87959396839488899087d6a6818b878f8ac885898b">[email&#160;protected]</span></a>
                     </p>
                         </a>
                     </div>
@@ -2178,7 +2076,7 @@
         </footer>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleVideo(wrapper) {
             const video = wrapper.querySelector('video');
             const overlay = wrapper.querySelector('.play-button-overlay');
@@ -2211,3 +2109,19 @@
             
             video.onended = function() {
                 console.log('Video ended');
+                overlay.classList.remove('hidden');
+            };
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            document.getElementById(pageId).classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
