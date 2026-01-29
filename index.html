@@ -740,10 +740,7 @@
         }
 
         .video-label {
-            position: absolute;
-            bottom: 1rem;
-            left: 1rem;
-            right: 1rem;
+            margin-top: 0.75rem;
             padding: 0.5rem 0.67rem;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px) saturate(180%);
@@ -754,6 +751,7 @@
             letter-spacing: 0.1em;
             color: var(--text-secondary);
             border: 1px solid rgba(28, 27, 27, 0.1);
+            text-align: center;
         }
 
         .video-description {
@@ -1550,74 +1548,46 @@
                 <div class="videos-grid">
                     <!-- Video 1 -->
                     <div class="video-card">
-                        <div class="video-wrapper" onclick="toggleVideo(this)">
+                        <div class="video-wrapper">
                             <video controls style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Notion.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Notion • Mixed Media animation • 38s</div>
                         </div>
+                        <div class="video-label">Notion • Mixed Media animation • 38s</div>
                     </div>
 
                     <!-- Video 2 -->
                     <div class="video-card">
-                        <div class="video-wrapper" onclick="toggleVideo(this)">
+                        <div class="video-wrapper">
                             <video controls style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Headspace.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Headspace • Mixed media animation • 31s</div>
                         </div>
+                        <div class="video-label">Headspace • Mixed media animation • 31s</div>
                     </div>
 
                     <!-- Video 3 -->
                     <div class="video-card">
-                        <div class="video-wrapper" onclick="toggleVideo(this)">
+                        <div class="video-wrapper">
                             <video controls style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Vinted.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">Vinted • Mixed media ad • 32s</div>
                         </div>
+                        <div class="video-label">Vinted • Mixed media ad • 32s</div>
                     </div>
 
                     <!-- Video 4 -->
                     <div class="video-card">
-                        <div class="video-wrapper" onclick="toggleVideo(this)">
+                        <div class="video-wrapper">
                             <video controls style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="PolarPro.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="play-button-overlay">
-                                <div class="play-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5.14v14l11-7-11-7z"/>
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="video-label">PolarPro • Gamified story • 60s</div>
                         </div>
+                        <div class="video-label">PolarPro • Gamified story • 60s</div>
                     </div>
                 </div>
             </div>
