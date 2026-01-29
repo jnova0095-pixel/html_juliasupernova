@@ -1200,15 +1200,102 @@
             padding: 3rem 3rem 6rem;
         }
 
-        .portfolio-grid {
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-button);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--accent-green);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: #1C1B1B;
+        }
+
+        /* Portfolio Videos Grid */
+        .portfolio-videos-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
         }
 
         .portfolio-video-card {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease forwards;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-video-card.hidden {
+            display: none;
+        }
+
+        .portfolio-video-card .video-wrapper {
+            position: relative;
+            aspect-ratio: 9/16;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid #1C1B1B;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .portfolio-video-card .video-wrapper:hover {
+            transform: translateY(-12px);
+            border-color: #1C1B1B;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .portfolio-video-card .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Video Tag (Frosted Glass) */
+        .video-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 0.67rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--radius-sm);
+            font-size: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            border: 1px solid rgba(28, 27, 27, 0.1);
+            z-index: 2;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
         }
 
         .portfolio-video-card:nth-child(1) { animation-delay: 0.1s; }
@@ -1435,6 +1522,20 @@
 
             .portfolio-section {
                 padding: 2rem 1.5rem 4rem;
+            }
+
+            .portfolio-videos-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.875rem;
             }
 
             .portfolio-grid {
@@ -1956,58 +2057,197 @@
             </div>
         </section>
 
-        <!-- Portfolio Grid -->
+        <!-- Filter Buttons -->
+        <section style="padding: 2rem 3rem 0;">
+            <div class="section-container">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterVideos('all')">All</button>
+                    <button class="filter-btn" onclick="filterVideos('lifestyle')">Lifestyle</button>
+                    <button class="filter-btn" onclick="filterVideos('beauty')">Beauty & Makeup</button>
+                    <button class="filter-btn" onclick="filterVideos('apps')">Apps & Software</button>
+                    <button class="filter-btn" onclick="filterVideos('photo')">Photo & Video Gear</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Grid -->
         <section class="portfolio-section">
             <div class="section-container">
-                <div class="videos-grid">
-                    <!-- Video 1: Notion -->
-                    <div class="video-card">
-                        <div class="video-logo">
-                            <img src="Notion logo.png" alt="Notion">
-                        </div>
+                <div class="portfolio-videos-grid">
+                    <!-- Video 1: Athlytic -->
+                    <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Notion.mp4" type="video/mp4">
+                                <source src="Athlytic.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
+                            <div class="video-tag">Apps & Software</div>
                         </div>
-                        <div class="video-label">Mixed Media animation • 38s</div>
                     </div>
 
-                    <!-- Video 2: Vinted -->
-                    <div class="video-card">
-                        <div class="video-logo">
-                            <img src="Vinted logo.png" alt="Vinted">
-                        </div>
+                    <!-- Video 2: Bonebroth1 -->
+                    <div class="portfolio-video-card" data-category="lifestyle">
                         <div class="video-wrapper">
                             <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Vinted.mp4" type="video/mp4">
+                                <source src="Bonebroth1.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
+                            <div class="video-tag">Lifestyle</div>
                         </div>
-                        <div class="video-label">Mixed media ad • 32s</div>
                     </div>
 
-                    <!-- Video 3: Orange Cleaner -->
-                    <div class="video-card">
+                    <!-- Video 3: Bonebroth2 -->
+                    <div class="portfolio-video-card" data-category="lifestyle">
                         <div class="video-wrapper">
                             <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Orange cleaner.mp4" type="video/mp4">
+                                <source src="Bonebroth2.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
+                            <div class="video-tag">Lifestyle</div>
                         </div>
-                        <div class="video-label">Lifestyle + trendy edit • 30s</div>
                     </div>
 
-                    <!-- Video 4: Lipstain -->
-                    <div class="video-card">
+                    <!-- Video 4: Bonebroth3 -->
+                    <div class="portfolio-video-card" data-category="lifestyle">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Bonebroth3.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Lifestyle</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 5: Collagen -->
+                    <div class="portfolio-video-card" data-category="lifestyle">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Collagen.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Lifestyle</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 6: Erborian -->
+                    <div class="portfolio-video-card" data-category="beauty">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Erborian.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Beauty & Makeup</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 7: Headspace -->
+                    <div class="portfolio-video-card" data-category="apps">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Headspace.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 8: Lipstain -->
+                    <div class="portfolio-video-card" data-category="beauty">
                         <div class="video-wrapper">
                             <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Lipstain.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
+                            <div class="video-tag">Beauty & Makeup</div>
                         </div>
-                        <div class="video-label">Lifestyle • 52s</div>
+                    </div>
+
+                    <!-- Video 9: MerlinAI1 -->
+                    <div class="portfolio-video-card" data-category="apps">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="MerlinAI1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 10: MerlinAI2 -->
+                    <div class="portfolio-video-card" data-category="apps">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="MerlinAI2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 11: MerlinAI3 -->
+                    <div class="portfolio-video-card" data-category="apps">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="MerlinAI3.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 12: Notion -->
+                    <div class="portfolio-video-card" data-category="apps">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Notion.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 13: Orange cleaner -->
+                    <div class="portfolio-video-card" data-category="lifestyle">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Orange cleaner.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Lifestyle</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 14: PolarPro -->
+                    <div class="portfolio-video-card" data-category="photo">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="PolarPro.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Photo & Video Gear</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 15: Tocobo -->
+                    <div class="portfolio-video-card" data-category="beauty">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Tocobo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Beauty & Makeup</div>
+                        </div>
+                    </div>
+
+                    <!-- Video 16: Vinted -->
+                    <div class="portfolio-video-card" data-category="apps">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Vinted.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2111,6 +2351,29 @@
                 console.log('Video ended');
                 overlay.classList.remove('hidden');
             };
+        }
+
+        function filterVideos(category) {
+            // Get all video cards
+            const videoCards = document.querySelectorAll('.portfolio-video-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            // Update active button
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filter videos
+            videoCards.forEach(card => {
+                if (category === 'all') {
+                    card.classList.remove('hidden');
+                } else {
+                    if (card.getAttribute('data-category') === category) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                }
+            });
         }
 
         function showPage(pageId) {
