@@ -1551,7 +1551,7 @@
                     <!-- Video 1 -->
                     <div class="video-card">
                         <div class="video-wrapper" onclick="toggleVideo(this)">
-                            <video style="width: 100%; height: 100%; object-fit: cover;">
+                            <video playsinline muted style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Notion.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -1569,7 +1569,7 @@
                     <!-- Video 2 -->
                     <div class="video-card">
                         <div class="video-wrapper" onclick="toggleVideo(this)">
-                            <video style="width: 100%; height: 100%; object-fit: cover;">
+                            <video playsinline muted style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Headspace.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -1587,7 +1587,7 @@
                     <!-- Video 3 -->
                     <div class="video-card">
                         <div class="video-wrapper" onclick="toggleVideo(this)">
-                            <video style="width: 100%; height: 100%; object-fit: cover;">
+                            <video playsinline muted style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Vinted.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -1605,7 +1605,7 @@
                     <!-- Video 4 -->
                     <div class="video-card">
                         <div class="video-wrapper" onclick="toggleVideo(this)">
-                            <video style="width: 100%; height: 100%; object-fit: cover;">
+                            <video playsinline muted style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="PolarPro.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -2190,11 +2190,21 @@
             const video = wrapper.querySelector('video');
             const overlay = wrapper.querySelector('.play-button-overlay');
             
+            if (!video) {
+                console.error('Video element not found');
+                return;
+            }
+            
             if (video.paused) {
-                video.play();
-                overlay.classList.add('hidden');
+                video.play().then(() => {
+                    console.log('Video playing');
+                    overlay.classList.add('hidden');
+                }).catch((error) => {
+                    console.error('Error playing video:', error);
+                });
             } else {
                 video.pause();
+                console.log('Video paused');
                 overlay.classList.remove('hidden');
             }
             
