@@ -189,6 +189,48 @@
             pointer-events: none;
         }
 
+        /* Decorative Graphics */
+        .decorative-graphic {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .sparkle-1 {
+            width: 80px;
+            height: 80px;
+            top: 50px;
+            left: 80px;
+        }
+
+        .clover-1 {
+            width: 80px;
+            height: 80px;
+            bottom: 120px;
+            left: 80px;
+        }
+
+        .heart-1 {
+            width: 100px;
+            height: 100px;
+            bottom: 100px;
+            right: 100px;
+        }
+
+        .leaf-1 {
+            width: 60px;
+            height: 60px;
+            top: 50px;
+            right: 250px;
+        }
+
+        .star-1 {
+            width: 80px;
+            height: 80px;
+            bottom: 50px;
+            right: 100px;
+        }
+
         .hero-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -1503,6 +1545,11 @@
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            /* Hide decorative graphics on tablets */
+            .decorative-graphic {
+                display: none;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1628,6 +1675,10 @@
     <div id="home" class="page active">
         <!-- Hero Section -->
         <section class="hero">
+            <!-- Decorative Graphics -->
+            <img src="sparkle.png" alt="" class="decorative-graphic sparkle-1">
+            <img src="leaf.png" alt="" class="decorative-graphic leaf-1">
+            
             <div class="hero-container">
                 <!-- Left Column - Profile -->
                 <div class="profile-column">
@@ -1860,7 +1911,10 @@
         </section>
 
         <!-- Services Section -->
-        <section class="services-section" id="services">
+        <section class="services-section" id="services" style="position: relative;">
+            <!-- Decorative Graphic -->
+            <img src="clover.png" alt="" class="decorative-graphic clover-1">
+            
             <div class="section-container">
                 <div class="section-header">
                     <h2 class="section-title">What I Can Do For You</h2>
@@ -1958,7 +2012,11 @@
         </section>
 
         <!-- Reviews Section -->
-        <section class="reviews-section">
+        <section class="reviews-section" style="position: relative;">
+            <!-- Decorative Graphics -->
+            <img src="heart.png" alt="" class="decorative-graphic heart-1">
+            <img src="star.png" alt="" class="decorative-graphic star-1">
+            
             <div class="section-container">
                 <div class="section-header">
                     <h2 class="section-title">Don't take my word for it.</h2>
