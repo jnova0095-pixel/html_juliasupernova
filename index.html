@@ -15,6 +15,8 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/fontshare/fontshare@main/fonts/brigesta/Brigesta-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <style>
         @font-face {
             font-family: 'Brigesta';
@@ -22,7 +24,7 @@
                  url('https://cdn.jsdelivr.net/gh/fontshare/fontshare@main/fonts/brigesta/Brigesta-Regular.woff') format('woff');
             font-weight: 400;
             font-style: normal;
-            font-display: swap;
+            font-display: block;
         }
         :root {
             --bg-primary: #FAFAFA;
@@ -716,7 +718,7 @@
             aspect-ratio: 9/16;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            background: var(--bg-card);
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             border: 1px solid #1C1B1B;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -733,6 +735,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            background: #e0e0e0;
         }
 
         .play-button-overlay {
@@ -2257,8 +2260,8 @@
                             <img src="Notion logo.png" alt="Notion">
                         </div>
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Notion.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Notion.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2271,8 +2274,8 @@
                             <img src="Headpsace logo.png" alt="Headspace">
                         </div>
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Headspace.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Headspace.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2285,8 +2288,8 @@
                             <img src="Vinted logo.png" alt="Vinted">
                         </div>
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Vinted.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Vinted.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2299,8 +2302,8 @@
                             <img src="PolarPro logo.png" alt="PolarPro">
                         </div>
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="PolarPro.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="PolarPro.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2325,8 +2328,8 @@
                     <!-- Video 1 -->
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Orange cleaner.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Orange cleaner.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2336,8 +2339,8 @@
                     <!-- Video 2 -->
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Lipstain.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Lipstain.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2347,8 +2350,8 @@
                     <!-- Video 3 -->
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Athlytic.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Athlytic.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2358,8 +2361,8 @@
                     <!-- Video 4 -->
                     <div class="video-card">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Collagen.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Collagen.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -2513,7 +2516,7 @@
                             </svg>
                         </div>
                         <p class="review-text">
-                            "Julia understood our vision perfectly and exceeded expectations in every way. The visuals were engaging and well thought out, and the acting really brought the concept to life. We worked with her on a retainer service, and we were genuinely blown away by her responsiveness, punctuality, and creativity throughout the process. Everything came together seamlessly, making the final video both compelling and professional. An absolute pleasure to work with."
+                            "Julia understood our vision right away and honestly exceeded expectations. The visuals were engaging, the acting felt natural, and everything came together seamlessly. She was super responsive and easy to work with, and the final video felt authentic and high quality. Would absolutely work with her again."
                         </p>
                         <div class="review-author">
                             <div class="review-avatar" style="background: none; padding: 0;">
@@ -2709,8 +2712,8 @@
                     <!-- Video 1: Athlytic -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Athlytic.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Athlytic.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
@@ -2720,8 +2723,8 @@
                     <!-- Video 2: Bonebroth1 -->
                     <div class="portfolio-video-card" data-category="lifestyle">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Bonebroth1.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Bonebroth1.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Lifestyle</div>
@@ -2731,8 +2734,8 @@
                     <!-- Video 3: Bonebroth2 -->
                     <div class="portfolio-video-card" data-category="lifestyle">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Bonebroth2.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Bonebroth2.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Lifestyle</div>
@@ -2742,8 +2745,8 @@
                     <!-- Video 4: Bonebroth3 -->
                     <div class="portfolio-video-card" data-category="lifestyle">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Bonebroth3.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Bonebroth3.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Lifestyle</div>
@@ -2753,8 +2756,8 @@
                     <!-- Video 5: Collagen -->
                     <div class="portfolio-video-card" data-category="lifestyle">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Collagen.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Collagen.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Lifestyle</div>
@@ -2764,8 +2767,8 @@
                     <!-- Video 6: Erborian -->
                     <div class="portfolio-video-card" data-category="beauty">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Erborian.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Erborian.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Beauty & Makeup</div>
@@ -2775,8 +2778,8 @@
                     <!-- Video 7: Headspace -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Headspace.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Headspace.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
@@ -2786,8 +2789,8 @@
                     <!-- Video 8: Lipstain -->
                     <div class="portfolio-video-card" data-category="beauty">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Lipstain.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Lipstain.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Beauty & Makeup</div>
@@ -2797,8 +2800,8 @@
                     <!-- Video 9: MerlinAI1 -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="MerlinAI1.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="MerlinAI1.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
@@ -2808,8 +2811,8 @@
                     <!-- Video 10: MerlinAI2 -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="MerlinAI2.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="MerlinAI2.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
@@ -2819,8 +2822,8 @@
                     <!-- Video 11: MerlinAI3 -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="MerlinAI3.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="MerlinAI3.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
@@ -2830,8 +2833,8 @@
                     <!-- Video 12: Notion -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Notion.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Notion.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
@@ -2841,8 +2844,8 @@
                     <!-- Video 13: Orange cleaner -->
                     <div class="portfolio-video-card" data-category="lifestyle">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Orange cleaner.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Orange cleaner.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Lifestyle</div>
@@ -2852,8 +2855,8 @@
                     <!-- Video 14: PolarPro -->
                     <div class="portfolio-video-card" data-category="photo">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="PolarPro.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="PolarPro.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Photo & Video Gear</div>
@@ -2863,8 +2866,8 @@
                     <!-- Video 15: Tocobo -->
                     <div class="portfolio-video-card" data-category="beauty">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Tocobo.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Tocobo.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Beauty & Makeup</div>
@@ -2874,8 +2877,8 @@
                     <!-- Video 16: Vinted -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
-                            <video controls preload="auto" poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Vinted.mp4" type="video/mp4">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Vinted.mp4#t=0.1" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
