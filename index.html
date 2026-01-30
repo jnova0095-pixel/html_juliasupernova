@@ -1693,11 +1693,13 @@
             }
 
             .section-container {
-                width: 100%;
-                max-width: 100%;
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                box-sizing: border-box !important;
             }
 
             nav {
@@ -1764,16 +1766,7 @@
             }
 
             .tooltip-menu {
-                top: -40px;
-                padding: 0.25rem;
-                gap: 0.25rem;
-                font-size: 0.6rem;
-                border-radius: 12px;
-            }
-
-            .tooltip-item {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.6rem;
+                display: none !important;
             }
 
             .profile-meet-label {
@@ -1801,19 +1794,22 @@
             }
 
             .section-header {
-                width: 100%;
-                max-width: 100%;
-                padding: 0 1.5rem;
-                margin-bottom: 2rem;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                padding: 0 1.5rem !important;
+                margin-bottom: 2rem !important;
+                box-sizing: border-box !important;
             }
 
             .section-title {
                 font-size: 3.4rem;
-                width: 100%;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             .section-subtitle {
-                width: 100%;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             .profile-meet-label {
@@ -1839,16 +1835,18 @@
                 margin-bottom: 0.6rem;
             }
 
-            .sparkle-reviews {
-                width: 270px;
-                height: 270px;
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: -135px;
+            /* Hide all decorative graphics on mobile */
+            .sparkle-1,
+            .sparkle-reviews,
+            .sparkle-decoration,
+            .star-1,
+            .star-between-sections,
+            .star-reviews,
+            .heart-between-sections,
+            .clover-1,
+            .decorative-graphic {
+                display: none !important;
             }
-
-            .profile-image-wrapper .clover-1 {
-                width: 154px;
 
             .video-label {
                 padding: 0.75rem 1rem;
@@ -1858,30 +1856,38 @@
             .services-section {
                 padding: 4rem 0 !important;
                 overflow-x: hidden;
+                width: 100vw !important;
+                max-width: 100vw !important;
             }
 
             .reviews-section {
                 padding: 4rem 0 !important;
                 overflow-x: hidden;
+                width: 100vw !important;
+                max-width: 100vw !important;
             }
 
             .services-grid {
                 display: grid !important;
                 grid-template-columns: 1fr !important;
                 gap: 1.5rem !important;
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
                 box-sizing: border-box !important;
             }
 
             .service-card {
                 padding: 1.5rem !important;
-                width: calc(100% - 3rem) !important;
-                max-width: calc(100% - 3rem) !important;
+                width: calc(100vw - 3rem) !important;
+                max-width: calc(100vw - 3rem) !important;
                 box-sizing: border-box !important;
                 margin: 0 1.5rem !important;
+                margin-left: 1.5rem !important;
+                margin-right: 1.5rem !important;
             }
 
             .service-description {
@@ -1919,19 +1925,23 @@
                 display: grid !important;
                 grid-template-columns: 1fr !important;
                 gap: 1.5rem !important;
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
                 padding: 0 !important;
                 margin: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
                 box-sizing: border-box !important;
             }
 
             .review-card {
                 padding: 1.5rem !important;
-                width: calc(100% - 3rem) !important;
-                max-width: calc(100% - 3rem) !important;
+                width: calc(100vw - 3rem) !important;
+                max-width: calc(100vw - 3rem) !important;
                 box-sizing: border-box !important;
                 margin: 0 1.5rem !important;
+                margin-left: 1.5rem !important;
+                margin-right: 1.5rem !important;
             }
 
             .review-text {
@@ -2015,17 +2025,20 @@
                 grid-template-columns: none !important;
                 gap: 2rem !important;
                 text-align: left !important;
-                width: 100% !important;
-                max-width: 100% !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
                 padding: 0 1.5rem !important;
                 margin: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
                 box-sizing: border-box !important;
             }
 
             footer {
                 padding: 2rem 0 !important;
                 overflow-x: hidden !important;
-                width: 100% !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
             }
 
             .footer-section {
@@ -2034,19 +2047,24 @@
                 align-items: flex-start !important;
                 width: 100% !important;
                 max-width: 100% !important;
+                padding: 0 !important;
             }
 
             .footer-logo {
                 width: 100% !important;
+                word-wrap: break-word !important;
             }
 
             .footer-tagline {
                 width: 100% !important;
                 max-width: 100% !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
             }
 
             .footer-title {
                 width: 100% !important;
+                font-size: 1.1rem !important;
             }
 
             .footer-links {
@@ -2054,25 +2072,32 @@
                 flex-direction: column !important;
                 align-items: flex-start !important;
                 width: 100% !important;
-                gap: 0.5rem !important;
+                gap: 0.75rem !important;
             }
 
             .footer-link {
                 width: auto !important;
+                display: inline-block !important;
             }
 
             .footer-social {
                 display: flex !important;
                 justify-content: flex-start !important;
-                width: 100%;
-                flex-wrap: wrap;
-                gap: 1rem;
+                width: 100% !important;
+                flex-wrap: wrap !important;
+                gap: 1rem !important;
+            }
+
+            .footer-social-link {
+                flex-shrink: 0 !important;
             }
 
             .footer-bottom {
-                width: 100%;
-                text-align: center;
-                padding: 0 1.5rem;
+                width: 100vw !important;
+                max-width: 100vw !important;
+                text-align: center !important;
+                padding: 1rem 1.5rem !important;
+                box-sizing: border-box !important;
             }
 
             .thank-you-title {
