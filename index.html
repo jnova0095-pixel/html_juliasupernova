@@ -1751,7 +1751,7 @@
 
             .content-column {
                 text-align: center;
-                margin-top: 18px;
+                margin-top: 64px;
             }
 
             .profile-info-card {
@@ -1799,12 +1799,23 @@
                 padding: 4rem 1.5rem;
             }
 
+            .section-header {
+                width: 100%;
+                max-width: 100%;
+                padding: 0;
+            }
+
             .section-title {
                 font-size: 3.4rem;
+                width: 100%;
+            }
+
+            .section-subtitle {
+                width: 100%;
             }
 
             .profile-meet-label {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .cta-title {
@@ -1871,12 +1882,33 @@
 
             .service-description {
                 width: 100%;
+                max-width: 100%;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
             }
 
+            .service-title {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .service-includes {
+                width: 100%;
+                max-width: 100%;
+            }
+
             .service-includes ul {
                 padding-left: 1.5rem;
+                width: 100%;
+            }
+
+            .service-features {
+                width: 100%;
+            }
+
+            .service-good-for {
+                width: 100%;
+                max-width: 100%;
             }
 
             .reviews-grid {
@@ -1898,8 +1930,17 @@
 
             .review-text {
                 width: 100%;
+                max-width: 100%;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
+            }
+
+            .review-author {
+                width: 100%;
+            }
+
+            .reviewer-info {
+                width: 100%;
             }
 
             .cta-section {
@@ -1963,6 +2004,8 @@
             }
 
             .footer-container {
+                display: flex !important;
+                flex-direction: column !important;
                 grid-template-columns: 1fr !important;
                 gap: 2rem;
                 text-align: left;
@@ -1975,38 +2018,50 @@
             footer {
                 padding: 2rem 0;
                 overflow-x: hidden;
-            }
-
                 width: 100%;
-                padding: 0;
             }
 
             .footer-section {
+                display: flex;
+                flex-direction: column;
                 align-items: flex-start;
                 width: 100%;
+                max-width: 100%;
             }
 
-            .footer-links {
-                align-items: flex-start;
+            .footer-logo {
                 width: 100%;
-            }
-
-            .footer-social {
-                justify-content: flex-start;
-                width: 100%;
-                flex-wrap: wrap;
             }
 
             .footer-tagline {
                 width: 100%;
+                max-width: 100%;
+            }
+
+            .footer-title {
+                width: 100%;
+            }
+
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: 0.5rem;
+            }
+
+            .footer-social {
+                display: flex;
+                justify-content: flex-start;
+                width: 100%;
+                flex-wrap: wrap;
+                gap: 1rem;
             }
 
             .footer-bottom {
                 width: 100%;
                 text-align: center;
-            }
-
-                justify-content: flex-start;
+                padding: 0 1.5rem;
             }
 
             .thank-you-title {
