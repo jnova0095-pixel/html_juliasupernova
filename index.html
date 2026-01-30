@@ -92,6 +92,38 @@
             border-bottom: 1px solid rgba(235, 235, 235, 0.5);
         }
 
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+
+        .nav-avatar-wrapper {
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #BEF27C;
+        }
+
+        .online-indicator {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background: #BEF27C;
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
         .logo {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 1.25rem;
@@ -99,11 +131,10 @@
             color: var(--text-primary);
             letter-spacing: -0.02em;
             text-decoration: none;
-            cursor: pointer;
             transition: color 0.3s ease;
         }
 
-        .logo:hover {
+        .nav-brand:hover .logo {
             color: var(--accent-green);
         }
 
@@ -657,7 +688,7 @@
 
         /* Videos Section */
         .videos-section {
-            padding: 6rem 3rem;
+            padding: 3rem 3rem;
             background: var(--bg-primary);
         }
 
@@ -820,7 +851,7 @@
         }
 
         .video-logo {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.15rem;
             width: 180px;
             height: 180px;
             display: flex;
@@ -934,13 +965,13 @@
             color: var(--text-secondary);
             font-size: 1rem;
             line-height: 1.5;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             flex-grow: 1;
         }
 
         .service-includes {
             margin-top: auto;
-            padding-top: 1.5rem;
+            padding-top: 1rem;
             border-top: 1px solid var(--border-color);
         }
 
@@ -1687,7 +1718,13 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <span class="logo" onclick="showPage('home')">Supernova UGC</span>
+        <div class="nav-brand" onclick="showPage('home')">
+            <div class="nav-avatar-wrapper">
+                <img src="Hero image.png" alt="Julia" class="nav-avatar">
+                <span class="online-indicator"></span>
+            </div>
+            <span class="logo">Supernova UGC</span>
+        </div>
         <div class="nav-right">
             <span class="nav-link" onclick="showPage('portfolio')">Projects</span>
             <a href="#book" class="btn-primary">Book me</a>
@@ -2103,7 +2140,7 @@
                             <div class="review-avatar">RK</div>
                             <div class="review-author-info">
                                 <div class="review-author-name">Ray Khoury</div>
-                                <div class="review-author-company">Paid Media Manager at PolarPro</div>
+                                <div class="review-author-company">Media Manager at PolarPro</div>
                             </div>
                         </div>
                     </div>
@@ -2116,11 +2153,11 @@
             <div class="cta-container">
                 <h2 class="cta-title">Ready to create?</h2>
                 <p class="cta-description">
-                    Let's bring your brand to life with authentic, high-converting video content that your audience will love.
+                    Send me a message and let's make stuff
                 </p>
                 
                 <!-- Contact Form -->
-                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/xdazdopp" method="POST">
                     <div class="form-row">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name *" required>
@@ -2208,11 +2245,11 @@
                                 <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                             </svg>
                         </a>
-                        <!-- Email -->
-                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 1rem;">
-                        <a href="/cdn-cgi/l/email-protection#d0baa5bcb9b1a3a5a0b5a2bebfa6b1e090b7bdb1b9bcfeb3bfbd" style="color: var(--text-secondary); text-decoration: none;"><span class="__cf_email__" data-cfemail="a8c2ddc4c1c9dbddd8cddac6c7dec998e8cfc5c9c1c486cbc7c5">[email&#160;protected]</span></a>
-                    </p>
                     </div>
+                    <!-- Email -->
+                    <p style="margin-top: 1.5rem; text-align: center;">
+                        <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;">juliasupernova0@gmail.com</a>
+                    </p>
                 </div>
             </div>
 
@@ -2480,12 +2517,11 @@
                                 <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                             </svg>
                         </a>
-                        </a>
-                    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 1rem;">
-                        <a href="/cdn-cgi/l/email-protection#472d322b2e263432372235292831267707202a262e2b6924282a" style="color: var(--text-secondary); text-decoration: none;"><span class="__cf_email__" data-cfemail="e68c938a8f87959396839488899087d6a6818b878f8ac885898b">[email&#160;protected]</span></a>
-                    </p>
-                        </a>
                     </div>
+                    <!-- Email -->
+                    <p style="margin-top: 1.5rem; text-align: center;">
+                        <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;">juliasupernova0@gmail.com</a>
+                    </p>
                 </div>
             </div>
 
