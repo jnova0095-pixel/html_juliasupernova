@@ -416,8 +416,8 @@
             position: relative;
             width: 100%;
             aspect-ratio: 4/5;
-            border-radius: var(--radius-lg);
-            overflow: visible;
+            border-radius: 20px;
+            overflow: hidden;
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -450,9 +450,10 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: calc(100% + 18px);
             object-fit: cover;
-            object-position: center;
+            object-position: center top;
+            border-radius: 20px;
         }
 
         .profile-image-wrapper::before {
@@ -1661,6 +1662,21 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .page {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            .section-container {
+                width: 100%;
+                padding: 0 1.5rem;
+                box-sizing: border-box;
+            }
+
             nav {
                 padding: 0.75rem 1rem;
             }
@@ -1713,7 +1729,7 @@
 
             .content-column {
                 text-align: center;
-                margin-top: 0;
+                margin-top: 18px;
             }
 
             .profile-info-card {
@@ -1804,22 +1820,48 @@
                 font-size: 0.7rem;
             }
 
+            .services-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .reviews-section {
+                padding: 4rem 1.5rem;
+            }
+
             .services-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
+                width: 100%;
             }
 
             .service-card {
-                padding: 2rem;
+                padding: 1.5rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .service-description {
+                width: 100%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .reviews-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
+                width: 100%;
             }
 
             .review-card {
-                padding: 2rem;
+                padding: 1.5rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .review-text {
+                width: 100%;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .cta-description {
@@ -1865,17 +1907,35 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
                 text-align: left;
+                width: 100%;
+                padding: 0;
             }
 
             .footer-section {
                 align-items: flex-start;
+                width: 100%;
             }
 
             .footer-links {
                 align-items: flex-start;
+                width: 100%;
             }
 
             .footer-social {
+                justify-content: flex-start;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .footer-tagline {
+                width: 100%;
+            }
+
+            .footer-bottom {
+                width: 100%;
+                text-align: center;
+            }
+
                 justify-content: flex-start;
             }
 
