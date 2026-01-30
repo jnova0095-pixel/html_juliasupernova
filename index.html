@@ -135,7 +135,7 @@
 
         .logo {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-primary);
             letter-spacing: -0.02em;
@@ -237,8 +237,8 @@
         }
 
         .star-1 {
-            width: 440px;
-            height: 440px;
+            width: 308px;
+            height: 308px;
             object-fit: contain;
         }
 
@@ -246,7 +246,7 @@
             position: absolute;
             right: 50%;
             transform: translateX(50%);
-            bottom: -220px;
+            bottom: -154px;
             z-index: 10;
         }
 
@@ -260,11 +260,11 @@
 
         .heart-between-sections {
             position: absolute;
-            width: 400px;
-            height: 400px;
+            width: 480px;
+            height: 480px;
             object-fit: contain;
             left: 80px;
-            bottom: -200px;
+            bottom: -232px;
             z-index: 10;
         }
 
@@ -424,15 +424,15 @@
         }
 
         .sparkle-1 {
-            width: 342px;
-            height: 342px;
+            width: 752px;
+            height: 752px;
             object-fit: contain;
         }
 
         .sparkle-reviews {
             position: absolute;
-            left: 20%;
-            bottom: -171px;
+            left: calc(20% + 32px);
+            bottom: -376px;
             z-index: 10;
         }
 
@@ -846,10 +846,10 @@
         }
 
         .video-logo {
-            margin-bottom: 0.32rem;
+            margin-bottom: 0.2rem;
             margin-top: 0;
-            width: 180px;
-            height: 180px;
+            width: 144px;
+            height: 144px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1673,6 +1673,38 @@
                 padding: 6rem 1.5rem 3rem;
             }
 
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-column {
+                max-width: 100%;
+            }
+
+            .profile-image-wrapper {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .content-column {
+                text-align: center;
+                margin-top: 0;
+            }
+
+            .profile-meet-label {
+                font-size: 2.5rem;
+                justify-content: center;
+            }
+
+            .profile-info-card {
+                margin: 0 auto;
+            }
+
+            .hero-social-links {
+                justify-content: center;
+            }
+
             .hero-title {
                 font-size: 3rem;
             }
@@ -1691,17 +1723,17 @@
             }
             
             .video-logo {
-                width: 120px;
-                height: 120px;
-                margin-bottom: 1rem;
+                width: 96px;
+                height: 96px;
+                margin-bottom: 0.6rem;
             }
 
             .sparkle-reviews {
-                width: 200px;
-                height: 200px;
+                width: 440px;
+                height: 440px;
                 left: 50%;
                 transform: translateX(-50%);
-                bottom: -100px;
+                bottom: -220px;
             }
 
             .profile-image-wrapper .clover-1 {
@@ -1792,10 +1824,10 @@
             }
 
             .heart-between-sections {
-                width: 240px;
-                height: 240px;
+                width: 288px;
+                height: 288px;
                 left: 30px;
-                bottom: -120px;
+                bottom: -144px;
             }
 
         }
@@ -1831,33 +1863,6 @@
                     <span class="btn-secondary" onclick="showPage('portfolio')">
                         View my projects
                     </span>
-                    
-                    <div class="social-links">
-                        <!-- TikTok -->
-                        <a href="https://www.tiktok.com/@julia_supernova" class="social-link" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
-                            </svg>
-                        </a>
-                        <!-- Instagram -->
-                        <a href="https://www.instagram.com/juliia_supernova/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                            </svg>
-                        </a>
-                        <!-- YouTube -->
-                        <a href="https://www.youtube.com/@juliia_supernova" class="social-link" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                        </a>
-                        <!-- Twitter/X -->
-                        <a href="https://x.com/supernova_julia" class="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                        </a>
-                    </div>
                 </div>
 
                 <!-- Right Column - Content -->
@@ -2072,9 +2077,9 @@
                             <ul class="service-features">
                                 <li>UGC video ideas + simple scripts</li>
                                 <li>Strong hooks to grab attention fast</li>
-                                <li>Filmed in real, everyday settings</li>
-                                <li>Clean edits made for each platform</li>
-                                <li>Ready-to-post videos</li>
+                                <li>Raw footage + edited file</li>
+                                <li>Subtitles + music and sound effects</li>
+                                <li>Usage rights available for purchase</li>
                             </ul>
 
                             <div class="service-good-for">
@@ -2101,9 +2106,11 @@
                             <ul class="service-features">
                                 <li>Ad concepts + scripts</li>
                                 <li>Clear messaging and strong hooks</li>
-                                <li>Intentional filming (angles, lighting, movement)</li>
+                                <li>Raw files in 4k</li>
+                                <li>Cinematic filming (angles, lighting, movement)</li>
                                 <li>High-quality editing with effects and animations</li>
-                                <li>Optimized for TikTok, Reels, and Shorts</li>
+                                <li>Subtitles + music and sound effects</li>
+                                <li>Usage rights available for purchase</li>
                             </ul>
 
                             <div class="service-good-for">
@@ -2128,10 +2135,12 @@
                         <div class="service-includes">
                             <h4 class="service-includes-title">Includes:</h4>
                             <ul class="service-features">
-                                <li>Ongoing content ideas and planning</li>
-                                <li>Video series instead of one-off posts</li>
-                                <li>Consistent look, tone, and storytelling</li>
-                                <li>Creative support month to month</li>
+                                <li>Creative concepts aligned with your brand</li>
+                                <li>Custom monthly video plan for your brand</li>
+                                <li>Ready to use videos</li>
+                                <li>Subtitles, music & sound effect</li>
+                                <li>Photos</li>
+                                <li>Usage rights available for purchase</li>
                             </ul>
 
                             <div class="service-good-for">
@@ -2284,7 +2293,7 @@
                 <div class="footer-section">
                     <div class="footer-logo">Supernova UGC</div>
                     <p class="footer-tagline">
-                        Creating scroll-stopping video content that converts. Authentic, bold, and built to perform.
+                        Make videos worth stopping your scroll for. That's it.
                     </p>
                 </div>
 
@@ -2557,7 +2566,7 @@
                 <div class="footer-section">
                     <div class="footer-logo">Supernova UGC</div>
                     <p class="footer-tagline">
-                        Creating scroll-stopping video content that converts. Authentic, bold, and built to perform.
+                        Make videos worth stopping your scroll for. That's it.
                     </p>
                 </div>
 
@@ -2641,7 +2650,7 @@
                 <div class="footer-section">
                     <div class="footer-logo">Supernova UGC</div>
                     <p class="footer-tagline">
-                        Creating scroll-stopping video content that converts. Authentic, bold, and built to perform.
+                        Make videos worth stopping your scroll for. That's it.
                     </p>
                 </div>
 
