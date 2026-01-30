@@ -6,10 +6,11 @@
     <title>Supernova UGC | Premium Video Content Creator</title>
     
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="Hero image.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Hero image.png">
-    <link rel="shortcut icon" href="Hero image.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="Hero image.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="Favicon512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Favicon32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Favicon16.png">
+    <link rel="shortcut icon" href="Favicon32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Favicon180.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -412,20 +413,20 @@
 
         .profile-image-wrapper .sparkle-1 {
             position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 270px;
-            height: 270px;
+            top: -116px;
+            left: -108px;
+            width: 297px;
+            height: 297px;
             object-fit: contain;
             z-index: 5;
         }
 
         .profile-image-wrapper .clover-1 {
             position: absolute;
-            bottom: -90px;
-            right: -90px;
-            width: 255px;
-            height: 255px;
+            bottom: -106px;
+            right: -106px;
+            width: 281px;
+            height: 281px;
             object-fit: contain;
             z-index: 5;
         }
@@ -860,7 +861,8 @@
         }
 
         .video-logo {
-            margin-bottom: 0.15rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0;
             width: 180px;
             height: 180px;
             display: flex;
@@ -1652,17 +1654,17 @@
             }
 
             .profile-image-wrapper .sparkle-1 {
-                width: 150px;
-                height: 150px;
-                top: -60px;
-                left: -60px;
+                width: 165px;
+                height: 165px;
+                top: -76px;
+                left: -68px;
             }
 
             .profile-image-wrapper .clover-1 {
-                width: 140px;
-                height: 140px;
-                bottom: -50px;
-                right: -50px;
+                width: 154px;
+                height: 154px;
+                bottom: -66px;
+                right: -66px;
             }
 
             .video-label {
@@ -2271,7 +2273,7 @@
                     </div>
                     <!-- Email -->
                     <div style="margin-top: 1rem;">
-                        <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;">juliasupernova0@gmail.com</a>
+                        <a href="/cdn-cgi/l/email-protection#660c130a0f071513160314080910075626010b070f0a4805090b" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;"><span class="__cf_email__" data-cfemail="96fce3fafff7e5e3e6f3e4f8f9e0f7a6d6f1fbf7fffab8f5f9fb">[email&#160;protected]</span></a>
                     </div>
                 </div>
             </div>
@@ -2543,7 +2545,7 @@
                     </div>
                     <!-- Email -->
                     <div style="margin-top: 1rem;">
-                        <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;">juliasupernova0@gmail.com</a>
+                        <a href="/cdn-cgi/l/email-protection#89e3fce5e0e8fafcf9ecfbe7e6ffe8b9c9eee4e8e0e5a7eae6e4" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;"><span class="__cf_email__" data-cfemail="650f10090c0416101500170b0a130455250208040c094b060a08">[email&#160;protected]</span></a>
                     </div>
                 </div>
             </div>
@@ -2554,7 +2556,7 @@
         </footer>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleVideo(wrapper) {
             const video = wrapper.querySelector('video');
             const overlay = wrapper.querySelector('.play-button-overlay');
@@ -2599,13 +2601,3 @@
             // Update active button
             filterBtns.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            
-            // Filter videos
-            videoCards.forEach(card => {
-                if (category === 'all') {
-                    card.classList.remove('hidden');
-                } else {
-                    if (card.getAttribute('data-category') === category) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
