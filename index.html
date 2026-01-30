@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supernova UGC | Premium Video Content Creator</title>
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="Hero image.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Hero image.png">
+    <link rel="shortcut icon" href="Hero image.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Hero image.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
@@ -409,6 +416,7 @@
             left: -100px;
             width: 270px;
             height: 270px;
+            object-fit: contain;
             z-index: 5;
         }
 
@@ -418,6 +426,7 @@
             right: -90px;
             width: 255px;
             height: 255px;
+            object-fit: contain;
             z-index: 5;
         }
 
@@ -1642,6 +1651,20 @@
                 margin-bottom: 1rem;
             }
 
+            .profile-image-wrapper .sparkle-1 {
+                width: 150px;
+                height: 150px;
+                top: -60px;
+                left: -60px;
+            }
+
+            .profile-image-wrapper .clover-1 {
+                width: 140px;
+                height: 140px;
+                bottom: -50px;
+                right: -50px;
+            }
+
             .video-label {
                 padding: 0.75rem 1rem;
                 font-size: 0.7rem;
@@ -2247,9 +2270,9 @@
                         </a>
                     </div>
                     <!-- Email -->
-                    <p style="margin-top: 1.5rem; text-align: center;">
+                    <div style="margin-top: 1rem;">
                         <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;">juliasupernova0@gmail.com</a>
-                    </p>
+                    </div>
                 </div>
             </div>
 
@@ -2519,9 +2542,9 @@
                         </a>
                     </div>
                     <!-- Email -->
-                    <p style="margin-top: 1.5rem; text-align: center;">
+                    <div style="margin-top: 1rem;">
                         <a href="mailto:juliasupernova0@gmail.com" style="color: var(--text-primary); text-decoration: none; font-weight: 700; font-size: 1rem;">juliasupernova0@gmail.com</a>
-                    </p>
+                    </div>
                 </div>
             </div>
 
@@ -2531,7 +2554,7 @@
         </footer>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleVideo(wrapper) {
             const video = wrapper.querySelector('video');
             const overlay = wrapper.querySelector('.play-button-overlay');
@@ -2586,20 +2609,3 @@
                         card.classList.remove('hidden');
                     } else {
                         card.classList.add('hidden');
-                    }
-                }
-            });
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            document.getElementById(pageId).classList.add('active');
-            
-            window.scrollTo(0, 0);
-        }
-    </script>
-</body>
-</html>
