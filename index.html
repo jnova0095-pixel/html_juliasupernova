@@ -2044,6 +2044,7 @@
             .portfolio-video-card {
                 width: 100% !important;
                 max-width: 100% !important;
+                grid-column: span 1 !important;
             }
 
             .portfolio-video-card video {
@@ -2903,10 +2904,10 @@
                         </div>
                     </div>
 
-                    <!-- Video 18: Clean -->
-                    <div class="portfolio-video-card" data-category="apps">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                    <!-- Video 18: Clean (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Clean.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
