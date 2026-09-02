@@ -1202,55 +1202,52 @@
             }
         }
 
-        /* Hero v2 - Figma-matched hero */
-        .hero-v2 {
-            position: relative;
-            min-height: 100vh;
-            background: var(--bg-primary);
-            overflow: hidden;
-            padding: 28px;
+        /* Persistent nav - matches reference's fixed/scroll-aware nav */
+        html {
+            scroll-behavior: smooth;
         }
 
-        .hero-v2::before {
-            content: '';
-            position: absolute;
-            inset: 14px;
-            border: 1.5px solid var(--text-primary);
-            pointer-events: none;
-            z-index: 5;
+        body {
+            cursor: none;
         }
 
-        .hero-v2-topbar {
+        @media (hover: none) {
+            body {
+                cursor: auto;
+            }
+        }
+
+        #main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
             display: grid;
             grid-template-columns: 1fr auto 1fr;
-            align-items: flex-start;
-            gap: 1rem;
-            position: relative;
-            z-index: 6;
-            padding: 22px 30px 0;
-        }
-
-        .hero-logo {
-            justify-self: start;
-            display: flex;
-            flex-direction: column;
-            line-height: 0.95;
-            cursor: pointer;
-            font-family: 'Gaegu', cursive;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .hero-logo-line2 {
-            display: inline-flex;
             align-items: center;
-            gap: 2px;
+            gap: 1rem;
+            padding: 18px 30px;
+            transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: 1px solid transparent;
         }
 
-        .hero-logo-spark {
-            width: 12px;
-            height: 12px;
-            fill: var(--accent-green-dark);
+        #main-nav.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        #main-nav.nav-scrolled {
+            background: rgba(250, 250, 250, 0.85);
+            backdrop-filter: blur(14px) saturate(180%);
+            -webkit-backdrop-filter: blur(14px) saturate(180%);
+            border-bottom-color: rgba(28, 27, 27, 0.1);
+        }
+
+        .hero-logo-img {
+            justify-self: start;
         }
 
         .hero-meta-info {
@@ -1284,9 +1281,10 @@
             letter-spacing: 0.06em;
             text-transform: uppercase;
             color: var(--text-primary);
-            cursor: pointer;
+            cursor: none;
             transition: background 0.25s ease, color 0.25s ease;
             white-space: nowrap;
+            overflow: hidden;
         }
 
         .pill-btn:hover {
@@ -1297,6 +1295,75 @@
         .pill-btn svg {
             width: 10px;
             height: 10px;
+            transition: transform 0.25s ease;
+        }
+
+        .pill-btn:hover svg {
+            animation: pillArrowWrap 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        @keyframes pillArrowWrap {
+            0% { transform: translate(0); opacity: 1; }
+            45% { transform: translate(130%, -130%); opacity: 0; }
+            50% { transform: translate(-130%, 130%); opacity: 0; }
+            100% { transform: translate(0); opacity: 1; }
+        }
+
+        /* Custom cursor - matches reference's dot/expand/view states */
+        #cursor {
+            position: fixed;
+            z-index: 999;
+            pointer-events: none;
+            width: 10px;
+            height: 10px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: width 0.3s cubic-bezier(0.33,1,0.68,1), height 0.3s cubic-bezier(0.33,1,0.68,1), background 0.25s ease;
+        }
+
+        #cursor .cursor-label {
+            font-family: 'Aeonik', sans-serif;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            color: var(--bg-primary);
+            opacity: 0;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        #cursor.expand {
+            width: 44px;
+            height: 44px;
+            background: rgba(28, 27, 27, 0.1);
+            backdrop-filter: blur(2px);
+        }
+
+        #cursor.view {
+            width: 72px;
+            height: 72px;
+            background: var(--accent-green);
+        }
+
+        #cursor.view .cursor-label {
+            opacity: 1;
+            color: var(--text-primary);
+        }
+
+        @media (hover: none) {
+            #cursor { display: none; }
+        }
+
+        /* Hero v2 */
+        .hero-v2 {
+            position: relative;
+            min-height: 100vh;
+            background: var(--bg-primary);
+            overflow: hidden;
+            padding-top: 90px;
         }
 
         .hero-stage {
@@ -1387,14 +1454,18 @@
         }
 
         @media (max-width: 900px) {
-            .hero-v2-topbar {
+            #main-nav {
                 grid-template-columns: 1fr;
                 justify-items: center;
                 text-align: center;
-                gap: 0.75rem;
+                gap: 0.5rem;
+                padding: 12px 20px;
             }
-            .hero-logo, .hero-nav-pills {
+            .hero-logo-img, .hero-nav-pills {
                 justify-self: center;
+            }
+            .hero-meta-info {
+                display: none;
             }
             .hero-title {
                 font-size: clamp(2.4rem, 14vw, 5rem);
@@ -1424,7 +1495,178 @@
         /* Services Section */
         .services-section {
             padding: 6rem 3rem;
-            background: linear-gradient(180deg, #e8f5d8 0%, #f0f9e6 50%, #f5fcee 100%);
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 3rem;
+            right: 3rem;
+            height: 1px;
+            background: rgba(28, 27, 27, 0.1);
+        }
+
+        .services-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-list {
+            padding-right: 2rem;
+        }
+
+        .service-item {
+            position: relative;
+            padding: 1rem 0;
+            cursor: pointer;
+            transition: padding-left 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        .service-item .num {
+            position: absolute;
+            left: 0;
+            top: 1.6rem;
+            font-size: 0.75rem;
+            color: var(--accent-green-dark);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.35s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
+        }
+
+        .service-item h3 {
+            display: inline-block;
+            font-family: 'Aeonik', sans-serif;
+            font-size: clamp(1.8rem, 3.2vw, 3rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: rgba(28, 27, 27, 0.26);
+            transition: color 0.35s;
+        }
+
+        .service-item.active,
+        .service-item:hover {
+            padding-left: 1.75rem;
+        }
+
+        .service-item.active .num {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .service-item.active h3,
+        .service-item:hover h3 {
+            color: var(--text-primary);
+        }
+
+        .service-progress {
+            position: absolute;
+            bottom: 0;
+            left: 1.75rem;
+            height: 1px;
+            background: var(--accent-green-dark);
+            width: 0;
+        }
+
+        .service-item.active .service-progress {
+            animation: servicesProgressFill 6s linear forwards;
+        }
+
+        @keyframes servicesProgressFill {
+            0% { width: 0; }
+            100% { width: calc(100% - 1.75rem); }
+        }
+
+        .services-detail {
+            padding-left: 2rem;
+            position: relative;
+            min-height: 260px;
+            border-left: 1px solid rgba(28, 27, 27, 0.1);
+        }
+
+        .services-detail-content {
+            position: absolute;
+            inset: 0 0 0 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
+        }
+
+        .services-detail-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .services-detail-content h4 {
+            font-family: 'Aeonik', sans-serif;
+            font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .services-detail-content p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            max-width: 480px;
+        }
+
+        .services-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.4rem;
+        }
+
+        .services-tag {
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+            border: 1px solid var(--accent-green-dark);
+            padding: 0.4rem 0.85rem;
+            border-radius: var(--radius-full);
+            color: var(--accent-green-dark);
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .services-tag:hover {
+            background: var(--accent-green-dark);
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            .services-tabs {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .services-list {
+                padding-right: 0;
+            }
+            .services-detail {
+                padding-left: 0;
+                border-left: none;
+                border-top: 1px solid rgba(28, 27, 27, 0.1);
+                padding-top: 1.5rem;
+                min-height: 320px;
+            }
+            .services-detail-content {
+                inset: 0;
+                padding-left: 0 !important;
+            }
         }
 
         .services-grid {
@@ -1605,6 +1847,17 @@
         .reviews-section {
             padding: 6rem 3rem;
             background: var(--bg-primary);
+            position: relative;
+        }
+
+        .reviews-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 3rem;
+            right: 3rem;
+            height: 1px;
+            background: rgba(28, 27, 27, 0.1);
         }
 
         .reviews-grid {
@@ -1730,6 +1983,16 @@
             background: radial-gradient(circle, rgba(190, 242, 124, 0.08) 0%, transparent 70%);
             filter: blur(100px);
             pointer-events: none;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 3rem;
+            right: 3rem;
+            height: 1px;
+            background: rgba(28, 27, 27, 0.1);
         }
 
         .cta-container {
@@ -2716,28 +2979,29 @@
     </style>
 </head>
 <body>
+    <div id="cursor"><span class="cursor-label"></span></div>
+
     <!-- Navigation -->
-    <!-- HOME PAGE -->
+    <nav id="main-nav">
+        <img src="Logo.png" alt="Supernova Studio" class="hero-logo-img" onclick="showPage('home')">
+        <div class="hero-meta-info">
+            43.447 N, 2.784 W<br>EST. 2025
+        </div>
+        <div class="hero-nav-pills">
+            <button class="pill-btn" onclick="showPage('portfolio')">
+                Projects
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </button>
+            <button class="pill-btn" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100);">
+                Book me
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </button>
+        </div>
+    </nav>
+
     <div id="home" class="page active">
         <!-- Hero Section -->
         <section class="hero-v2">
-            <div class="hero-v2-topbar">
-                <img src="Logo.png" alt="Supernova Studio" class="hero-logo-img" onclick="showPage('home')">
-                <div class="hero-meta-info">
-                    43.447 N, 2.784 W<br>EST. 2025
-                </div>
-                <div class="hero-nav-pills">
-                    <button class="pill-btn" onclick="showPage('portfolio')">
-                        Projects
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </button>
-                    <button class="pill-btn" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100);">
-                        Book me
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-                    </button>
-                </div>
-            </div>
-
             <div class="hero-stage">
                 <div class="hero-title-wrap">
                     <img src="Wax star.png" alt="" class="waxseal">
@@ -2906,11 +3170,6 @@
             </div>
         </section>
 
-        <!-- Decorative Heart -->
-        <div style="position: relative;">
-            <img src="heart.png" alt="" class="decorative-graphic heart-between-sections">
-        </div>
-
         <!-- Services Section -->
         <section class="services-section" id="services" style="position: relative;">
             <div class="section-container">
@@ -2919,104 +3178,60 @@
                     <p class="section-subtitle">Choose the level of creative support that fits your brand's goals</p>
                 </div>
 
-                <div class="services-grid">
-                    <!-- Service 1: Native Social Ads -->
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                            </svg>
+                <div class="services-tabs" id="services-tabs">
+                    <div class="services-list">
+                        <div class="service-item active" data-service="0">
+                            <span class="num">01</span>
+                            <h3>Native Social Ads</h3>
+                            <div class="service-progress"></div>
                         </div>
-                        <h3 class="service-title">Native Social Ads</h3>
-                        <p class="service-description">
-                            Video ads that feel real, not produced. Creator-style content that blends into the feed, builds trust and shows your product in an authentic way.
-                        </p>
-
-                        <div class="service-includes">
-                            <h4 class="service-includes-title">Includes:</h4>
-                            <ul class="service-features">
-                                <li>Creative concepts + scripts</li>
-                                <li>Strong hooks to grab attention fast</li>
-                                <li>Raw footage + edited file</li>
-                                <li>Subtitles + music and sound effects</li>
-                                <li>Usage rights available for purchase</li>
-                            </ul>
-
-                            <div class="service-good-for">
-                                <h5 class="service-good-for-title">Good for:</h5>
-                                <p class="service-good-for-text">Organic content, social proof, and performance testing.</p>
-                            </div>
+                        <div class="service-item" data-service="1">
+                            <span class="num">02</span>
+                            <h3>Premium Ads</h3>
+                            <div class="service-progress"></div>
+                        </div>
+                        <div class="service-item" data-service="2">
+                            <span class="num">03</span>
+                            <h3>Brand Universe</h3>
+                            <div class="service-progress"></div>
                         </div>
                     </div>
 
-                    <!-- Service 2: Premium Ads -->
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                            </svg>
-                        </div>
-                        <h3 class="service-title">Premium Ads</h3>
-                        <p class="service-description">
-                            Bold, cinematic content built to grab attention and convert. More creative, more intentional, for brands that want to make a real impression.
-                        </p>
-
-                        <div class="service-includes">
-                            <h4 class="service-includes-title">Includes:</h4>
-                            <ul class="service-features">
-                                <li>Ad concepts + scripts</li>
-                                <li>Clear messaging and strong hooks</li>
-                                <li>Raw files in 4k</li>
-                                <li>Cinematic filming (angles, lighting, movement)</li>
-                                <li>High-quality editing with effects and animations</li>
-                                <li>Subtitles + music and sound effects</li>
-                                <li>Usage rights available for purchase</li>
-                            </ul>
-
-                            <div class="service-good-for">
-                                <h5 class="service-good-for-title">Good for:</h5>
-                                <p class="service-good-for-text">Paid ads, product launches and scaling brands.</p>
+                    <div class="services-detail">
+                        <div class="services-detail-content visible" data-service-detail="0">
+                            <h4>Video ads that feel real, not produced.</h4>
+                            <p>Creator-style content that blends into the feed, builds trust and shows your product in an authentic way. Good for organic content, social proof, and performance testing.</p>
+                            <div class="services-tags">
+                                <span class="services-tag">Creative concepts + scripts</span>
+                                <span class="services-tag">Strong hooks</span>
+                                <span class="services-tag">Raw + edited files</span>
+                                <span class="services-tag">Subtitles + sound</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Service 3: Brand Universe -->
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                            </svg>
+                        <div class="services-detail-content" data-service-detail="1">
+                            <h4>Bold, cinematic content built to convert.</h4>
+                            <p>More creative, more intentional, for brands that want to make a real impression. Good for paid ads, product launches and scaling brands.</p>
+                            <div class="services-tags">
+                                <span class="services-tag">4K raw files</span>
+                                <span class="services-tag">Cinematic filming</span>
+                                <span class="services-tag">Effects + animation</span>
+                                <span class="services-tag">Subtitles + sound</span>
+                            </div>
                         </div>
-                        <h3 class="service-title">Brand Universe (Retainer)</h3>
-                        <p class="service-description">
-                            Not just videos, a whole content identity. I help brands build a recognizable visual style so every piece of content feels connected and intentional.
-                        </p>
-
-                        <div class="service-includes">
-                            <h4 class="service-includes-title">Includes:</h4>
-                            <ul class="service-features">
-                                <li>Creative concepts aligned with your brand</li>
-                                <li>Custom monthly video plan for your brand</li>
-                                <li>Ready to use videos</li>
-                                <li>Subtitles, music & sound effect</li>
-                                <li>Mixed media content</li>
-                                <li>Usage rights available for purchase</li>
-                            </ul>
-
-                            <div class="service-good-for">
-                                <h5 class="service-good-for-title">Good for:</h5>
-                                <p class="service-good-for-text">Brands that want consistency, creative direction and long-term growth.</p>
+                        <div class="services-detail-content" data-service-detail="2">
+                            <h4>Not just videos. A whole content identity.</h4>
+                            <p>I help brands build a recognizable visual style so every piece of content feels connected and intentional. Good for brands that want consistency, creative direction and long-term growth.</p>
+                            <div class="services-tags">
+                                <span class="services-tag">Monthly video plan</span>
+                                <span class="services-tag">Mixed media</span>
+                                <span class="services-tag">Ready-to-use videos</span>
+                                <span class="services-tag">Ongoing direction</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Decorative Star -->
-        <div style="position: relative;">
-            <img src="star.png" alt="" class="decorative-graphic star-1 star-between-sections">
-        </div>
 
         <!-- Reviews Section -->
         <section class="reviews-section" style="position: relative;">
@@ -3161,11 +3376,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Decorative Sparkle -->
-        <div style="position: relative;">
-            <img src="sparkle.png" alt="" class="decorative-graphic sparkle-1 sparkle-reviews">
-        </div>
 
         <!-- CTA Section -->
         <section class="cta-section" id="book">
@@ -3778,6 +3988,89 @@
                 }
             });
         }
+
+        // Persistent nav: hide on scroll down, show + blur on scroll up
+        (function() {
+            const nav = document.getElementById('main-nav');
+            let lastY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                const y = window.scrollY;
+                nav.classList.toggle('nav-scrolled', y > 40);
+                if (y > lastY && y > 120) {
+                    nav.classList.add('nav-hidden');
+                } else {
+                    nav.classList.remove('nav-hidden');
+                }
+                lastY = y;
+            }, { passive: true });
+        })();
+
+        // Custom cursor: dot / expand (clickable) / view (video, project cards)
+        (function() {
+            if (window.matchMedia('(hover: none)').matches) return;
+            const cursor = document.getElementById('cursor');
+            const label = cursor.querySelector('.cursor-label');
+            window.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            document.addEventListener('mouseover', (e) => {
+                const viewTarget = e.target.closest('.showreel-card, .project-detail-video-wrapper');
+                const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, [onclick]');
+                if (viewTarget) {
+                    cursor.classList.add('view');
+                    cursor.classList.remove('expand');
+                    label.textContent = 'View';
+                } else if (clickTarget) {
+                    cursor.classList.add('expand');
+                    cursor.classList.remove('view');
+                    label.textContent = '';
+                } else {
+                    cursor.classList.remove('expand', 'view');
+                    label.textContent = '';
+                }
+            });
+        })();
+
+        // Services tabs: auto-advance every 6s, click to jump
+        (function() {
+            const wrap = document.getElementById('services-tabs');
+            if (!wrap) return;
+            const items = wrap.querySelectorAll('.service-item');
+            const details = wrap.querySelectorAll('.services-detail-content');
+            let active = 0;
+            let timer = null;
+
+            function setActive(index) {
+                active = index;
+                items.forEach((item, i) => item.classList.toggle('active', i === index));
+                details.forEach((d, i) => d.classList.toggle('visible', i === index));
+                // Restart the progress-bar animation on the newly active item
+                const activeItem = items[index];
+                const bar = activeItem.querySelector('.service-progress');
+                bar.style.animation = 'none';
+                void bar.offsetWidth;
+                bar.style.animation = '';
+            }
+
+            function next() {
+                setActive((active + 1) % items.length);
+            }
+
+            function restartTimer() {
+                clearInterval(timer);
+                timer = setInterval(next, 6000);
+            }
+
+            items.forEach((item, i) => {
+                item.addEventListener('click', () => {
+                    setActive(i);
+                    restartTimer();
+                });
+            });
+
+            restartTimer();
+        })();
 
         const PROJECTS = {
             notion: {
