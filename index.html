@@ -992,6 +992,216 @@
             padding: 0 0.5rem;
         }
 
+        /* Showreel Grid - autoplay muted loop portfolio preview */
+        .showreel-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .showreel-card {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: #e8e8e8;
+            border: 1px solid #1C1B1B;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .showreel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .showreel-card.horizontal {
+            grid-column: 1 / -1;
+            aspect-ratio: 21 / 9;
+        }
+
+        .showreel-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            background: #000;
+        }
+
+        .showreel-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.25rem;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .showreel-card:hover .showreel-overlay {
+            opacity: 1;
+        }
+
+        .showreel-overlay-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            color: #fff;
+        }
+
+        .showreel-overlay-title {
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .showreel-overlay-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .showreel-expand {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            color: #1C1B1B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 900px) {
+            .showreel-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Project Detail Page */
+        .project-detail-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 3rem 4rem;
+        }
+
+        .project-detail-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            transition: color 0.2s ease;
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+        }
+
+        .project-detail-back:hover {
+            color: var(--text-primary);
+        }
+
+        .project-detail-video-wrapper {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: #000;
+            margin: 0 auto 2.5rem;
+            border: 1px solid #1C1B1B;
+        }
+
+        .project-detail-video-wrapper.vertical {
+            max-width: 420px;
+            aspect-ratio: 9/16;
+        }
+
+        .project-detail-video-wrapper.horizontal {
+            aspect-ratio: 16/9;
+        }
+
+        .project-detail-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+            display: block;
+        }
+
+        .project-detail-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .project-detail-tag {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            background: rgba(190, 242, 124, 0.4);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+        }
+
+        .project-detail-title {
+            font-family: 'Brigesta', sans-serif;
+            font-size: 3rem;
+            line-height: 1.1;
+        }
+
+        .project-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+        }
+
+        .project-detail-block h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .project-detail-block p,
+        .project-detail-block li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-detail-block ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .project-detail-block ul li::before {
+            content: '— ';
+            color: var(--accent-green-dark);
+        }
+
+        @media (max-width: 900px) {
+            .project-detail-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .project-detail-container {
+                padding: 7rem 1.5rem 3rem;
+            }
+        }
+
         /* Services Section */
         .services-section {
             padding: 6rem 3rem;
@@ -2377,61 +2587,85 @@
                     <p class="section-subtitle">Bold, scroll-stopping animation for premium video campaigns</p>
                 </div>
 
-                <div class="videos-grid">
-                    <!-- Video 1 -->
-                    <div class="video-card">
-                        <div class="video-logo">
-                            <img src="Notion logo.png?v=2" alt="Notion">
+                <div class="showreel-grid">
+                    <!-- Notion -->
+                    <div class="showreel-card" onclick="openProject('notion')">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="Notion.mp4" type="video/mp4">
+                        </video>
+                        <div class="showreel-overlay">
+                            <div class="showreel-overlay-content">
+                                <div>
+                                    <div class="showreel-overlay-title">Notion</div>
+                                    <div class="showreel-overlay-tag">Spec work</div>
+                                </div>
+                                <div class="showreel-expand">&#8599;</div>
+                            </div>
                         </div>
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Notion.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="video-label">Spec work</div>
                     </div>
 
-                    <!-- Video 2 -->
-                    <div class="video-card">
-                        <div class="video-logo">
-                            <img src="Headpsace logo.png?v=2" alt="Headspace">
+                    <!-- Headspace -->
+                    <div class="showreel-card" onclick="openProject('headspace')">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace.mov" type="video/quicktime">
+                        </video>
+                        <div class="showreel-overlay">
+                            <div class="showreel-overlay-content">
+                                <div>
+                                    <div class="showreel-overlay-title">Headspace</div>
+                                    <div class="showreel-overlay-tag">Spec work</div>
+                                </div>
+                                <div class="showreel-expand">&#8599;</div>
+                            </div>
                         </div>
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace.mov" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="video-label">Spec work</div>
                     </div>
 
-                    <!-- Video 3 -->
-                    <div class="video-card">
-                        <div class="video-logo">
-                            <img src="durable-logo.png?v=4" alt="Durable" style="width: 200px; height: 200px; object-fit: contain;">
+                    <!-- Durable -->
+                    <div class="showreel-card" onclick="openProject('durable')">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-final.mov" type="video/quicktime">
+                        </video>
+                        <div class="showreel-overlay">
+                            <div class="showreel-overlay-content">
+                                <div>
+                                    <div class="showreel-overlay-title">Durable</div>
+                                    <div class="showreel-overlay-tag">Brand Collaboration</div>
+                                </div>
+                                <div class="showreel-expand">&#8599;</div>
+                            </div>
                         </div>
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-final.mov" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="video-label">Brand Collaboration</div>
                     </div>
 
-                    <!-- Video 4 -->
-                    <div class="video-card">
-                        <div class="video-logo">
-                            <img src="PolarPro logo.png?v=2" alt="PolarPro">
+                    <!-- PolarPro -->
+                    <div class="showreel-card" onclick="openProject('polarpro')">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="PolarPro.mp4" type="video/mp4">
+                        </video>
+                        <div class="showreel-overlay">
+                            <div class="showreel-overlay-content">
+                                <div>
+                                    <div class="showreel-overlay-title">PolarPro</div>
+                                    <div class="showreel-overlay-tag">Brand Collaboration</div>
+                                </div>
+                                <div class="showreel-expand">&#8599;</div>
+                            </div>
                         </div>
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="PolarPro.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
+                    </div>
+
+                    <!-- Claude (horizontal showreel piece) -->
+                    <div class="showreel-card horizontal" onclick="openProject('claude')">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Claude%20edited%20with%20text.mov" type="video/quicktime">
+                        </video>
+                        <div class="showreel-overlay">
+                            <div class="showreel-overlay-content">
+                                <div>
+                                    <div class="showreel-overlay-title">Claude</div>
+                                    <div class="showreel-overlay-tag">Spec ad</div>
+                                </div>
+                                <div class="showreel-expand">&#8599;</div>
+                            </div>
                         </div>
-                        <div class="video-label">Brand Collaboration</div>
                     </div>
                 </div>
             </div>
@@ -3248,6 +3482,72 @@
         </footer>
     </div>
 
+    <!-- Project Detail Page -->
+    <div id="project-detail" class="page">
+        <div class="project-detail-container">
+            <span class="project-detail-back" onclick="showPage('home'); setTimeout(() => document.getElementById('projects').scrollIntoView({behavior: 'smooth'}), 100)">
+                &#8592; Back to work
+            </span>
+
+            <div id="project-detail-video-wrapper" class="project-detail-video-wrapper vertical">
+                <video id="project-detail-video" controls preload="metadata" playsinline>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="project-detail-header">
+                <div id="project-detail-tag" class="project-detail-tag">Spec work</div>
+                <h1 id="project-detail-title" class="project-detail-title">Project</h1>
+            </div>
+
+            <div class="project-detail-grid">
+                <div class="project-detail-block">
+                    <h3>The Idea</h3>
+                    <p id="project-detail-idea"></p>
+                </div>
+                <div class="project-detail-block">
+                    <h3>Tools Used</h3>
+                    <ul id="project-detail-tools"></ul>
+                </div>
+                <div class="project-detail-block">
+                    <h3>How It Can Be Used</h3>
+                    <p id="project-detail-usecase"></p>
+                </div>
+            </div>
+
+            <div class="project-detail-grid" style="grid-template-columns: 1fr; margin-bottom: 0;">
+                <div class="project-detail-block">
+                    <h3>Estimated Timeline</h3>
+                    <p id="project-detail-timeline"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <div class="footer-logo">Supernova Studio</div>
+                    <p class="footer-tagline">
+                        Making videos worth stopping your scroll for. That's it.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Navigation</h4>
+                    <div class="footer-links">
+                        <span class="footer-link" onclick="showPage('portfolio')">Projects</span>
+                        <span class="footer-link" onclick="showPage('home')">Services</span>
+                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100)">Book me</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Supernova Studio. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function toggleVideo(wrapper) {
             const video = wrapper.querySelector('video');
@@ -3302,6 +3602,87 @@
                     card.style.display = 'none';
                 }
             });
+        }
+
+        const PROJECTS = {
+            notion: {
+                title: 'Notion',
+                tag: 'Spec work',
+                orientation: 'vertical',
+                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Notion%20short%20film.mov',
+                idea: 'Show the feeling of untangling a mess in your head, and how Notion helps you get it back in order.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — compositing & animation'],
+                useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
+                timeline: '10 working days, concept to final edit.'
+            },
+            headspace: {
+                title: 'Headspace',
+                tag: 'Spec work',
+                orientation: 'vertical',
+                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace.mov',
+                idea: 'Show the feeling of being able to access meditation anywhere, and being instantly transported into your own space.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — 2.5D compositing & animation'],
+                useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
+                timeline: '10 working days, concept to final edit.'
+            },
+            durable: {
+                title: 'Durable',
+                tag: 'Brand Collaboration',
+                orientation: 'vertical',
+                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-final.mov',
+                idea: 'Full write-up coming soon with the dedicated Durable case study.',
+                tools: ['DaVinci Resolve', 'After Effects'],
+                useCase: 'Brand collaboration piece.',
+                timeline: 'Details coming soon.'
+            },
+            polarpro: {
+                title: 'PolarPro',
+                tag: 'Brand Collaboration',
+                orientation: 'vertical',
+                detailSrc: 'PolarPro.mp4',
+                idea: 'Full write-up coming soon.',
+                tools: ['DaVinci Resolve', 'After Effects'],
+                useCase: 'Brand collaboration piece.',
+                timeline: 'Details coming soon.'
+            },
+            claude: {
+                title: 'Claude',
+                tag: 'Spec ad',
+                orientation: 'horizontal',
+                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Claude%20edited%20with%20text.mov',
+                idea: 'Full write-up coming soon.',
+                tools: ['DaVinci Resolve', 'After Effects'],
+                useCase: 'Spec ad piece.',
+                timeline: 'Details coming soon.'
+            }
+        };
+
+        function openProject(id) {
+            const p = PROJECTS[id];
+            if (!p) return;
+
+            document.getElementById('project-detail-title').textContent = p.title;
+            document.getElementById('project-detail-tag').textContent = p.tag;
+            document.getElementById('project-detail-idea').textContent = p.idea;
+            document.getElementById('project-detail-usecase').textContent = p.useCase;
+            document.getElementById('project-detail-timeline').textContent = p.timeline;
+
+            const toolsList = document.getElementById('project-detail-tools');
+            toolsList.innerHTML = '';
+            p.tools.forEach(t => {
+                const li = document.createElement('li');
+                li.textContent = t;
+                toolsList.appendChild(li);
+            });
+
+            document.getElementById('project-detail-video-wrapper').className = 'project-detail-video-wrapper ' + p.orientation;
+
+            const video = document.getElementById('project-detail-video');
+            video.pause();
+            video.querySelector('source').src = p.detailSrc;
+            video.load();
+
+            showPage('project-detail');
         }
 
         function showPage(pageId) {
