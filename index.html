@@ -156,6 +156,7 @@
             --radius-lg: 24px;
             --radius-full: 9999px;
             --radius-button: 15px;
+            --radius-video: 4px;
         }
 
         * {
@@ -807,7 +808,7 @@
         .videos-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 1.25rem;
         }
 
         .video-card {
@@ -830,10 +831,9 @@
         .video-wrapper {
             position: relative;
             aspect-ratio: 9/16;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-video);
             overflow: hidden;
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-            border: 1px solid #1C1B1B;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -841,7 +841,6 @@
 
         .video-wrapper:hover {
             transform: translateY(-12px);
-            border-color: #1C1B1B;
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
         }
 
@@ -1003,13 +1002,25 @@
         .showreel-card {
             position: relative;
             aspect-ratio: 514 / 572;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-video);
             overflow: hidden;
             background: #e8e8e8;
-            border: 1px solid #1C1B1B;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
             transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .showreel-logo {
+            position: absolute;
+            right: 1.1rem;
+            bottom: 1.1rem;
+            height: 28px;
+            max-width: 40%;
+            width: auto;
+            object-fit: contain;
+            z-index: 3;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.35));
+            pointer-events: none;
         }
 
         .showreel-card:hover {
@@ -1152,7 +1163,8 @@
         }
 
         .project-detail-title {
-            font-family: 'Brigesta', sans-serif;
+            font-family: 'Aeonik', sans-serif;
+            font-weight: 700;
             font-size: 3rem;
             line-height: 1.1;
         }
@@ -1228,7 +1240,7 @@
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
             gap: 1rem;
-            padding: 18px 30px;
+            padding: 10px 30px;
             transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
             background: transparent;
             backdrop-filter: none;
@@ -1364,7 +1376,7 @@
             min-height: 100vh;
             background: var(--bg-primary);
             overflow: hidden;
-            padding-top: 90px;
+            padding-top: 70px;
         }
 
         .hero-stage {
@@ -1392,7 +1404,7 @@
         }
 
         .hero-logo-img {
-            width: clamp(90px, 9vw, 150px);
+            width: clamp(60px, 6vw, 92px);
             height: auto;
             display: block;
             cursor: pointer;
@@ -1539,7 +1551,7 @@
         }
 
         .tagline-accent {
-            color: var(--accent-orange);
+            color: var(--accent-green-dark);
         }
 
         .tagline-cta {
@@ -2721,10 +2733,9 @@
         .portfolio-video-card .video-wrapper {
             position: relative;
             aspect-ratio: 9/16;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-video);
             overflow: hidden;
             background: var(--bg-card);
-            border: 1px solid #1C1B1B;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -2732,7 +2743,6 @@
 
         .portfolio-video-card .video-wrapper:hover {
             transform: translateY(-12px);
-            border-color: #1C1B1B;
             box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
         }
 
@@ -3524,7 +3534,7 @@
         <section class="videos-section" id="projects">
             <div class="section-container">
                 <div class="section-header">
-                    <p class="section-label">Premium Video Ads</p>
+                    <p class="section-label">Featured Projects</p>
                     <p class="section-subtitle">Bold, scroll-stopping animation for premium video campaigns</p>
                 </div>
 
@@ -3534,6 +3544,7 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/notion-grid.mp4" type="video/mp4">
                         </video>
+                        <img src="Notion logo.png" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
@@ -3550,6 +3561,7 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace-grid.mp4" type="video/mp4">
                         </video>
+                        <img src="Headpsace logo.png" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
@@ -3561,15 +3573,16 @@
                         </div>
                     </div>
 
-                    <!-- Durable -->
-                    <div class="showreel-card" onclick="openProject('durable')">
+                    <!-- Fiverr -->
+                    <div class="showreel-card" onclick="openProject('fiverr')">
                         <video autoplay muted loop playsinline preload="metadata">
-                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-grid.mp4" type="video/mp4">
+                            <source src="Fiverr.mp4" type="video/mp4">
                         </video>
+                        <img src="Fiverr logo.svg" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
-                                    <div class="showreel-overlay-title">Durable</div>
+                                    <div class="showreel-overlay-title">Fiverr</div>
                                     <div class="showreel-overlay-tag">Brand Collaboration</div>
                                 </div>
                                 <div class="showreel-expand">&#8599;</div>
@@ -3582,6 +3595,7 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-grid.mp4" type="video/mp4">
                         </video>
+                        <img src="PolarPro logo.png" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
@@ -3598,6 +3612,7 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/claude-grid.mp4" type="video/mp4">
                         </video>
+                        <img src="Claude logo.svg" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
@@ -3607,66 +3622,6 @@
                                 <div class="showreel-expand">&#8599;</div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Native Social Ads Section -->
-        <section class="videos-section">
-            <div class="section-container">
-                <div class="section-header">
-                    <p class="section-label">Native Social Ads</p>
-                    <p class="section-subtitle">High-quality creator-style ads built for social media</p>
-                </div>
-
-                <div class="videos-grid">
-                    <!-- Video 1: Scrawlr -->
-                    <div class="video-card">
-                        <img src="Scrawlr logo.svg?v=2" alt="Scrawlr" class="video-logo" style="width: 165px; height: 165px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Scrawlr.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="video-label">Social ad</div>
-                    </div>
-
-                    <!-- Video 2: Claude -->
-                    <div class="video-card">
-                        <img src="Claude logo.svg" alt="Claude" class="video-logo" style="width: 165px; height: 165px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Claude vertical.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="video-label">Spec ad</div>
-                    </div>
-
-                    <!-- Video 3: Bazaart -->
-                    <div class="video-card">
-                        <img src="Bazaart logo.svg?v=2" alt="Bazaart" class="video-logo" style="width: 165px; height: 165px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Bazaart.mp4?v=2" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="video-label">Product demo</div>
-                    </div>
-
-                    <!-- Video 4: Fiverr -->
-                    <div class="video-card">
-                        <img src="Fiverr logo.svg?v=2" alt="Fiverr" class="video-logo" style="width: 148px; height: 148px; margin-top: 17px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Fiverr.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="video-label">Social ad</div>
                     </div>
                 </div>
             </div>
@@ -3682,6 +3637,73 @@
                 The Studio
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </span>
+        </section>
+
+        <!-- Native Social Ads Section -->
+        <section class="videos-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <p class="section-label">Premium Video Ads Built for Socials</p>
+                    <p class="section-subtitle">High-quality creator-style ads built for social media</p>
+                </div>
+
+                <div class="videos-grid">
+                    <!-- Video 1: Fiverr video 2 -->
+                    <div class="video-card">
+                        <img src="Fiverr logo.svg?v=2" alt="Fiverr" class="video-logo" style="width: 148px; height: 148px; margin-top: 17px;">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="fiverr2-grid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-label">Social ad</div>
+                    </div>
+
+                    <!-- Video 2: Maggie 1 -->
+                    <div class="video-card">
+                        <img src="Maggie logo.png" alt="Maggi" class="video-logo" style="width: 165px; height: 165px;">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="maggie-v1-grid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-label">Social ad</div>
+                    </div>
+
+                    <!-- Video 3: Durable V1 -->
+                    <div class="video-card">
+                        <img src="durable-logo.png" alt="Durable" class="video-logo" style="width: 165px; height: 165px;">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V1-compressed.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-label">Brand Collaboration</div>
+                    </div>
+
+                    <!-- Video 4: Durable 3 -->
+                    <div class="video-card">
+                        <img src="durable-logo.png" alt="Durable" class="video-logo" style="width: 165px; height: 165px;">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Durable_V3-grid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="video-label">Brand Collaboration</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2.5rem;">
+                    <span class="pill-btn" style="display: inline-flex;" onclick="showPage('portfolio')">
+                        More Projects
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </div>
+            </div>
         </section>
 
         <!-- Services Section -->
@@ -4018,11 +4040,11 @@
         <section style="padding: 2rem 3rem 0;">
             <div class="section-container">
                 <div class="filter-buttons">
-                    <button class="filter-btn active" onclick="filterVideos('all')">All</button>
-                    <button class="filter-btn" onclick="filterVideos('lifestyle')">Lifestyle</button>
-                    <button class="filter-btn" onclick="filterVideos('beauty')">Beauty & Makeup</button>
-                    <button class="filter-btn" onclick="filterVideos('apps')">Apps & Software</button>
-                    <button class="filter-btn" onclick="filterVideos('photo')">Photo & Video Gear</button>
+                    <button class="filter-btn active" onclick="filterVideos('apps', this)">Software & Apps</button>
+                    <button class="filter-btn" onclick="filterVideos('photo', this)">Photo & Video Gear</button>
+                    <button class="filter-btn" onclick="filterVideos('cooking', this)">Cooking</button>
+                    <button class="filter-btn" onclick="filterVideos('beauty', this)">Beauty & Makeup</button>
+                    <button class="filter-btn" onclick="filterVideos('horizontal', this)">Horizontal</button>
                 </div>
             </div>
         </section>
@@ -4043,35 +4065,57 @@
                     </div>
 
                     <!-- Video 2: Bonebroth1 -->
-                    <div class="portfolio-video-card" data-category="lifestyle">
+                    <div class="portfolio-video-card" data-category="cooking">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Bonebroth1.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="video-tag">Lifestyle</div>
+                            <div class="video-tag">Cooking</div>
                         </div>
                     </div>
 
                     <!-- Video 3: Bonebroth2 -->
-                    <div class="portfolio-video-card" data-category="lifestyle">
+                    <div class="portfolio-video-card" data-category="cooking">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Bonebroth2.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="video-tag">Lifestyle</div>
+                            <div class="video-tag">Cooking</div>
                         </div>
                     </div>
 
                     <!-- Video 4: Bonebroth3 -->
-                    <div class="portfolio-video-card" data-category="lifestyle">
+                    <div class="portfolio-video-card" data-category="cooking">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Bonebroth3.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="video-tag">Lifestyle</div>
+                            <div class="video-tag">Cooking</div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Maggie V1 -->
+                    <div class="portfolio-video-card" data-category="cooking">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="maggie-v1-detail.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Cooking</div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Maggie V2 -->
+                    <div class="portfolio-video-card" data-category="cooking">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="maggie-v2-detail.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Cooking</div>
                         </div>
                     </div>
 
@@ -4152,17 +4196,6 @@
                         </div>
                     </div>
 
-                    <!-- Video 15: Tocobo -->
-                    <div class="portfolio-video-card" data-category="beauty">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Tocobo.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="video-tag">Beauty & Makeup</div>
-                        </div>
-                    </div>
-
                     <!-- Video 16: Vinted -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
@@ -4174,11 +4207,11 @@
                         </div>
                     </div>
 
-                    <!-- Video 17: Claude vertical -->
-                    <div class="portfolio-video-card" data-category="apps">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Claude vertical.mp4" type="video/mp4">
+                    <!-- Video 17: Claude (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/claude-grid.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
@@ -4186,7 +4219,7 @@
                     </div>
 
                     <!-- Video 18: Clean (horizontal) -->
-                    <div class="portfolio-video-card" data-category="apps" style="grid-column: span 2;">
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
                         <div class="video-wrapper" style="aspect-ratio: 16/9;">
                             <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
                                 <source src="Clean.mp4" type="video/mp4">
@@ -4208,35 +4241,57 @@
                     </div>
 
                     <!-- Video 20: Collagen -->
-                    <div class="portfolio-video-card" data-category="lifestyle">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Collagen.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="video-tag">Lifestyle</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 21: Lipstain -->
                     <div class="portfolio-video-card" data-category="beauty">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Lipstain.mp4" type="video/mp4">
+                                <source src="Collagen.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Beauty & Makeup</div>
                         </div>
                     </div>
 
-                    <!-- Video 22: Orange cleaner -->
-                    <div class="portfolio-video-card" data-category="lifestyle">
+                    <!-- Video: Durable V3 -->
+                    <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Orange cleaner.mp4" type="video/mp4">
+                                <source src="Durable_V3-grid.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            <div class="video-tag">Lifestyle</div>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Durable V4 -->
+                    <div class="portfolio-video-card" data-category="apps">
+                        <div class="video-wrapper">
+                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Durable_V4-grid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Koalendar 1 (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-1-detail.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Koalendar 2 (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-2-detail.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
                         </div>
                     </div>
                 </div>
@@ -4485,24 +4540,27 @@
             };
         }
 
-        function filterVideos(category) {
+        function filterVideos(category, btnEl) {
             // Get all video cards
             const videoCards = document.querySelectorAll('.portfolio-video-card');
             const filterBtns = document.querySelectorAll('.filter-btn');
-            
+
             // Update active button
             filterBtns.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-                // Show/hide cards based on category
+            const activeBtn = btnEl || (typeof event !== 'undefined' ? event.target : null);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // Show/hide cards based on category (cards may carry multiple space-separated categories)
             videoCards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+                const cats = (card.dataset.category || '').split(' ');
+                card.style.display = cats.includes(category) ? 'block' : 'none';
             });
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultBtn = document.querySelector('.filter-btn');
+            if (defaultBtn) filterVideos('apps', defaultBtn);
+        });
 
         // Persistent nav: hide on scroll down, show + blur on scroll up
         (function() {
@@ -4671,9 +4729,9 @@
                 tag: 'Brand Collaboration',
                 orientation: 'vertical',
                 detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-detail.mp4',
-                idea: 'Full write-up coming soon.',
-                tools: ['DaVinci Resolve', 'After Effects'],
-                useCase: 'Brand collaboration piece.',
+                idea: 'A gamified bit of storytelling built around one very real problem: showing up to shoot and realizing you forgot your memory card. PolarPro\'s body cap holds a spare right on the camera, so that panic never happens again.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design, graphics'],
+                useCase: 'Run as a whitelisted paid ad (also called a Partnership Ad) through the brand\'s own account.',
                 timeline: 'Details coming soon.'
             },
             claude: {
@@ -4681,10 +4739,20 @@
                 tag: 'Spec ad',
                 orientation: 'horizontal',
                 detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Claude%20edited%20with%20text.mov',
-                idea: 'Full write-up coming soon.',
+                idea: 'Closing the gap between the idea and the action, that\'s the whole pitch, and Claude is what makes it happen.',
                 tools: ['DaVinci Resolve', 'After Effects'],
-                useCase: 'Spec ad piece.',
-                timeline: 'Details coming soon.'
+                useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
+                timeline: '5 working days, concept to final edit.'
+            },
+            fiverr: {
+                title: 'Fiverr',
+                tag: 'Brand Collaboration',
+                orientation: 'vertical',
+                detailSrc: 'Fiverr.mp4',
+                idea: 'A spotlight piece built for Fiverr\'s own official page, the kind of video a brand actually wants to put its name on.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — graphics'],
+                useCase: 'Ran as a paid ad, and doubles as a strong addition to the brand\'s own page.',
+                timeline: '3 working days, concept to final edit.'
             }
         };
 
@@ -4726,7 +4794,7 @@
             const selectedPage = document.getElementById(pageId);
             if (selectedPage) {
                 selectedPage.classList.add('active');
-                window.scrollTo(0, 0);
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
             }
         }
 
