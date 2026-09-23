@@ -1120,11 +1120,10 @@
         }
 
         .project-detail-video-wrapper {
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-video);
             overflow: hidden;
             background: #000;
             margin: 0 auto 2.5rem;
-            border: 1px solid #1C1B1B;
         }
 
         .project-detail-video-wrapper.vertical {
@@ -1735,16 +1734,18 @@
         .social-carousel-stage {
             position: relative;
             margin-top: 1rem;
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
         }
 
         .social-carousel-strip {
             display: flex;
-            gap: 1.25rem;
+            gap: 1.5rem;
             overflow-x: auto;
             scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
             cursor: grab;
-            padding-bottom: 0.5rem;
+            padding: 0 3rem 0.5rem;
         }
 
         .social-carousel-strip.dragging {
@@ -1757,13 +1758,17 @@
 
         .sc-item {
             flex: 0 0 auto;
-            width: min(300px, 72vw);
+            width: min(440px, 80vw);
             user-select: none;
         }
 
         @media (max-width: 900px) {
+            .social-carousel-strip {
+                padding: 0 1.5rem 0.5rem;
+            }
+
             .sc-item {
-                width: min(260px, 78vw);
+                width: min(300px, 82vw);
             }
         }
 
@@ -3579,7 +3584,6 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/notion-grid.mp4" type="video/mp4">
                         </video>
-                        <img src="Notion logo.png" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
@@ -3596,11 +3600,26 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace-grid.mp4" type="video/mp4">
                         </video>
-                        <img src="Headpsace logo.png" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
                                     <div class="showreel-overlay-title">Headspace</div>
+                                    <div class="showreel-overlay-tag">Spec work</div>
+                                </div>
+                                <div class="showreel-expand">&#8599;</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coke Zero -->
+                    <div class="showreel-card" onclick="openProject('cokezero')">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/coke-zero-detail.mp4" type="video/mp4">
+                        </video>
+                        <div class="showreel-overlay">
+                            <div class="showreel-overlay-content">
+                                <div>
+                                    <div class="showreel-overlay-title">Coke Zero</div>
                                     <div class="showreel-overlay-tag">Spec work</div>
                                 </div>
                                 <div class="showreel-expand">&#8599;</div>
@@ -3613,28 +3632,10 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-grid.mp4" type="video/mp4">
                         </video>
-                        <img src="durable-logo.png" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
                                     <div class="showreel-overlay-title">Durable</div>
-                                    <div class="showreel-overlay-tag">Brand Collaboration</div>
-                                </div>
-                                <div class="showreel-expand">&#8599;</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PolarPro -->
-                    <div class="showreel-card" onclick="openProject('polarpro')">
-                        <video autoplay muted loop playsinline preload="metadata">
-                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-grid.mp4" type="video/mp4">
-                        </video>
-                        <img src="PolarPro logo.png" alt="" class="showreel-logo">
-                        <div class="showreel-overlay">
-                            <div class="showreel-overlay-content">
-                                <div>
-                                    <div class="showreel-overlay-title">PolarPro</div>
                                     <div class="showreel-overlay-tag">Brand Collaboration</div>
                                 </div>
                                 <div class="showreel-expand">&#8599;</div>
@@ -3647,7 +3648,6 @@
                         <video autoplay muted loop playsinline preload="metadata">
                             <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/claude-grid.mp4" type="video/mp4">
                         </video>
-                        <img src="Claude logo.svg" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
@@ -3688,7 +3688,6 @@
                             <video autoplay muted loop playsinline preload="metadata">
                                 <source src="Fiverr.mp4" type="video/mp4">
                             </video>
-                            <img src="Fiverr logo.svg" alt="" class="showreel-logo">
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
@@ -3705,7 +3704,6 @@
                             <video autoplay muted loop playsinline preload="metadata">
                                 <source src="fiverr2-grid.mp4" type="video/mp4">
                             </video>
-                            <img src="Fiverr logo.svg" alt="" class="showreel-logo">
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
@@ -3722,7 +3720,6 @@
                             <video autoplay muted loop playsinline preload="metadata">
                                 <source src="maggie-v1-grid.mp4" type="video/mp4">
                             </video>
-                            <img src="Maggie logo.png" alt="" class="showreel-logo">
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
@@ -3739,7 +3736,6 @@
                             <video autoplay muted loop playsinline preload="metadata">
                                 <source src="maggie-v2-grid.mp4" type="video/mp4">
                             </video>
-                            <img src="Maggie logo.png" alt="" class="showreel-logo">
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
@@ -3756,7 +3752,6 @@
                             <video autoplay muted loop playsinline preload="metadata">
                                 <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4" type="video/mp4">
                             </video>
-                            <img src="durable-logo.png" alt="" class="showreel-logo">
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
@@ -3773,12 +3768,27 @@
                             <video autoplay muted loop playsinline preload="metadata">
                                 <source src="Vinted.mp4" type="video/mp4">
                             </video>
-                            <img src="Vinted logo.png" alt="" class="showreel-logo">
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
                                         <div class="showreel-overlay-title">Vinted</div>
                                         <div class="showreel-overlay-tag">Apps & Software</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PolarPro -->
+                        <div class="showreel-card sc-item" onclick="openProject('polarpro')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-grid.mp4" type="video/mp4">
+                            </video>
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">PolarPro</div>
+                                        <div class="showreel-overlay-tag">Brand Collaboration</div>
                                     </div>
                                     <div class="showreel-expand">&#8599;</div>
                                 </div>
@@ -4859,6 +4869,16 @@
                 idea: 'Full write-up coming soon with the dedicated Durable case study.',
                 tools: ['DaVinci Resolve', 'After Effects'],
                 useCase: 'Brand collaboration piece.',
+                timeline: 'Details coming soon.'
+            },
+            cokezero: {
+                title: 'Coke Zero',
+                tag: 'Spec work',
+                orientation: 'vertical',
+                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/coke-zero-detail.mp4',
+                idea: 'Full write-up coming soon.',
+                tools: ['DaVinci Resolve', 'After Effects'],
+                useCase: 'Spec work.',
                 timeline: 'Details coming soon.'
             },
             polarpro: {
