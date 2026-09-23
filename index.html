@@ -1731,6 +1731,42 @@
             opacity: 0;
         }
 
+        /* Social Ads Carousel */
+        .social-carousel-stage {
+            position: relative;
+            margin-top: 1rem;
+        }
+
+        .social-carousel-strip {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            cursor: grab;
+            padding-bottom: 0.5rem;
+        }
+
+        .social-carousel-strip.dragging {
+            cursor: grabbing;
+        }
+
+        .social-carousel-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sc-item {
+            flex: 0 0 auto;
+            width: min(300px, 72vw);
+            user-select: none;
+        }
+
+        @media (max-width: 900px) {
+            .sc-item {
+                width: min(260px, 78vw);
+            }
+        }
+
         /* Clients Section */
         .clients-section {
             position: relative;
@@ -3535,7 +3571,6 @@
             <div class="section-container">
                 <div class="section-header">
                     <p class="section-label">Featured Projects</p>
-                    <p class="section-subtitle">Bold, scroll-stopping animation for premium video campaigns</p>
                 </div>
 
                 <div class="showreel-grid">
@@ -3573,16 +3608,16 @@
                         </div>
                     </div>
 
-                    <!-- Fiverr -->
-                    <div class="showreel-card" onclick="openProject('fiverr')">
+                    <!-- Durable -->
+                    <div class="showreel-card" onclick="openProject('durable')">
                         <video autoplay muted loop playsinline preload="metadata">
-                            <source src="Fiverr.mp4" type="video/mp4">
+                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-grid.mp4" type="video/mp4">
                         </video>
-                        <img src="Fiverr logo.svg" alt="" class="showreel-logo">
+                        <img src="durable-logo.png" alt="" class="showreel-logo">
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
-                                    <div class="showreel-overlay-title">Fiverr</div>
+                                    <div class="showreel-overlay-title">Durable</div>
                                     <div class="showreel-overlay-tag">Brand Collaboration</div>
                                 </div>
                                 <div class="showreel-expand">&#8599;</div>
@@ -3644,56 +3679,115 @@
             <div class="section-container">
                 <div class="section-header">
                     <p class="section-label">Premium Video Ads Built for Socials</p>
-                    <p class="section-subtitle">High-quality creator-style ads built for social media</p>
                 </div>
 
-                <div class="videos-grid">
-                    <!-- Video 1: Fiverr video 2 -->
-                    <div class="video-card">
-                        <img src="Fiverr logo.svg?v=2" alt="Fiverr" class="video-logo" style="width: 148px; height: 148px; margin-top: 17px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="social-carousel-stage">
+                    <div class="social-carousel-strip" id="social-carousel-strip">
+                        <!-- Fiverr 1 -->
+                        <div class="showreel-card sc-item" onclick="openProject('fiverr')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="Fiverr.mp4" type="video/mp4">
+                            </video>
+                            <img src="Fiverr logo.svg" alt="" class="showreel-logo">
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">Fiverr</div>
+                                        <div class="showreel-overlay-tag">Brand Collaboration</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fiverr 2 -->
+                        <div class="showreel-card sc-item" onclick="openProject('fiverr2')">
+                            <video autoplay muted loop playsinline preload="metadata">
                                 <source src="fiverr2-grid.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
                             </video>
+                            <img src="Fiverr logo.svg" alt="" class="showreel-logo">
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">Fiverr</div>
+                                        <div class="showreel-overlay-tag">Social ad</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="video-label">Social ad</div>
-                    </div>
 
-                    <!-- Video 2: Maggie 1 -->
-                    <div class="video-card">
-                        <img src="Maggie logo.png" alt="Maggi" class="video-logo" style="width: 165px; height: 165px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
+                        <!-- Maggie 1 -->
+                        <div class="showreel-card sc-item" onclick="openProject('maggie1')">
+                            <video autoplay muted loop playsinline preload="metadata">
                                 <source src="maggie-v1-grid.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
                             </video>
+                            <img src="Maggie logo.png" alt="" class="showreel-logo">
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">Maggie</div>
+                                        <div class="showreel-overlay-tag">Social ad</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="video-label">Social ad</div>
-                    </div>
 
-                    <!-- Video 3: Durable V1 -->
-                    <div class="video-card">
-                        <img src="durable-logo.png" alt="Durable" class="video-logo" style="width: 165px; height: 165px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V1-compressed.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
+                        <!-- Maggie 2 -->
+                        <div class="showreel-card sc-item" onclick="openProject('maggie2')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="maggie-v2-grid.mp4" type="video/mp4">
                             </video>
+                            <img src="Maggie logo.png" alt="" class="showreel-logo">
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">Maggie</div>
+                                        <div class="showreel-overlay-tag">Social ad</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="video-label">Brand Collaboration</div>
-                    </div>
 
-                    <!-- Video 4: Durable 3 -->
-                    <div class="video-card">
-                        <img src="durable-logo.png" alt="Durable" class="video-logo" style="width: 165px; height: 165px;">
-                        <div class="video-wrapper">
-                            <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Durable_V3-grid.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
+                        <!-- Durable 2 -->
+                        <div class="showreel-card sc-item" onclick="openProject('durable2')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4" type="video/mp4">
                             </video>
+                            <img src="durable-logo.png" alt="" class="showreel-logo">
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">Durable</div>
+                                        <div class="showreel-overlay-tag">Brand Collaboration</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="video-label">Brand Collaboration</div>
+
+                        <!-- Vinted -->
+                        <div class="showreel-card sc-item" onclick="openProject('vinted')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="Vinted.mp4" type="video/mp4">
+                            </video>
+                            <img src="Vinted logo.png" alt="" class="showreel-logo">
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">Vinted</div>
+                                        <div class="showreel-overlay-tag">Apps & Software</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drag-badge" id="social-carousel-drag">
+                        Drag
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/></svg>
                     </div>
                 </div>
 
@@ -4693,6 +4787,49 @@
             strip.addEventListener('touchstart', hideBadge, { passive: true });
         })();
 
+        // Social ads carousel: click-and-drag scrolling
+        (function() {
+            const strip = document.getElementById('social-carousel-strip');
+            const badge = document.getElementById('social-carousel-drag');
+            if (!strip) return;
+            let isDown = false;
+            let startX = 0;
+            let scrollStart = 0;
+            let dragDistance = 0;
+
+            function hideBadge() {
+                if (badge) badge.classList.add('hide');
+            }
+
+            strip.addEventListener('mousedown', (e) => {
+                isDown = true;
+                dragDistance = 0;
+                strip.classList.add('dragging');
+                startX = e.pageX;
+                scrollStart = strip.scrollLeft;
+                hideBadge();
+            });
+            window.addEventListener('mouseup', () => {
+                isDown = false;
+                strip.classList.remove('dragging');
+            });
+            window.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const delta = e.pageX - startX;
+                dragDistance = Math.max(dragDistance, Math.abs(delta));
+                strip.scrollLeft = scrollStart - delta;
+            });
+            strip.addEventListener('click', (e) => {
+                if (dragDistance > 5) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+            strip.addEventListener('scroll', hideBadge, { passive: true });
+            strip.addEventListener('touchstart', hideBadge, { passive: true });
+        })();
+
         const PROJECTS = {
             notion: {
                 title: 'Notion',
@@ -4753,6 +4890,56 @@
                 tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — graphics'],
                 useCase: 'Ran as a paid ad, and doubles as a strong addition to the brand\'s own page.',
                 timeline: '3 working days, concept to final edit.'
+            },
+            fiverr2: {
+                title: 'Fiverr',
+                tag: 'Social ad',
+                orientation: 'vertical',
+                detailSrc: 'fiverr2-detail.mp4',
+                idea: 'A second Fiverr cut, built to feel native in the feed first and sell second.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — graphics'],
+                useCase: 'Ran as a paid social ad.',
+                timeline: 'Details coming soon.'
+            },
+            maggie1: {
+                title: 'Maggie',
+                tag: 'Social ad',
+                orientation: 'vertical',
+                detailSrc: 'maggie-v1-detail.mp4',
+                idea: 'A native-feeling social ad for Maggie, built to blend into the scroll while still doing its job.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design'],
+                useCase: 'Ran as a paid social ad.',
+                timeline: 'Details coming soon.'
+            },
+            maggie2: {
+                title: 'Maggie',
+                tag: 'Social ad',
+                orientation: 'vertical',
+                detailSrc: 'maggie-v2-detail.mp4',
+                idea: 'A second creative direction for Maggie, testing a different hook and pace for the same placement.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design'],
+                useCase: 'Ran as a paid social ad.',
+                timeline: 'Details coming soon.'
+            },
+            durable2: {
+                title: 'Durable',
+                tag: 'Brand Collaboration',
+                orientation: 'vertical',
+                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4',
+                idea: 'Second cut in the Durable series, same brand collaboration with a fresh angle.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design'],
+                useCase: 'Ran as a paid ad, and doubles as a strong addition to the brand\'s own page.',
+                timeline: 'Details coming soon.'
+            },
+            vinted: {
+                title: 'Vinted',
+                tag: 'Apps & Software',
+                orientation: 'vertical',
+                detailSrc: 'Vinted.mp4',
+                idea: 'A quick, native-feeling spec piece showing Vinted off in the wild.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design'],
+                useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
+                timeline: 'Details coming soon.'
             }
         };
 
