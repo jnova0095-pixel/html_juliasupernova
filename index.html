@@ -1454,33 +1454,41 @@
 
         .st-row {
             display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 1.5rem 0;
-            border-top: 1px solid rgba(28, 27, 27, 0.1);
+            flex-direction: column;
+            gap: 0.1rem;
+            padding: 0.3rem 0;
             cursor: pointer;
-            transition: opacity 0.25s ease;
-        }
-
-        .studio-team-list .st-row:last-child {
-            border-bottom: 1px solid rgba(28, 27, 27, 0.1);
-        }
-
-        .st-row-name {
-            font-family: 'Aeonik', sans-serif;
-            font-weight: 500;
-            font-size: clamp(1.4rem, 2.6vw, 2rem);
-            color: var(--text-primary);
         }
 
         .st-row-role {
             font-family: 'Aeonik Mono', 'Aeonik', monospace;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            flex-shrink: 0;
+            letter-spacing: 0.08em;
+            color: var(--accent-green-dark);
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .st-row:hover .st-row-role {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .st-row-name {
+            font-family: 'Aeonik', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.4rem, 6vw, 4.6rem);
+            line-height: 1.08;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            color: #c6c1b7;
+            transition: color 0.3s ease;
+        }
+
+        .st-row:hover .st-row-name {
+            color: var(--text-primary);
         }
 
         .studio-team-photo-stage {
@@ -4813,16 +4821,16 @@
                 <div class="studio-team-grid">
                     <ul class="studio-team-list" id="studio-team-list">
                         <li class="st-row" data-member="julia">
-                            <span class="st-row-name">Julia Nova</span>
                             <span class="st-row-role">Founder &amp; Creative Director</span>
+                            <span class="st-row-name">Julia Nova</span>
                         </li>
                         <li class="st-row" data-member="serhii">
-                            <span class="st-row-name">Serhii Nabok</span>
                             <span class="st-row-role">Creative Writer</span>
+                            <span class="st-row-name">Serhii Nabok</span>
                         </li>
                         <li class="st-row" data-member="trisha">
-                            <span class="st-row-name">Trisha Lim</span>
                             <span class="st-row-role">Automation Specialist</span>
+                            <span class="st-row-name">Trisha Lim</span>
                         </li>
                     </ul>
                     <div class="studio-team-photo-stage" id="studio-team-photo-stage">
