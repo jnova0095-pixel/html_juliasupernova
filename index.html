@@ -1119,23 +1119,46 @@
             color: var(--text-primary);
         }
 
-        .project-detail-video-wrapper {
+        .project-detail-title {
+            font-family: 'Aeonik', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Media gallery: one or more videos from the same campaign */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            margin: 0 auto 3.5rem;
+            max-width: 900px;
+        }
+
+        .project-gallery.single {
+            grid-template-columns: 1fr;
+            max-width: 420px;
+        }
+
+        .project-gallery.single.has-horizontal {
+            max-width: 720px;
+        }
+
+        .project-gallery-item {
+            position: relative;
             border-radius: var(--radius-video);
             overflow: hidden;
             background: #000;
-            margin: 0 auto 2.5rem;
-        }
-
-        .project-detail-video-wrapper.vertical {
-            max-width: 420px;
             aspect-ratio: 9/16;
         }
 
-        .project-detail-video-wrapper.horizontal {
+        .project-gallery-item.horizontal {
             aspect-ratio: 16/9;
+            grid-column: 1 / -1;
         }
 
-        .project-detail-video-wrapper video {
+        .project-gallery-item video {
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -1143,40 +1166,18 @@
             display: block;
         }
 
-        .project-detail-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .project-detail-tag {
-            display: inline-block;
-            padding: 0.35rem 0.85rem;
-            background: rgba(190, 242, 124, 0.4);
-            border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
-        }
-
-        .project-detail-title {
-            font-family: 'Aeonik', sans-serif;
-            font-weight: 700;
-            font-size: 3rem;
-            line-height: 1.1;
-        }
-
-        .project-detail-grid {
+        /* Info section: description (left) + tags/tools/usecase (right) */
+        .d-info {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
             font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
         }
 
-        .project-detail-block h3 {
+        .d-info-main h3,
+        .d-side-block h3 {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -1185,30 +1186,91 @@
             font-weight: 500;
         }
 
-        .project-detail-block p,
-        .project-detail-block li {
+        .d-info-main p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .d-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .d-tag {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            background: rgba(190, 242, 124, 0.4);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-primary);
+        }
+
+        .d-sp-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .d-sp {
+            list-style: none;
+            margin: 0 0 2rem;
+            padding: 0;
+        }
+
+        .d-sp li {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-top: 1px solid rgba(28, 27, 27, 0.1);
+            font-size: 0.9rem;
+            line-height: 1.5;
             color: var(--text-secondary);
-            font-size: 0.95rem;
+        }
+
+        .d-sp li:last-child {
+            border-bottom: 1px solid rgba(28, 27, 27, 0.1);
+        }
+
+        .d-sp li .n {
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+            flex-shrink: 0;
+        }
+
+        .d-side-block {
+            margin-bottom: 2rem;
+        }
+
+        .d-side-block p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
             line-height: 1.6;
         }
 
-        .project-detail-block ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .project-detail-block ul li::before {
-            content: '— ';
-            color: var(--accent-green-dark);
-        }
-
         @media (max-width: 900px) {
-            .project-detail-grid {
+            .project-gallery {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                max-width: 420px;
             }
+
+            .project-gallery.has-horizontal,
+            .project-gallery.single.has-horizontal {
+                max-width: 480px;
+            }
+
+            .d-info {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
             .project-detail-container {
                 padding: 7rem 1.5rem 3rem;
             }
@@ -2400,127 +2462,6 @@
             line-height: 1.6;
         }
 
-        /* Reviews Section */
-        .reviews-section {
-            padding: 6rem 3rem;
-            background: var(--bg-primary);
-            position: relative;
-        }
-
-        .reviews-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 3rem;
-            right: 3rem;
-            height: 1px;
-            background: rgba(28, 27, 27, 0.1);
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .review-card {
-            background: var(--bg-card);
-            border: 1px solid #1C1B1B;
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .review-card::before {
-            content: '"';
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            font-size: 6rem;
-            font-family: 'Brigesta', sans-serif;
-            font-weight: 400;
-            color: rgba(190, 242, 124, 0.1);
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .review-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-green);
-        }
-
-        .review-stars {
-            display: flex;
-            gap: 0.25rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .review-stars svg {
-            width: 20px;
-            height: 20px;
-            color: #fbbf24;
-            fill: #fbbf24;
-        }
-
-        .review-text {
-            color: var(--text-primary);
-            font-size: 1.05rem;
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
-        }
-
-        .review-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: auto;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            position: relative;
-            z-index: 1;
-        }
-
-        .review-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 1.125rem;
-            flex-shrink: 0;
-        }
-
-        .review-author-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .review-author-name {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 1rem;
-        }
-
-        .review-author-company {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
         /* CTA Section */
         .cta-section {
             padding: 6rem 3rem;
@@ -3620,7 +3561,7 @@
                             <div class="showreel-overlay-content">
                                 <div>
                                     <div class="showreel-overlay-title">Coke Zero</div>
-                                    <div class="showreel-overlay-tag">Spec work</div>
+                                    <div class="showreel-overlay-tag">Paid Ad</div>
                                 </div>
                                 <div class="showreel-expand">&#8599;</div>
                             </div>
@@ -3699,22 +3640,6 @@
                             </div>
                         </div>
 
-                        <!-- Fiverr 2 -->
-                        <div class="showreel-card sc-item" onclick="openProject('fiverr2')">
-                            <video autoplay muted loop playsinline preload="metadata">
-                                <source src="fiverr2-grid.mp4" type="video/mp4">
-                            </video>
-                            <div class="showreel-overlay">
-                                <div class="showreel-overlay-content">
-                                    <div>
-                                        <div class="showreel-overlay-title">Fiverr</div>
-                                        <div class="showreel-overlay-tag">Social ad</div>
-                                    </div>
-                                    <div class="showreel-expand">&#8599;</div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Maggie 1 -->
                         <div class="showreel-card sc-item" onclick="openProject('maggie1')">
                             <video autoplay muted loop playsinline preload="metadata">
@@ -3731,15 +3656,31 @@
                             </div>
                         </div>
 
-                        <!-- Maggie 2 -->
-                        <div class="showreel-card sc-item" onclick="openProject('maggie2')">
+                        <!-- PolarPro -->
+                        <div class="showreel-card sc-item" onclick="openProject('polarpro')">
                             <video autoplay muted loop playsinline preload="metadata">
-                                <source src="maggie-v2-grid.mp4" type="video/mp4">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-grid.mp4" type="video/mp4">
                             </video>
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
-                                        <div class="showreel-overlay-title">Maggie</div>
+                                        <div class="showreel-overlay-title">PolarPro</div>
+                                        <div class="showreel-overlay-tag">Brand Collaboration</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fiverr 2 -->
+                        <div class="showreel-card sc-item" onclick="openProject('fiverr2')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="fiverr2-grid.mp4" type="video/mp4">
+                            </video>
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">Fiverr</div>
                                         <div class="showreel-overlay-tag">Social ad</div>
                                     </div>
                                     <div class="showreel-expand">&#8599;</div>
@@ -3747,7 +3688,7 @@
                             </div>
                         </div>
 
-                        <!-- Durable 2 -->
+                        <!-- Durable -->
                         <div class="showreel-card sc-item" onclick="openProject('durable2')">
                             <video autoplay muted loop playsinline preload="metadata">
                                 <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4" type="video/mp4">
@@ -3779,16 +3720,16 @@
                             </div>
                         </div>
 
-                        <!-- PolarPro -->
-                        <div class="showreel-card sc-item" onclick="openProject('polarpro')">
+                        <!-- Maggie 2 -->
+                        <div class="showreel-card sc-item" onclick="openProject('maggie2')">
                             <video autoplay muted loop playsinline preload="metadata">
-                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-grid.mp4" type="video/mp4">
+                                <source src="maggie-v2-grid.mp4" type="video/mp4">
                             </video>
                             <div class="showreel-overlay">
                                 <div class="showreel-overlay-content">
                                     <div>
-                                        <div class="showreel-overlay-title">PolarPro</div>
-                                        <div class="showreel-overlay-tag">Brand Collaboration</div>
+                                        <div class="showreel-overlay-title">Maggie</div>
+                                        <div class="showreel-overlay-tag">Social ad</div>
                                     </div>
                                     <div class="showreel-expand">&#8599;</div>
                                 </div>
@@ -3915,150 +3856,6 @@
                 <div class="drag-badge" id="case-study-drag">
                     Drag
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/></svg>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reviews Section -->
-        <section class="reviews-section" style="position: relative;">
-            <div class="section-container">
-                <div class="section-header">
-                    <p class="section-label">Reviews</p>
-                    <p class="section-subtitle">See what brands are saying about working with me</p>
-                </div>
-
-                <div class="reviews-grid">
-                    <!-- Review 1 -->
-                    <div class="review-card">
-                        <div class="review-stars">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <p class="review-text">
-                            Julia created a great video for Lifesum that was high quality, on brand and felt authentic. She was professional, responsive and genuinely a pleasure to work with throughout the whole process.
-                        </p>
-                        <div class="review-author">
-                            <div class="review-avatar" style="background: none; padding: 0;">
-                                <img src="Lifesum logo.png" alt="Ellen" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-                            </div>
-                            <div class="review-author-info">
-                                <div class="review-author-name">Ellen</div>
-                                <div class="review-author-company">Social Media and Channel Manager, Lifesum</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review 2 -->
-                    <div class="review-card">
-                        <div class="review-stars">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <p class="review-text">
-                            Julia at Supernova Studio created a natural and engaging piece for AirBrush Studio that captured exactly the workflow we wanted to showcase. Professional, creative and easy to work with.
-                        </p>
-                        <div class="review-author">
-                            <div class="review-avatar" style="background: none; padding: 0;">
-                                <img src="AirBrush Studio logo.png" alt="Lia Qu" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-                            </div>
-                            <div class="review-author-info">
-                                <div class="review-author-name">Lia Qu</div>
-                                <div class="review-author-company">Product Director, AirBrush Studio</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review 3 -->
-                    <div class="review-card">
-                        <div class="review-stars">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <p class="review-text">
-                            It was a pleasure working with such a professional as Julia. She delivered content on time and showed genuine engagement.
-                        </p>
-                        <div class="review-author">
-                            <div class="review-avatar" style="background: none; padding: 0;">
-                                <img src="Headway logo.jpeg" alt="Rita" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-                            </div>
-                            <div class="review-author-info">
-                                <div class="review-author-name">Rita</div>
-                                <div class="review-author-company">Creative Marketing Team, Headway Inc</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Review 4 -->
-                    <div class="review-card">
-                        <div class="review-stars">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                        </div>
-                        <p class="review-text">
-                            Working with Julia was a genuine pleasure. She made the whole process smooth and delivered content that was a great fit for Bazaart. Would love to collaborate again!
-                        </p>
-                        <div class="review-author">
-                            <div class="review-avatar" style="background: none; padding: 0;">
-                                <img src="Deb bazaart.jpeg" alt="Deborah" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-                            </div>
-                            <div class="review-author-info">
-                                <div class="review-author-name">Deborah Bitton</div>
-                                <div class="review-author-company">Creative Director, Bazaart</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -4548,37 +4345,27 @@
                 &#8592; Back to work
             </span>
 
-            <div id="project-detail-video-wrapper" class="project-detail-video-wrapper vertical">
-                <video id="project-detail-video" controls preload="metadata" playsinline>
-                    <source src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
+            <h1 id="project-detail-title" class="project-detail-title">Project</h1>
 
-            <div class="project-detail-header">
-                <div id="project-detail-tag" class="project-detail-tag">Spec work</div>
-                <h1 id="project-detail-title" class="project-detail-title">Project</h1>
-            </div>
+            <div id="project-detail-gallery" class="project-gallery"></div>
 
-            <div class="project-detail-grid">
-                <div class="project-detail-block">
+            <div class="d-info">
+                <div class="d-info-main">
                     <h3>The Idea</h3>
                     <p id="project-detail-idea"></p>
                 </div>
-                <div class="project-detail-block">
-                    <h3>Tools Used</h3>
-                    <ul id="project-detail-tools"></ul>
-                </div>
-                <div class="project-detail-block">
-                    <h3>How It Can Be Used</h3>
-                    <p id="project-detail-usecase"></p>
-                </div>
-            </div>
-
-            <div class="project-detail-grid" style="grid-template-columns: 1fr; margin-bottom: 0;">
-                <div class="project-detail-block">
-                    <h3>Estimated Timeline</h3>
-                    <p id="project-detail-timeline"></p>
+                <div class="d-side">
+                    <div id="project-detail-tags" class="d-tags"></div>
+                    <p class="d-sp-label">Tools Used</p>
+                    <ol id="project-detail-tools" class="d-sp"></ol>
+                    <div class="d-side-block">
+                        <h3>How It Can Be Used</h3>
+                        <p id="project-detail-usecase"></p>
+                    </div>
+                    <div class="d-side-block">
+                        <h3>Estimated Timeline</h3>
+                        <p id="project-detail-timeline"></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -4692,7 +4479,7 @@
                 cursor.style.top = e.clientY + 'px';
             });
             document.addEventListener('mouseover', (e) => {
-                const viewTarget = e.target.closest('.showreel-card, .project-detail-video-wrapper');
+                const viewTarget = e.target.closest('.showreel-card, .project-gallery-item');
                 const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, [onclick]');
                 if (viewTarget) {
                     cursor.classList.add('view');
@@ -4840,153 +4627,169 @@
             strip.addEventListener('touchstart', hideBadge, { passive: true });
         })();
 
-        const PROJECTS = {
+        const CAMPAIGNS = {
             notion: {
                 title: 'Notion',
-                tag: 'Spec work',
-                orientation: 'vertical',
-                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Notion%20short%20film.mov',
+                tags: ['Spec work'],
                 idea: 'Show the feeling of untangling a mess in your head, and how Notion helps you get it back in order.',
                 tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — compositing & animation'],
                 useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
-                timeline: '10 working days, concept to final edit.'
+                timeline: '10 working days, concept to final edit.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Notion%20short%20film.mov', orientation: 'vertical' }
+                ]
             },
             headspace: {
                 title: 'Headspace',
-                tag: 'Spec work',
-                orientation: 'vertical',
-                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace.mov',
+                tags: ['Spec work'],
                 idea: 'Show the feeling of being able to access meditation anywhere, and being instantly transported into your own space.',
                 tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — 2.5D compositing & animation'],
                 useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
-                timeline: '10 working days, concept to final edit.'
-            },
-            durable: {
-                title: 'Durable',
-                tag: 'Brand Collaboration',
-                orientation: 'vertical',
-                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-final.mov',
-                idea: 'Full write-up coming soon with the dedicated Durable case study.',
-                tools: ['DaVinci Resolve', 'After Effects'],
-                useCase: 'Brand collaboration piece.',
-                timeline: 'Details coming soon.'
+                timeline: '10 working days, concept to final edit.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace.mov', orientation: 'vertical' }
+                ]
             },
             cokezero: {
                 title: 'Coke Zero',
-                tag: 'Spec work',
-                orientation: 'vertical',
-                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/coke-zero-detail.mp4',
+                tags: ['Paid Ad'],
                 idea: 'Full write-up coming soon.',
                 tools: ['DaVinci Resolve', 'After Effects'],
-                useCase: 'Spec work.',
-                timeline: 'Details coming soon.'
+                useCase: 'Ran as a paid ad.',
+                timeline: 'Details coming soon.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/coke-zero-detail.mp4', orientation: 'vertical' }
+                ]
             },
             polarpro: {
                 title: 'PolarPro',
-                tag: 'Brand Collaboration',
-                orientation: 'vertical',
-                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-detail.mp4',
+                tags: ['Brand Collaboration'],
                 idea: 'A gamified bit of storytelling built around one very real problem: showing up to shoot and realizing you forgot your memory card. PolarPro\'s body cap holds a spare right on the camera, so that panic never happens again.',
                 tools: ['DaVinci Resolve — editing, color grading, sound design, graphics'],
                 useCase: 'Run as a whitelisted paid ad (also called a Partnership Ad) through the brand\'s own account.',
-                timeline: 'Details coming soon.'
+                timeline: 'Details coming soon.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-detail.mp4', orientation: 'vertical' }
+                ]
             },
             claude: {
                 title: 'Claude',
-                tag: 'Spec ad',
-                orientation: 'horizontal',
-                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Claude%20edited%20with%20text.mov',
+                tags: ['Spec ad'],
                 idea: 'Closing the gap between the idea and the action, that\'s the whole pitch, and Claude is what makes it happen.',
                 tools: ['DaVinci Resolve', 'After Effects'],
                 useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
-                timeline: '5 working days, concept to final edit.'
-            },
-            fiverr: {
-                title: 'Fiverr',
-                tag: 'Brand Collaboration',
-                orientation: 'vertical',
-                detailSrc: 'Fiverr.mp4',
-                idea: 'A spotlight piece built for Fiverr\'s own official page, the kind of video a brand actually wants to put its name on.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — graphics'],
-                useCase: 'Ran as a paid ad, and doubles as a strong addition to the brand\'s own page.',
-                timeline: '3 working days, concept to final edit.'
-            },
-            fiverr2: {
-                title: 'Fiverr',
-                tag: 'Social ad',
-                orientation: 'vertical',
-                detailSrc: 'fiverr2-detail.mp4',
-                idea: 'A second Fiverr cut, built to feel native in the feed first and sell second.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — graphics'],
-                useCase: 'Ran as a paid social ad.',
-                timeline: 'Details coming soon.'
-            },
-            maggie1: {
-                title: 'Maggie',
-                tag: 'Social ad',
-                orientation: 'vertical',
-                detailSrc: 'maggie-v1-detail.mp4',
-                idea: 'A native-feeling social ad for Maggie, built to blend into the scroll while still doing its job.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design'],
-                useCase: 'Ran as a paid social ad.',
-                timeline: 'Details coming soon.'
-            },
-            maggie2: {
-                title: 'Maggie',
-                tag: 'Social ad',
-                orientation: 'vertical',
-                detailSrc: 'maggie-v2-detail.mp4',
-                idea: 'A second creative direction for Maggie, testing a different hook and pace for the same placement.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design'],
-                useCase: 'Ran as a paid social ad.',
-                timeline: 'Details coming soon.'
-            },
-            durable2: {
-                title: 'Durable',
-                tag: 'Brand Collaboration',
-                orientation: 'vertical',
-                detailSrc: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4',
-                idea: 'Second cut in the Durable series, same brand collaboration with a fresh angle.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design'],
-                useCase: 'Ran as a paid ad, and doubles as a strong addition to the brand\'s own page.',
-                timeline: 'Details coming soon.'
+                timeline: '5 working days, concept to final edit.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Claude%20edited%20with%20text.mov', orientation: 'horizontal' }
+                ]
             },
             vinted: {
                 title: 'Vinted',
-                tag: 'Apps & Software',
-                orientation: 'vertical',
-                detailSrc: 'Vinted.mp4',
+                tags: ['Apps & Software'],
                 idea: 'A quick, native-feeling spec piece showing Vinted off in the wild.',
                 tools: ['DaVinci Resolve — editing, color grading, sound design'],
                 useCase: 'Built to hold up as a premium paid ad, or as a standout piece on a brand\'s own profile.',
-                timeline: 'Details coming soon.'
+                timeline: 'Details coming soon.',
+                videos: [
+                    { src: 'Vinted.mp4', orientation: 'vertical' }
+                ]
+            },
+            fiverr: {
+                title: 'Fiverr',
+                tags: ['Brand Collaboration', 'Social ad'],
+                idea: 'Two cuts from the same Fiverr campaign: one built as a spotlight piece for Fiverr\'s own official page, the other trimmed down to feel native in the social feed first and sell second.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — graphics'],
+                useCase: 'Ran as a paid ad on Fiverr\'s own page, plus a paid social ad placement.',
+                timeline: '3 working days, concept to final edit.',
+                videos: [
+                    { src: 'Fiverr.mp4', orientation: 'vertical', label: 'Fiverr 1' },
+                    { src: 'fiverr2-detail.mp4', orientation: 'vertical', label: 'Fiverr 2' }
+                ]
+            },
+            maggie: {
+                title: 'Maggie',
+                tags: ['Social ad'],
+                idea: 'Two creative directions from the same Maggie campaign, both built to feel native in the feed while testing a different hook and pace.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design'],
+                useCase: 'Ran as paid social ads.',
+                timeline: 'Details coming soon.',
+                videos: [
+                    { src: 'maggie-v1-detail.mp4', orientation: 'vertical', label: 'Maggie 1' },
+                    { src: 'maggie-v2-detail.mp4', orientation: 'vertical', label: 'Maggie 2' }
+                ]
+            },
+            durable: {
+                title: 'Durable',
+                tags: ['Brand Collaboration'],
+                idea: 'The full Durable series: multiple cuts from the same ongoing brand collaboration, each one testing a different angle.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects'],
+                useCase: 'Ran as paid ads, and double as strong additions to the brand\'s own page.',
+                timeline: 'Details coming soon.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-final.mov', orientation: 'vertical', label: 'Durable' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4', orientation: 'vertical', label: 'Durable V2' },
+                    { src: 'Durable_V3-grid.mp4', orientation: 'vertical', label: 'Durable V3' },
+                    { src: 'Durable_V4-detail.mp4', orientation: 'vertical', label: 'Durable V4' }
+                ]
             }
         };
 
+        const CAMPAIGN_ALIASES = {
+            fiverr2: 'fiverr',
+            maggie1: 'maggie',
+            maggie2: 'maggie',
+            durable2: 'durable'
+        };
+
         function openProject(id) {
-            const p = PROJECTS[id];
+            const key = CAMPAIGN_ALIASES[id] || id;
+            const p = CAMPAIGNS[key];
             if (!p) return;
 
             document.getElementById('project-detail-title').textContent = p.title;
-            document.getElementById('project-detail-tag').textContent = p.tag;
             document.getElementById('project-detail-idea').textContent = p.idea;
             document.getElementById('project-detail-usecase').textContent = p.useCase;
             document.getElementById('project-detail-timeline').textContent = p.timeline;
 
+            const tagsWrap = document.getElementById('project-detail-tags');
+            tagsWrap.innerHTML = '';
+            p.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'd-tag';
+                span.textContent = tag;
+                tagsWrap.appendChild(span);
+            });
+
             const toolsList = document.getElementById('project-detail-tools');
             toolsList.innerHTML = '';
-            p.tools.forEach(t => {
+            p.tools.forEach((t, i) => {
                 const li = document.createElement('li');
-                li.textContent = t;
+                const n = document.createElement('span');
+                n.className = 'n';
+                n.textContent = String(i + 1).padStart(2, '0');
+                li.appendChild(n);
+                li.appendChild(document.createTextNode(t));
                 toolsList.appendChild(li);
             });
 
-            document.getElementById('project-detail-video-wrapper').className = 'project-detail-video-wrapper ' + p.orientation;
-
-            const video = document.getElementById('project-detail-video');
-            video.pause();
-            video.querySelector('source').src = p.detailSrc;
-            video.load();
+            const gallery = document.getElementById('project-detail-gallery');
+            gallery.innerHTML = '';
+            const hasHorizontal = p.videos.some(v => v.orientation === 'horizontal');
+            gallery.className = 'project-gallery' + (p.videos.length === 1 ? ' single' : '') + (hasHorizontal ? ' has-horizontal' : '');
+            p.videos.forEach(v => {
+                const item = document.createElement('div');
+                item.className = 'project-gallery-item' + (v.orientation === 'horizontal' ? ' horizontal' : '');
+                const video = document.createElement('video');
+                video.controls = true;
+                video.preload = 'metadata';
+                video.playsInline = true;
+                const source = document.createElement('source');
+                source.src = v.src;
+                source.type = 'video/mp4';
+                video.appendChild(source);
+                item.appendChild(video);
+                gallery.appendChild(item);
+            });
 
             showPage('project-detail');
         }
