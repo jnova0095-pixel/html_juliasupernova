@@ -1444,7 +1444,7 @@
             display: grid;
             grid-template-columns: 1.3fr 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
         }
 
         .studio-team-list {
@@ -1483,30 +1483,20 @@
             flex-shrink: 0;
         }
 
-        .studio-team-photo {
-            aspect-ratio: 3/4;
-            border-radius: var(--radius-video);
-            overflow: hidden;
-            background: var(--bg-secondary);
+        .studio-team-photo-stage {
             position: relative;
-        }
-
-        .studio-team-photo-img {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .studio-team-photo-img.active {
-            opacity: 1;
+            min-height: 340px;
         }
 
         .studio-team-photo-placeholder {
             position: absolute;
-            inset: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 3/4;
+            border-radius: var(--radius-video);
+            background: var(--bg-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1517,6 +1507,27 @@
             letter-spacing: 0.05em;
             text-align: center;
             padding: 1rem;
+        }
+
+        .studio-team-photo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 3/4;
+            border-radius: var(--radius-video);
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: translateY(0);
+            transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
+        }
+
+        .studio-team-photo.active {
+            opacity: 1;
         }
 
         .studio-final {
@@ -4814,8 +4825,9 @@
                             <span class="st-row-role">Automation Specialist</span>
                         </li>
                     </ul>
-                    <div class="studio-team-photo" id="studio-team-photo">
-                        <div class="studio-team-photo-placeholder">Team photo</div>
+                    <div class="studio-team-photo-stage" id="studio-team-photo-stage">
+                        <div class="studio-team-photo-placeholder">Hover a name</div>
+                        <div class="studio-team-photo" id="studio-team-photo"></div>
                     </div>
                 </div>
             </section>
@@ -5048,29 +5060,37 @@
             strip.addEventListener('touchstart', hideBadge, { passive: true });
         })();
 
-        // Studio page team list: hover/click to reveal that person's photo
+        // Studio page team list: hover to slide the photo alongside the hovered name
         (function() {
-            const rows = document.querySelectorAll('#studio-team-list .st-row');
+            const list = document.getElementById('studio-team-list');
+            const stage = document.getElementById('studio-team-photo-stage');
             const photoWrap = document.getElementById('studio-team-photo');
-            if (!rows.length || !photoWrap) return;
+            if (!list || !stage || !photoWrap) return;
 
             const TEAM_PHOTOS = {
-                julia: null,
-                serhii: null,
-                trisha: null
+                julia: 'julia-nova.webp',
+                serhii: 'serhii-nabok.webp',
+                trisha: 'trisha-lim.webp'
             };
 
-            function showMember(id) {
-                const src = TEAM_PHOTOS[id];
-                if (src) {
-                    photoWrap.innerHTML = '<div class="studio-team-photo-img active" style="background-image: url(\'' + src + '\')"></div>';
-                } else {
-                    photoWrap.innerHTML = '<div class="studio-team-photo-placeholder">Photo coming soon</div>';
-                }
+            function showMember(row) {
+                const src = TEAM_PHOTOS[row.dataset.member];
+                if (!src) return;
+                const rowRect = row.getBoundingClientRect();
+                const stageRect = stage.getBoundingClientRect();
+                let offset = rowRect.top - stageRect.top - (photoWrap.offsetHeight - row.offsetHeight) / 2;
+                offset = Math.max(0, Math.min(offset, stage.offsetHeight - photoWrap.offsetHeight));
+                photoWrap.style.transform = 'translateY(' + offset + 'px)';
+                photoWrap.style.backgroundImage = "url('" + src + "')";
+                photoWrap.classList.add('active');
             }
 
-            rows.forEach(row => {
-                row.addEventListener('mouseenter', () => showMember(row.dataset.member));
+            list.querySelectorAll('.st-row').forEach(row => {
+                row.addEventListener('mouseenter', () => showMember(row));
+            });
+
+            list.addEventListener('mouseleave', () => {
+                photoWrap.classList.remove('active');
             });
         })();
 
