@@ -2004,21 +2004,25 @@
 
         .case-study-stats {
             display: flex;
-            gap: 2.5rem;
+            gap: 3rem;
             flex-wrap: wrap;
+            margin-left: auto;
         }
 
         .stat-block {
             display: flex;
             flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
         }
 
         .stat-number {
             font-family: 'Aeonik', sans-serif;
             font-weight: 500;
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
             color: var(--text-primary);
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
+            line-height: 1;
         }
 
         .stat-label {
@@ -2228,6 +2232,17 @@
         .client:hover {
             color: var(--accent-green-dark);
             border-bottom-color: var(--accent-green-dark);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            color: var(--accent-green-dark);
+            animation: typingBlink 0.9s step-end infinite;
+        }
+
+        @keyframes typingBlink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
         }
 
         /* Contact / Footer CTA */
@@ -2462,6 +2477,14 @@
             .case-study-head {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+            .case-study-stats {
+                margin-left: 0;
+                gap: 2rem;
+            }
+            .stat-block {
+                align-items: flex-start;
+                text-align: left;
             }
         }
 
@@ -3105,6 +3128,39 @@
             color: var(--text-secondary);
             border: 1px solid rgba(28, 27, 27, 0.1);
             z-index: 2;
+        }
+
+        .portfolio-view-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(28, 27, 27, 0.1);
+            font-family: 'Aeonik Mono', 'Aeonik', monospace;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .portfolio-view-badge:hover {
+            background: var(--accent-green);
+        }
+
+        .portfolio-view-badge svg {
+            width: 9px;
+            height: 9px;
         }
 
         .portfolio-grid {
@@ -4177,16 +4233,16 @@
                 <p class="section-label reveal">Case Study &mdash; Durable</p>
                 <div class="case-study-stats">
                     <div class="stat-block reveal">
-                        <span class="stat-number">205K</span>
-                        <span class="stat-label">Total views on Meta across the published videos</span>
+                        <span class="stat-number">220K</span>
+                        <span class="stat-label">Total views across the 2 published videos</span>
                     </div>
                     <div class="stat-block reveal">
                         <span class="stat-number">4.51%</span>
                         <span class="stat-label">Average CTR across paid placements</span>
                     </div>
                     <div class="stat-block reveal">
-                        <span class="stat-number">4</span>
-                        <span class="stat-label">Videos produced across the ongoing collaboration</span>
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Total videos produced for the campaign</span>
                     </div>
                 </div>
             </div>
@@ -4199,7 +4255,7 @@
                 </div>
                 <div class="cs-grid-item">
                     <video controls preload="metadata" playsinline>
-                        <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4" type="video/mp4">
+                        <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/durable-grid.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="cs-grid-item">
@@ -4238,7 +4294,7 @@
         <section class="clients-section" id="clients">
             <p class="section-label reveal">Trusted By</p>
             <p class="clients-text reveal">
-                <a href="#" class="client">Coke Zero</a>, <a href="#" class="client">Durable</a>, <a href="#" class="client">Koalendar</a>, <a href="#" class="client">Fiverr</a>, <a href="#" class="client">Bazaart</a> and <a href="#" class="client">PolarPro</a>.
+                <a href="javascript:void(0)" class="client" onclick="openProject('cokezero')">Coke Zero</a>, <a href="javascript:void(0)" class="client" onclick="openProject('durable')">Durable</a>, <a href="javascript:void(0)" class="client" onclick="openProject('koalendar')">Koalendar</a>, <a href="javascript:void(0)" class="client" onclick="openProject('fiverr')">Fiverr</a>, <a href="javascript:void(0)" class="client" onclick="openProject('bazaart')">Bazaart</a> and <a href="javascript:void(0)" class="client" onclick="openProject('polarpro')">PolarPro</a>.
             </p>
         </section>
 
@@ -4328,7 +4384,54 @@
         <section class="portfolio-section">
             <div class="section-container">
                 <div class="portfolio-videos-grid">
-                    <!-- Video 1: Scrawlr -->
+                    <!-- Video: Claude (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/claude-grid.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('claude')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Clean (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="Clean.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Koalendar 1 (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-1-detail.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('koalendar')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Koalendar 2 (horizontal) -->
+                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
+                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
+                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-2-detail.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('koalendar')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+                        </div>
+                    </div>
+
+                    <!-- Video: Scrawlr -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4339,7 +4442,7 @@
                         </div>
                     </div>
 
-                    <!-- Video 2: Bonebroth1 -->
+                    <!-- Video: Bonebroth1 -->
                     <div class="portfolio-video-card" data-category="cooking">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4347,10 +4450,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Cooking</div>
+                            <div class="portfolio-view-badge" onclick="openProject('bonebroth')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 3: Bonebroth2 -->
+                    <!-- Video: Bonebroth2 -->
                     <div class="portfolio-video-card" data-category="cooking">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4358,10 +4462,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Cooking</div>
+                            <div class="portfolio-view-badge" onclick="openProject('bonebroth')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 4: Bonebroth3 -->
+                    <!-- Video: Bonebroth3 -->
                     <div class="portfolio-video-card" data-category="cooking">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4369,6 +4474,7 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Cooking</div>
+                            <div class="portfolio-view-badge" onclick="openProject('bonebroth')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
@@ -4380,6 +4486,7 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Cooking</div>
+                            <div class="portfolio-view-badge" onclick="openProject('maggie')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
@@ -4391,10 +4498,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Cooking</div>
+                            <div class="portfolio-view-badge" onclick="openProject('maggie')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 5: Airbrush -->
+                    <!-- Video: Airbrush -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4405,7 +4513,7 @@
                         </div>
                     </div>
 
-                    <!-- Video 6: Erborian -->
+                    <!-- Video: Erborian -->
                     <div class="portfolio-video-card" data-category="beauty">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4416,7 +4524,7 @@
                         </div>
                     </div>
 
-                    <!-- Video 7: Headspace -->
+                    <!-- Video: Headspace -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4424,10 +4532,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('headspace')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 8: Bazaart -->
+                    <!-- Video: Bazaart -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4435,10 +4544,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('bazaart')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 12: Notion -->
+                    <!-- Video: Notion -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4446,10 +4556,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('notion')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 13: Fiverr -->
+                    <!-- Video: Fiverr -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4457,10 +4568,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('fiverr')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 14: PolarPro -->
+                    <!-- Video: PolarPro -->
                     <div class="portfolio-video-card" data-category="photo">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4468,10 +4580,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Photo & Video Gear</div>
+                            <div class="portfolio-view-badge" onclick="openProject('polarpro')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 16: Vinted -->
+                    <!-- Video: Vinted -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4479,32 +4592,11 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('vinted')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
-                    <!-- Video 17: Claude (horizontal) -->
-                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
-                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
-                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/claude-grid.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="video-tag">Apps & Software</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 18: Clean (horizontal) -->
-                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
-                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
-                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="Clean.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="video-tag">Apps & Software</div>
-                        </div>
-                    </div>
-
-                    <!-- Video 19: Athlytic -->
+                    <!-- Video: Athlytic -->
                     <div class="portfolio-video-card" data-category="apps">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4515,7 +4607,7 @@
                         </div>
                     </div>
 
-                    <!-- Video 20: Collagen -->
+                    <!-- Video: Collagen -->
                     <div class="portfolio-video-card" data-category="beauty">
                         <div class="video-wrapper">
                             <video controls preload="metadata" playsinline poster=""  style="width: 100%; height: 100%; object-fit: cover;">
@@ -4534,6 +4626,7 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('durable')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
 
@@ -4545,28 +4638,7 @@
                                 Your browser does not support the video tag.
                             </video>
                             <div class="video-tag">Apps & Software</div>
-                        </div>
-                    </div>
-
-                    <!-- Video: Koalendar 1 (horizontal) -->
-                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
-                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
-                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-1-detail.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="video-tag">Apps & Software</div>
-                        </div>
-                    </div>
-
-                    <!-- Video: Koalendar 2 (horizontal) -->
-                    <div class="portfolio-video-card" data-category="apps horizontal" style="grid-column: span 2;">
-                        <div class="video-wrapper" style="aspect-ratio: 16/9;">
-                            <video controls preload="metadata" playsinline poster="" style="width: 100%; height: 100%; object-fit: cover;">
-                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-2-detail.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="video-tag">Apps & Software</div>
+                            <div class="portfolio-view-badge" onclick="openProject('durable')">View project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
                         </div>
                     </div>
                 </div>
@@ -4834,7 +4906,6 @@
                         </li>
                     </ul>
                     <div class="studio-team-photo-stage" id="studio-team-photo-stage">
-                        <div class="studio-team-photo-placeholder">Hover a name</div>
                         <div class="studio-team-photo" id="studio-team-photo"></div>
                     </div>
                 </div>
@@ -5033,6 +5104,60 @@
                 });
             }, { threshold: 0.15 });
             targets.forEach((t) => observer.observe(t));
+        })();
+
+        // Trusted By: type the client list out on scroll into view, keeping links clickable
+        (function() {
+            const el = document.querySelector('.clients-text');
+            if (!el) return;
+            const originalNodes = Array.from(el.childNodes);
+            el.innerHTML = '';
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            cursor.textContent = '|';
+            el.appendChild(cursor);
+
+            function typeText(text, container, cb) {
+                let i = 0;
+                (function step() {
+                    if (i <= text.length) {
+                        container.textContent = text.slice(0, i);
+                        i++;
+                        setTimeout(step, 18);
+                    } else if (cb) {
+                        cb();
+                    }
+                })();
+            }
+
+            function revealNodes(nodes, i) {
+                if (i >= nodes.length) {
+                    cursor.remove();
+                    return;
+                }
+                const node = nodes[i];
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const span = document.createElement('span');
+                    el.insertBefore(span, cursor);
+                    typeText(node.textContent, span, () => revealNodes(nodes, i + 1));
+                } else {
+                    node.style.opacity = '0';
+                    node.style.transition = 'opacity 0.2s ease';
+                    el.insertBefore(node, cursor);
+                    requestAnimationFrame(() => { node.style.opacity = '1'; });
+                    setTimeout(() => revealNodes(nodes, i + 1), 220);
+                }
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        revealNodes(originalNodes, 0);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.4 });
+            observer.observe(el);
         })();
 
         // Studio page hero strip: click-and-drag scrolling
@@ -5248,6 +5373,42 @@
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable-V2-compressed.mp4', orientation: 'vertical', label: 'Durable V2' },
                     { src: 'Durable_V3-grid.mp4', orientation: 'vertical', label: 'Durable V3' },
                     { src: 'Durable_V4-detail.mp4', orientation: 'vertical', label: 'Durable V4' }
+                ]
+            },
+            koalendar: {
+                title: 'Koalendar',
+                tags: ['Apps & Software'],
+                idea: 'Two software explainer videos built to make a scheduling tool feel instantly understandable: no jargon, just a clear walkthrough of what it does and why it saves you time.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — motion graphics & UI callouts'],
+                useCase: 'Used on the brand\'s website hero section and its YouTube channel.',
+                timeline: '10 working days, concept to final edit.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-1-detail.mp4', orientation: 'horizontal', label: 'Koalendar 1' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-2-detail.mp4', orientation: 'horizontal', label: 'Koalendar 2' }
+                ]
+            },
+            bonebroth: {
+                title: 'Bone Broth',
+                tags: ['Social ad'],
+                idea: 'A trio of social-first cuts built to make bone broth actually look craveable: real texture, real steam, real "I want that" energy instead of a stiff product shot.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design'],
+                useCase: 'Ran as paid social ads.',
+                timeline: '7 working days, concept to final edit.',
+                videos: [
+                    { src: 'Bonebroth1.mp4', orientation: 'vertical', label: 'Bone Broth 1' },
+                    { src: 'Bonebroth2.mp4', orientation: 'vertical', label: 'Bone Broth 2' },
+                    { src: 'Bonebroth3.mp4', orientation: 'vertical', label: 'Bone Broth 3' }
+                ]
+            },
+            bazaart: {
+                title: 'Bazaart',
+                tags: ['Apps & Software'],
+                idea: 'Full write-up coming soon.',
+                tools: ['DaVinci Resolve — editing, color grading, sound design'],
+                useCase: 'Spec work.',
+                timeline: 'Details coming soon.',
+                videos: [
+                    { src: 'Bazaart.mp4', orientation: 'vertical' }
                 ]
             }
         };
