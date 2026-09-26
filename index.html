@@ -1743,26 +1743,115 @@
             justify-self: start;
         }
 
-        .waxseal {
+        /* Hero stickers — positioned to match the Figma mockup (1920x1242 canvas) */
+        .hero-sticker {
             position: absolute;
-            left: 12.29%;
-            top: 39.41%;
-            width: 12.47%;
-            min-width: 130px;
             height: auto;
-            transform: translate(-50%, -50%) rotate(-47.71deg);
-            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.18));
+            z-index: 5;
+            filter: drop-shadow(0 10px 18px rgba(0,0,0,0.16));
+            animation: stickerFloat 6s ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes stickerFloat {
+            0%, 100% { transform: translate(-50%, -50%) rotate(var(--r, 0deg)) translateY(0); }
+            50% { transform: translate(-50%, -50%) rotate(var(--r, 0deg)) translateY(-10px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-sticker {
+                animation: none;
+                transform: translate(-50%, -50%) rotate(var(--r, 0deg));
+            }
+        }
+
+        .waxseal {
+            left: 3.19%;
+            top: 23.69%;
+            width: 16.23%;
+            min-width: 130px;
+            --r: -47.71deg;
+            --delay: 0s;
         }
 
         .sticker-badge {
-            position: absolute;
-            left: 81.12%;
-            top: 67.98%;
-            width: 24.46%;
+            left: 82.35%;
+            top: 62.45%;
+            width: 20.21%;
             min-width: 150px;
-            height: auto;
-            transform: translate(-50%, -50%) rotate(-6.39deg);
-            filter: drop-shadow(0 10px 24px rgba(0,0,0,0.15));
+            --r: -5.93deg;
+            --delay: 0.6s;
+        }
+
+        .st-creative-advisory {
+            left: 27.29%;
+            top: 26.13%;
+            width: 10%;
+            min-width: 90px;
+            --r: 0deg;
+            --delay: 1.2s;
+        }
+
+        .st-sacred-art {
+            left: 52.21%;
+            top: 28.26%;
+            width: 9.84%;
+            min-width: 90px;
+            --r: 0deg;
+            --delay: 1.8s;
+        }
+
+        .st-planet {
+            left: 76.60%;
+            top: 23.06%;
+            width: 4.995%;
+            min-width: 50px;
+            --r: 17.18deg;
+            --delay: 2.4s;
+        }
+
+        .st-story-first {
+            left: 52.89%;
+            top: 65.66%;
+            width: 9.84%;
+            min-width: 90px;
+            --r: 0deg;
+            --delay: 3s;
+        }
+
+        .st-warning {
+            left: 28.53%;
+            top: 62.47%;
+            width: 14.74%;
+            min-width: 110px;
+            --r: 22.08deg;
+            --delay: 3.6s;
+        }
+
+        .st-barcode {
+            left: 3.203%;
+            top: 70.53%;
+            width: 14.01%;
+            min-width: 110px;
+            --r: 0deg;
+            --delay: 4.2s;
+        }
+
+        .st-supernova-star {
+            left: 97.86%;
+            top: 27.86%;
+            width: 13.49%;
+            min-width: 90px;
+            --r: 2.98deg;
+            --delay: 4.8s;
+        }
+
+        .st-custom {
+            left: 50%;
+            top: 88%;
+            width: 11%;
+            min-width: 90px;
+            --delay: 2s;
         }
 
         .hero-bottombar {
@@ -1801,6 +1890,155 @@
             background: var(--text-secondary);
         }
 
+        .add-sticker-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+            background: var(--accent-green);
+            color: #1C1B1B;
+            border-radius: var(--radius-full);
+            font-family: 'Aeonik', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(190,242,124,0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .add-sticker-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(190,242,124,0.45);
+        }
+
+        .add-sticker-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(28,27,27,0.12);
+            font-size: 0.95rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .sticker-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(13,13,11,0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            padding: 1.5rem;
+        }
+
+        .sticker-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sticker-modal {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            max-width: 440px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+            font-family: 'Aeonik', sans-serif;
+        }
+
+        .sticker-modal-close {
+            position: absolute;
+            top: 1.1rem;
+            right: 1.1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .sticker-modal-title {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .sticker-modal-body {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .sticker-dropzone {
+            border: 1.5px dashed rgba(28,27,27,0.25);
+            border-radius: var(--radius-md);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            transition: border-color 0.2s ease, background 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sticker-dropzone.dragover {
+            border-color: var(--accent-green-dark);
+            background: rgba(190,242,124,0.08);
+        }
+
+        .sticker-dropzone-link {
+            color: var(--accent-green-dark);
+            text-decoration: underline;
+        }
+
+        .sticker-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        .sticker-modal-cancel,
+        .sticker-modal-confirm {
+            padding: 0.7rem 1.4rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+        }
+
+        .sticker-modal-cancel {
+            border: 1px solid rgba(28,27,27,0.2);
+            color: var(--text-primary);
+        }
+
+        .sticker-modal-confirm {
+            background: var(--accent-green);
+            color: #1C1B1B;
+            opacity: 0.5;
+            pointer-events: none;
+            border: none;
+        }
+
+        .sticker-modal-confirm.ready {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         @media (max-width: 900px) {
             #main-nav {
                 grid-template-columns: 1fr;
@@ -1833,6 +2071,15 @@
                 left: 80%;
                 top: 66%;
                 width: 32%;
+            }
+            .st-creative-advisory,
+            .st-sacred-art,
+            .st-planet,
+            .st-story-first,
+            .st-warning,
+            .st-barcode,
+            .st-supernova-star {
+                display: none;
             }
             .hero-bottombar {
                 flex-direction: column;
@@ -3865,17 +4112,43 @@
         <!-- Hero Section -->
         <section class="hero-v2">
             <div class="hero-stage">
-                <img src="Wax star.png" alt="" class="waxseal">
-                <img src="Sticker.webp" alt="We create story-led videos for bold brands" class="sticker-badge">
+                <img src="Wax star.png" alt="" class="hero-sticker waxseal">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/creative-advisory.png" alt="" class="hero-sticker st-creative-advisory">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/sacred-art.png" alt="" class="hero-sticker st-sacred-art">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/planet.png" alt="" class="hero-sticker st-planet">
+                <img src="Sticker.webp" alt="We create story-led videos for bold brands" class="hero-sticker sticker-badge">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/story-first.png" alt="" class="hero-sticker st-story-first">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/warning.png" alt="" class="hero-sticker st-warning">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/barcode.png" alt="" class="hero-sticker st-barcode">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/supernova-star.png" alt="" class="hero-sticker st-supernova-star">
                 <div class="hero-title-wrap">
                     <h1 class="hero-title">Supernova <span class="dot">&middot;</span> Studio</h1>
                 </div>
             </div>
 
             <div class="hero-bottombar">
+                <span class="add-sticker-btn" id="add-sticker-btn">
+                    <span class="add-sticker-icon">+</span> Add your sticker
+                </span>
                 <span class="hero-scroll-cue"><span class="rule"></span>(SCROLL)</span>
             </div>
         </section>
+
+        <div class="sticker-modal-overlay" id="sticker-modal-overlay">
+            <div class="sticker-modal">
+                <button class="sticker-modal-close" id="sticker-modal-close" aria-label="Close">&times;</button>
+                <h3 class="sticker-modal-title">Add your sticker</h3>
+                <p class="sticker-modal-body">Upload an image (JPG or PNG) and it'll appear right here on the page, just for you. It stays on your device and never touches our site.</p>
+                <div class="sticker-dropzone" id="sticker-dropzone">
+                    <p>Drag an image here<br>or <span class="sticker-dropzone-link">choose a file</span></p>
+                    <input type="file" id="sticker-file-input" accept="image/png, image/jpeg" hidden>
+                </div>
+                <div class="sticker-modal-actions">
+                    <span class="sticker-modal-cancel" id="sticker-modal-cancel">Cancel</span>
+                    <span class="sticker-modal-confirm" id="sticker-modal-confirm">Place sticker</span>
+                </div>
+            </div>
+        </div>
 
         <!-- Premium Video Ads Section -->
         <section class="videos-section" id="projects">
@@ -4953,7 +5226,7 @@
             });
             document.addEventListener('mouseover', (e) => {
                 const viewTarget = e.target.closest('.showreel-card, .project-gallery-item');
-                const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, .st-row, [onclick]');
+                const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, .st-row, .add-sticker-btn, .sticker-dropzone, .sticker-modal-cancel, .sticker-modal-confirm, .sticker-modal-close, [onclick]');
                 if (viewTarget) {
                     cursor.classList.add('view');
                     cursor.classList.remove('expand');
@@ -5022,6 +5295,93 @@
                 });
             }, { threshold: 0.15 });
             targets.forEach((t) => observer.observe(t));
+        })();
+
+        // Add your sticker: client-side only, saved to this browser's localStorage
+        (function() {
+            const btn = document.getElementById('add-sticker-btn');
+            const overlay = document.getElementById('sticker-modal-overlay');
+            const closeBtn = document.getElementById('sticker-modal-close');
+            const cancelBtn = document.getElementById('sticker-modal-cancel');
+            const confirmBtn = document.getElementById('sticker-modal-confirm');
+            const dropzone = document.getElementById('sticker-dropzone');
+            const fileInput = document.getElementById('sticker-file-input');
+            const heroStage = document.querySelector('.hero-stage');
+            if (!btn || !overlay || !heroStage) return;
+
+            const STORAGE_KEY = 'supernova-custom-sticker';
+            let pendingDataUrl = null;
+
+            function openModal() {
+                overlay.classList.add('active');
+            }
+            function closeModal() {
+                overlay.classList.remove('active');
+                pendingDataUrl = null;
+                confirmBtn.classList.remove('ready');
+                fileInput.value = '';
+            }
+
+            function handleFile(file) {
+                if (!file || !/^image\/(png|jpeg)$/.test(file.type)) return;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    pendingDataUrl = e.target.result;
+                    confirmBtn.classList.add('ready');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function renderCustomSticker(dataUrl) {
+                let img = document.getElementById('custom-hero-sticker');
+                if (!img) {
+                    img = document.createElement('img');
+                    img.id = 'custom-hero-sticker';
+                    img.className = 'hero-sticker st-custom';
+                    img.alt = 'Your sticker';
+                    img.style.setProperty('--r', (Math.random() * 16 - 8).toFixed(2) + 'deg');
+                    heroStage.appendChild(img);
+                }
+                img.src = dataUrl;
+            }
+
+            btn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+
+            dropzone.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+
+            ['dragover', 'dragenter'].forEach(evt => {
+                dropzone.addEventListener(evt, (e) => {
+                    e.preventDefault();
+                    dropzone.classList.add('dragover');
+                });
+            });
+            ['dragleave', 'drop'].forEach(evt => {
+                dropzone.addEventListener(evt, (e) => {
+                    e.preventDefault();
+                    dropzone.classList.remove('dragover');
+                });
+            });
+            dropzone.addEventListener('drop', (e) => {
+                handleFile(e.dataTransfer.files[0]);
+            });
+
+            confirmBtn.addEventListener('click', () => {
+                if (!pendingDataUrl) return;
+                try {
+                    localStorage.setItem(STORAGE_KEY, pendingDataUrl);
+                } catch (err) {}
+                renderCustomSticker(pendingDataUrl);
+                closeModal();
+            });
+
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) renderCustomSticker(saved);
+            } catch (err) {}
         })();
 
         // Trusted By: type the client list out on scroll into view, keeping links clickable
