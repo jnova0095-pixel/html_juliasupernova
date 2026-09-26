@@ -1818,6 +1818,7 @@
             min-width: 90px;
             --r: 0deg;
             --delay: -4.2s;
+            --nudge-y: 5px;
         }
 
         .st-warning {
@@ -1827,6 +1828,7 @@
             min-width: 110px;
             --r: 22.08deg;
             --delay: -5s;
+            --nudge-y: 5px;
         }
 
         .st-barcode {
@@ -5292,7 +5294,7 @@
                 const overlapHeight = overlapBottom - overlapTop;
                 if (overlapWidth <= 0 || overlapHeight <= 0) return;
 
-                const maxAllowed = stickerRect.height * 0.3;
+                const maxAllowed = stickerRect.height * 0.12;
                 if (overlapHeight > maxAllowed) {
                     const extra = overlapHeight - maxAllowed;
                     sticker.style.setProperty('--nudge-y', extra + 'px');
