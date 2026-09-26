@@ -1754,14 +1754,14 @@
         }
 
         @keyframes stickerFloat {
-            0%, 100% { transform: translate(-50%, -50%) rotate(var(--r, 0deg)) translateY(0); }
-            50% { transform: translate(-50%, -50%) rotate(var(--r, 0deg)) translateY(-10px); }
+            0%, 100% { transform: translate(-50%, calc(-50% + var(--nudge-y, 0px))) rotate(var(--r, 0deg)) translateY(0); }
+            50% { transform: translate(-50%, calc(-50% + var(--nudge-y, 0px))) rotate(var(--r, 0deg)) translateY(-10px); }
         }
 
         @media (prefers-reduced-motion: reduce) {
             .hero-sticker {
                 animation: none;
-                transform: translate(-50%, -50%) rotate(var(--r, 0deg));
+                transform: translate(-50%, calc(-50% + var(--nudge-y, 0px))) rotate(var(--r, 0deg));
             }
         }
 
@@ -1891,39 +1891,14 @@
         }
 
         .add-sticker-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.5rem 1.1rem 0.5rem 0.5rem;
-            background: var(--accent-green);
-            color: #1C1B1B;
-            border-radius: var(--radius-full);
-            font-family: 'Aeonik', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(190,242,124,0.35);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-color: var(--accent-green-dark);
+            color: var(--accent-green-dark);
         }
 
         .add-sticker-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(190,242,124,0.45);
-        }
-
-        .add-sticker-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: rgba(28,27,27,0.12);
-            font-size: 0.95rem;
-            line-height: 1;
-            flex-shrink: 0;
+            background: var(--accent-green);
+            color: #1C1B1B;
+            border-color: var(--accent-green);
         }
 
         .sticker-modal-overlay {
@@ -4113,7 +4088,7 @@
         <section class="hero-v2">
             <div class="hero-stage">
                 <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Wax.png" alt="" class="hero-sticker waxseal">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/creative-advisory.png" alt="" class="hero-sticker st-creative-advisory">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Creative%20advisory.png" alt="" class="hero-sticker st-creative-advisory">
                 <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Sacred%20art.png" alt="" class="hero-sticker st-sacred-art">
                 <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Planet.png" alt="" class="hero-sticker st-planet">
                 <img src="Sticker.webp" alt="We create story-led videos for bold brands" class="hero-sticker sticker-badge">
@@ -4127,8 +4102,9 @@
             </div>
 
             <div class="hero-bottombar">
-                <span class="add-sticker-btn" id="add-sticker-btn">
-                    <span class="add-sticker-icon">+</span> Add your sticker
+                <span class="pill-btn add-sticker-btn" id="add-sticker-btn">
+                    Add your sticker
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
                 </span>
                 <span class="hero-scroll-cue"><span class="rule"></span>(SCROLL)</span>
             </div>
@@ -5226,7 +5202,7 @@
             });
             document.addEventListener('mouseover', (e) => {
                 const viewTarget = e.target.closest('.showreel-card, .project-gallery-item');
-                const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, .st-row, .add-sticker-btn, .sticker-dropzone, .sticker-modal-cancel, .sticker-modal-confirm, .sticker-modal-close, [onclick]');
+                const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, .st-row, .sticker-dropzone, .sticker-modal-cancel, .sticker-modal-confirm, .sticker-modal-close, [onclick]');
                 if (viewTarget) {
                     cursor.classList.add('view');
                     cursor.classList.remove('expand');
@@ -5295,6 +5271,38 @@
                 });
             }, { threshold: 0.15 });
             targets.forEach((t) => observer.observe(t));
+        })();
+
+        // Keep the main hero sticker from fully covering the "Supernova Studio" text at any viewport width
+        (function() {
+            const title = document.querySelector('.hero-title');
+            const sticker = document.querySelector('.sticker-badge');
+            if (!title || !sticker) return;
+
+            function adjust() {
+                sticker.style.setProperty('--nudge-y', '0px');
+                const titleRect = title.getBoundingClientRect();
+                const stickerRect = sticker.getBoundingClientRect();
+                const overlapLeft = Math.max(titleRect.left, stickerRect.left);
+                const overlapRight = Math.min(titleRect.right, stickerRect.right);
+                const overlapTop = Math.max(titleRect.top, stickerRect.top);
+                const overlapBottom = Math.min(titleRect.bottom, stickerRect.bottom);
+                const overlapWidth = overlapRight - overlapLeft;
+                const overlapHeight = overlapBottom - overlapTop;
+                if (overlapWidth <= 0 || overlapHeight <= 0) return;
+
+                const maxAllowed = stickerRect.height * 0.3;
+                if (overlapHeight > maxAllowed) {
+                    const extra = overlapHeight - maxAllowed;
+                    sticker.style.setProperty('--nudge-y', extra + 'px');
+                }
+            }
+
+            window.addEventListener('resize', adjust);
+            window.addEventListener('load', adjust);
+            document.fonts && document.fonts.ready.then(adjust);
+            adjust();
+            setTimeout(adjust, 300);
         })();
 
         // Add your sticker: client-side only, saved to this browser's localStorage
