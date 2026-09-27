@@ -1608,6 +1608,7 @@
             text-transform: uppercase;
             color: var(--text-secondary);
             line-height: 1.5;
+            cursor: pointer;
         }
 
         .hero-nav-pills {
@@ -1822,7 +1823,7 @@
             min-width: 90px;
             --r: 0deg;
             --delay: -4.2s;
-            --nudge-y: 40px;
+            --nudge-y: 90px;
         }
 
         .st-warning {
@@ -1832,7 +1833,7 @@
             min-width: 88px;
             --r: 22.08deg;
             --delay: -5s;
-            --nudge-y: 270px;
+            --nudge-y: 220px;
         }
 
         .st-barcode {
@@ -4058,7 +4059,7 @@
     <!-- Navigation -->
     <nav id="main-nav">
         <img src="Logo.png" alt="Supernova Studio" class="hero-logo-img" onclick="showPage('home')">
-        <div class="hero-meta-info">
+        <div class="hero-meta-info" onclick="showPage('home')">
             38.722 N, 9.139 W<br>EST. 2025
         </div>
         <div class="hero-nav-pills">
