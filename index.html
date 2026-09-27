@@ -1777,9 +1777,9 @@
 
         .sticker-badge {
             left: 82.35%;
-            top: 62.45%;
-            width: 20.21%;
-            min-width: 150px;
+            top: 65.5%;
+            width: 16.5%;
+            min-width: 124px;
             --r: -5.93deg;
             --delay: -1s;
         }
@@ -5276,7 +5276,7 @@
                 const overlapHeight = overlapBottom - overlapTop;
                 if (overlapWidth <= 0 || overlapHeight <= 0) return;
 
-                const maxAllowed = stickerRect.height * 0.12;
+                const maxAllowed = stickerRect.height * 0.04;
                 if (overlapHeight > maxAllowed) {
                     const extra = overlapHeight - maxAllowed;
                     sticker.style.setProperty('--nudge-y', extra + 'px');
