@@ -14,7 +14,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="Favicon180.png?v=2">
     
     <link rel="preload" href="Brigesta.woff2" as="font" type="font/woff2" crossorigin>
-    
+
+    <!-- Warm up the connection to the asset host so stickers/videos start fetching sooner -->
+    <link rel="preconnect" href="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev" crossorigin>
+    <link rel="dns-prefetch" href="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev">
+
     <style>
         @font-face {
             font-family: 'Brigesta';
@@ -4073,15 +4077,15 @@
         <!-- Hero Section -->
         <section class="hero-v2">
             <div class="hero-stage">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Wax.png" alt="" class="hero-sticker waxseal">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Creative%20advisory.png" alt="" class="hero-sticker st-creative-advisory">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Sacred%20art.png" alt="" class="hero-sticker st-sacred-art">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Planet.png" alt="" class="hero-sticker st-planet">
-                <img src="Sticker.webp" alt="We create story-led videos for bold brands" class="hero-sticker sticker-badge">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Story%20first.png" alt="" class="hero-sticker st-story-first">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Danger.png" alt="" class="hero-sticker st-warning">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Barcode.png" alt="" class="hero-sticker st-barcode">
-                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Supernova%20star.png" alt="" class="hero-sticker st-supernova-star">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Wax.png" alt="" class="hero-sticker waxseal" decoding="async" fetchpriority="high">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Creative%20advisory.png" alt="" class="hero-sticker st-creative-advisory" decoding="async">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Sacred%20art.png" alt="" class="hero-sticker st-sacred-art" decoding="async">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Planet.png" alt="" class="hero-sticker st-planet" decoding="async">
+                <img src="Sticker.webp" alt="We create story-led videos for bold brands" class="hero-sticker sticker-badge" decoding="async" fetchpriority="high">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Story%20first.png" alt="" class="hero-sticker st-story-first" decoding="async">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Danger.png" alt="" class="hero-sticker st-warning" decoding="async">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Barcode.png" alt="" class="hero-sticker st-barcode" decoding="async">
+                <img src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Supernova%20star.png" alt="" class="hero-sticker st-supernova-star" decoding="async">
                 <div class="hero-title-wrap">
                     <h1 class="hero-title">Supernova <span class="dot">&middot;</span> Studio</h1>
                 </div>
@@ -5256,6 +5260,43 @@
                 });
             }, { threshold: 0.15 });
             targets.forEach((t) => observer.observe(t));
+        })();
+
+        // Lazy-load every video's source: don't fetch a single byte until it scrolls near
+        // the viewport. Same files, same quality — just deferred, so a slow connection
+        // isn't stuck downloading dozens of videos that are still off-screen.
+        (function() {
+            if (!('IntersectionObserver' in window)) return;
+            const videos = document.querySelectorAll('video');
+            const io = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const video = entry.target;
+                    const source = video.querySelector('source[data-src]');
+                    if (source) {
+                        source.src = source.dataset.src;
+                        source.removeAttribute('data-src');
+                        video.load();
+                        if (video.dataset.autoplay) {
+                            video.play().catch(() => {});
+                        }
+                    }
+                    observer.unobserve(video);
+                });
+            }, { rootMargin: '600px 0px' });
+
+            videos.forEach((video) => {
+                const source = video.querySelector('source');
+                if (!source || !source.getAttribute('src')) return;
+                source.dataset.src = source.getAttribute('src');
+                source.removeAttribute('src');
+                if (video.hasAttribute('autoplay')) {
+                    video.dataset.autoplay = 'true';
+                    video.removeAttribute('autoplay');
+                }
+                video.load();
+                io.observe(video);
+            });
         })();
 
         // Keep the main hero sticker from fully covering the "Supernova Studio" text at any viewport width
