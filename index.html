@@ -1180,6 +1180,12 @@
             font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
         }
 
+        .d-info.restricted {
+            grid-template-columns: 1fr;
+            max-width: 700px;
+            text-align: center;
+        }
+
         .d-info-main h3,
         .d-side-block h3 {
             font-size: 0.75rem;
@@ -4160,16 +4166,16 @@
                         </div>
                     </div>
 
-                    <!-- Coke Zero -->
-                    <div class="showreel-card" onclick="openProject('cokezero')">
+                    <!-- PolarPro -->
+                    <div class="showreel-card" onclick="openProject('polarpro')">
                         <video autoplay muted loop playsinline preload="metadata">
-                            <source src="coke-zero-grid.mp4" type="video/mp4">
+                            <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-grid.mp4" type="video/mp4">
                         </video>
                         <div class="showreel-overlay">
                             <div class="showreel-overlay-content">
                                 <div>
-                                    <div class="showreel-overlay-title">Coke Zero</div>
-                                    <div class="showreel-overlay-tag">Paid Ad</div>
+                                    <div class="showreel-overlay-title">PolarPro</div>
+                                    <div class="showreel-overlay-tag">Brand Collaboration</div>
                                 </div>
                                 <div class="showreel-expand">&#8599;</div>
                             </div>
@@ -4473,7 +4479,7 @@
         <section class="clients-section" id="clients">
             <p class="section-label reveal">Trusted By</p>
             <p class="clients-text reveal">
-                <a href="javascript:void(0)" class="client" onclick="openProject('cokezero')">Coke Zero</a>, <a href="javascript:void(0)" class="client" onclick="openProject('durable')">Durable</a>, <a href="javascript:void(0)" class="client" onclick="openProject('koalendar')">Koalendar</a>, <a href="javascript:void(0)" class="client" onclick="openProject('fiverr')">Fiverr</a>, <a href="javascript:void(0)" class="client" onclick="openProject('maggie')">Maggie</a> and <a href="javascript:void(0)" class="client" onclick="openProject('polarpro')">PolarPro</a>.
+                <a href="javascript:void(0)" class="client" onclick="openProject('cokezero')">Coca-Cola</a>, <a href="javascript:void(0)" class="client" onclick="openProject('durable')">Durable</a>, <a href="javascript:void(0)" class="client" onclick="openProject('koalendar')">Koalendar</a>, <a href="javascript:void(0)" class="client" onclick="openProject('fiverr')">Fiverr</a>, <a href="javascript:void(0)" class="client" onclick="openProject('maggie')">Maggie</a> and <a href="javascript:void(0)" class="client" onclick="openProject('polarpro')">PolarPro</a>.
             </p>
         </section>
 
@@ -4973,12 +4979,12 @@
 
             <div id="project-detail-gallery" class="project-gallery"></div>
 
-            <div class="d-info">
+            <div class="d-info" id="project-detail-info">
                 <div class="d-info-main">
-                    <h3>The Idea</h3>
+                    <h3 id="project-detail-idea-heading">The Idea</h3>
                     <p id="project-detail-idea"></p>
                 </div>
-                <div class="d-side">
+                <div class="d-side" id="project-detail-side">
                     <div id="project-detail-tags" class="d-tags"></div>
                     <p class="d-sp-label">Tools Used</p>
                     <ol id="project-detail-tools" class="d-sp"></ol>
@@ -5610,6 +5616,9 @@
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace.mov', orientation: 'vertical' }
                 ]
             },
+            /* ARCHIVED — vendor exclusivity runs until roughly 2027-02 (5 months from
+               2026-09-27). Restore this object in place of the "cokezero" placeholder
+               below once that window ends, and delete the placeholder.
             cokezero: {
                 title: 'Coke Zero',
                 tags: ['Social Campaign'],
@@ -5620,6 +5629,18 @@
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/coke-zero-detail.mp4', orientation: 'vertical' }
                 ]
+            },
+            */
+            cokezero: {
+                title: 'Coca-Cola — The Club loyalty programme',
+                tags: [],
+                idea: '',
+                tools: [],
+                useCase: '',
+                timeline: '',
+                videos: [],
+                restricted: true,
+                restrictedNote: "Made a video for Coca-Cola's loyalty campaign. We're the type to actually respect an NDA, so full details (and the video!) are landing here once the exclusivity clock runs out. Worth the wait, promise."
             },
             polarpro: {
                 title: 'PolarPro',
@@ -5734,6 +5755,27 @@
             if (!p) return;
 
             document.getElementById('project-detail-title').textContent = p.title;
+
+            const gallery = document.getElementById('project-detail-gallery');
+            const infoBlock = document.getElementById('project-detail-info');
+            const ideaHeading = document.getElementById('project-detail-idea-heading');
+            const sideBlock = document.getElementById('project-detail-side');
+
+            if (p.restricted) {
+                gallery.innerHTML = '';
+                gallery.style.display = 'none';
+                infoBlock.classList.add('restricted');
+                sideBlock.style.display = 'none';
+                ideaHeading.textContent = 'A quick note';
+                document.getElementById('project-detail-idea').textContent = p.restrictedNote;
+                showPage('project-detail');
+                return;
+            }
+
+            gallery.style.display = '';
+            infoBlock.classList.remove('restricted');
+            sideBlock.style.display = '';
+            ideaHeading.textContent = 'The Idea';
             document.getElementById('project-detail-idea').textContent = p.idea;
             document.getElementById('project-detail-usecase').textContent = p.useCase;
             document.getElementById('project-detail-timeline').textContent = p.timeline;
@@ -5759,7 +5801,6 @@
                 toolsList.appendChild(li);
             });
 
-            const gallery = document.getElementById('project-detail-gallery');
             gallery.innerHTML = '';
             const hasHorizontal = p.videos.some(v => v.orientation === 'horizontal');
             gallery.className = 'project-gallery' + (p.videos.length === 1 ? ' single' : '') + (hasHorizontal ? ' has-horizontal' : '');
