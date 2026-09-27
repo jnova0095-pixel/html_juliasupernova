@@ -5500,9 +5500,20 @@
             let isDown = false;
             let startX = 0;
             let scrollStart = 0;
+            let interacted = false;
 
             function hideBadge() {
+                interacted = true;
                 if (badge) badge.classList.add('hide');
+            }
+
+            // Only show the "Drag" hint when the strip actually has more
+            // content than fits on screen — otherwise it's a promise the
+            // interaction can't keep.
+            function updateBadgeForOverflow() {
+                if (!badge || interacted) return;
+                const hasOverflow = strip.scrollWidth > strip.clientWidth + 1;
+                badge.classList.toggle('hide', !hasOverflow);
             }
 
             strip.addEventListener('mousedown', (e) => {
@@ -5523,6 +5534,10 @@
             });
             strip.addEventListener('scroll', hideBadge, { passive: true });
             strip.addEventListener('touchstart', hideBadge, { passive: true });
+
+            updateBadgeForOverflow();
+            window.addEventListener('resize', updateBadgeForOverflow);
+            window.addEventListener('load', updateBadgeForOverflow);
         })();
 
         // Studio page team list: hover to slide the photo alongside the hovered name
