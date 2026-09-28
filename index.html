@@ -5828,6 +5828,7 @@
                 ideaHeading.textContent = 'A quick note';
                 document.getElementById('project-detail-idea').textContent = p.restrictedNote;
                 showPage('project-detail');
+                history.replaceState(null, '', location.pathname + location.search + '#' + id);
                 return;
             }
 
@@ -5879,6 +5880,7 @@
             });
 
             showPage('project-detail');
+            history.replaceState(null, '', location.pathname + location.search + '#' + id);
         }
 
         function showPage(pageId) {
@@ -5886,14 +5888,38 @@
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            
+
             // Show selected page
             const selectedPage = document.getElementById(pageId);
             if (selectedPage) {
                 selectedPage.classList.add('active');
                 window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
             }
+
+            const hash = pageId === 'home' ? '' : '#' + pageId;
+            history.replaceState(null, '', location.pathname + location.search + hash);
         }
+
+        // Deep-linking: a URL like yoursite.com/#claude opens straight to that
+        // project (or #portfolio / #studio / etc. to that page), so a specific
+        // link can be shared instead of always landing on the homepage.
+        (function() {
+            function routeFromHash() {
+                const hash = decodeURIComponent(location.hash.replace('#', ''));
+                if (!hash) return;
+                const key = CAMPAIGN_ALIASES[hash] || hash;
+                if (CAMPAIGNS[key]) {
+                    openProject(hash);
+                } else {
+                    const target = document.getElementById(hash);
+                    if (target && target.classList.contains('page')) {
+                        showPage(hash);
+                    }
+                }
+            }
+            routeFromHash();
+            window.addEventListener('hashchange', routeFromHash);
+        })();
 
         // Handle form submission
         document.addEventListener('DOMContentLoaded', function() {
