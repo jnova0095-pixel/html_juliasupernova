@@ -1283,7 +1283,7 @@
             }
 
             .project-detail-container {
-                padding: 7rem 1.5rem 3rem;
+                padding: 9.5rem 1.5rem 3rem;
             }
         }
 
@@ -1557,7 +1557,7 @@
             }
 
             .studio-header {
-                padding: 7rem 1.5rem 0;
+                padding: 9.5rem 1.5rem 0;
             }
 
             .studio-section {
@@ -2053,15 +2053,6 @@
                 left: 80%;
                 top: 66%;
                 width: 32%;
-            }
-            .st-creative-advisory,
-            .st-sacred-art,
-            .st-planet,
-            .st-story-first,
-            .st-warning,
-            .st-barcode,
-            .st-supernova-star {
-                display: none;
             }
             .hero-bottombar {
                 flex-direction: column;
@@ -3920,7 +3911,7 @@
             }
 
             .portfolio-header {
-                padding: 6rem 1.5rem 2rem;
+                padding: 9.5rem 1.5rem 2rem;
             }
 
             .portfolio-description {
@@ -5611,6 +5602,10 @@
             const strip = document.getElementById('social-carousel-strip');
             const badge = document.getElementById('social-carousel-drag');
             if (!strip) return;
+            // Mobile Safari can restore a mid-scroll position on load/reload
+            // (bfcache + scroll anchoring), making the strip look cropped from
+            // the very first paint instead of starting at its first card.
+            strip.scrollLeft = 0;
             let isDown = false;
             let startX = 0;
             let scrollStart = 0;
