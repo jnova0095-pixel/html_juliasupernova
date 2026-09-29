@@ -3997,6 +3997,23 @@
                 width: 100%;
             }
 
+            /* The universal `* { max-width: 100% }` reset above silently caps
+               every full-bleed edge-to-edge strip back down to its parent's
+               padded content width, undoing the width:100vw breakout trick
+               and shrinking the carousels to roughly half the screen. Same
+               fix pattern as .services-section/.reviews-section above. */
+            .social-carousel-stage,
+            .studio-carousel-stage {
+                width: 100vw !important;
+                max-width: 100vw !important;
+            }
+
+            .social-carousel-strip,
+            .studio-carousel-strip {
+                width: 100vw !important;
+                max-width: 100vw !important;
+            }
+
             .cta-section {
                 padding: 4rem 1.5rem;
                 overflow-x: hidden;
