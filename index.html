@@ -2400,7 +2400,7 @@
 
         @media (max-width: 900px) {
             .social-carousel-strip {
-                padding: 0 1.5rem 0.5rem;
+                padding: 0 0 0.5rem;
             }
 
             .sc-item {
@@ -3634,17 +3634,6 @@
                 padding: 0 1.5rem !important;
                 margin: 0 auto !important;
                 box-sizing: border-box !important;
-            }
-
-            /* Override section-container for services and reviews to be full viewport width */
-            .services-section .section-container,
-            .reviews-section .section-container {
-                width: 100vw !important;
-                max-width: 100vw !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
             }
 
             nav {
@@ -5906,6 +5895,15 @@
                 video.controls = true;
                 video.preload = 'metadata';
                 video.playsInline = true;
+                // On mobile these show a black box until played (no autoplay,
+                // no poster). Seeking a hair into the clip once metadata loads
+                // forces the browser to decode and display that frame, same
+                // as the always-playing preview clips on the homepage.
+                if (window.innerWidth <= 900) {
+                    video.addEventListener('loadedmetadata', () => {
+                        video.currentTime = 0.1;
+                    }, { once: true });
+                }
                 const source = document.createElement('source');
                 source.src = v.src;
                 source.type = 'video/mp4';
