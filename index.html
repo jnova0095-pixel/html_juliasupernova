@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Supernova Studio | Premium Video Content Creator</title>
     
     <!-- Favicons -->
@@ -5472,6 +5475,26 @@
                 video.load();
                 io.observe(video);
             });
+        })();
+
+        // iOS Low Power Mode (and some other autoplay-policy edge cases) can
+        // silently block a native autoplay video from ever starting, even with
+        // muted+playsinline set correctly -- it just sits there paused with a
+        // tap-to-play icon. A real tap anywhere on the page is a genuine user
+        // gesture, so use the very first one to retry .play() on every
+        // autoplay video that's still paused. This "unlocks" playback for the
+        // rest of the visit, including videos that lazy-load in afterward.
+        (function() {
+            function kickAutoplayVideos() {
+                document.querySelectorAll('video[autoplay]').forEach((video) => {
+                    if (video.paused) {
+                        video.play().catch(() => {});
+                    }
+                });
+            }
+            document.addEventListener('touchstart', kickAutoplayVideos, { once: true, passive: true });
+            document.addEventListener('click', kickAutoplayVideos, { once: true });
+            document.addEventListener('scroll', kickAutoplayVideos, { once: true, passive: true });
         })();
 
         // Keep the main hero sticker from fully covering the "Supernova Studio" text at any viewport width
