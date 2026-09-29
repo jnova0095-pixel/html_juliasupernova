@@ -2483,10 +2483,12 @@
         @media (max-width: 900px) {
             .social-carousel-strip {
                 padding: 0 0 0.5rem;
+                gap: 1rem;
+                scroll-padding-left: 0;
             }
 
             .sc-item {
-                width: min(300px, 82vw);
+                width: 90vw;
             }
         }
 
@@ -5438,12 +5440,16 @@
             targets.forEach((t) => observer.observe(t));
         })();
 
-        // Lazy-load every video's source: don't fetch a single byte until it scrolls near
+        // Lazy-load video sources: don't fetch a single byte until it scrolls near
         // the viewport. Same files, same quality — just deferred, so a slow connection
         // isn't stuck downloading dozens of videos that are still off-screen.
+        // Autoplay-loop preview clips are excluded on purpose: browsers grant
+        // real autoplay to a native autoplay-muted-playsinline video tag far more
+        // reliably than to a JS-triggered .play() call, which was getting
+        // silently blocked and left the grid previews sitting paused.
         (function() {
             if (!('IntersectionObserver' in window)) return;
-            const videos = document.querySelectorAll('video');
+            const videos = document.querySelectorAll('video:not([autoplay])');
             const io = new IntersectionObserver((entries, observer) => {
                 entries.forEach((entry) => {
                     if (!entry.isIntersecting) return;
@@ -5453,9 +5459,6 @@
                         source.src = source.dataset.src;
                         source.removeAttribute('data-src');
                         video.load();
-                        if (video.dataset.autoplay) {
-                            video.play().catch(() => {});
-                        }
                     }
                     observer.unobserve(video);
                 });
@@ -5466,10 +5469,6 @@
                 if (!source || !source.getAttribute('src')) return;
                 source.dataset.src = source.getAttribute('src');
                 source.removeAttribute('src');
-                if (video.hasAttribute('autoplay')) {
-                    video.dataset.autoplay = 'true';
-                    video.removeAttribute('autoplay');
-                }
                 video.load();
                 io.observe(video);
             });
