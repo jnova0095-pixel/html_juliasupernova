@@ -5973,7 +5973,8 @@
             durable2: 'durable'
         };
 
-        function openProject(id) {
+        function openProject(id, historyMode) {
+            historyMode = historyMode || 'push';
             const key = CAMPAIGN_ALIASES[id] || id;
             const p = CAMPAIGNS[key];
             if (!p) return;
@@ -5992,8 +5993,8 @@
                 sideBlock.style.display = 'none';
                 ideaHeading.textContent = 'A quick note';
                 document.getElementById('project-detail-idea').textContent = p.restrictedNote;
-                showPage('project-detail');
-                history.replaceState(null, '', location.pathname + location.search + '#' + id);
+                showPage('project-detail', 'none');
+                setProjectUrl(id, historyMode);
                 return;
             }
 
@@ -6036,15 +6037,13 @@
                 video.controls = true;
                 video.preload = 'metadata';
                 video.playsInline = true;
-                // On mobile these show a black box until played (no autoplay,
-                // no poster). Seeking a hair into the clip once metadata loads
-                // forces the browser to decode and display that frame, same
-                // as the always-playing preview clips on the homepage.
-                if (window.innerWidth <= 900) {
-                    video.addEventListener('loadedmetadata', () => {
-                        video.currentTime = 0.1;
-                    }, { once: true });
-                }
+                // These show a black box until played (no autoplay, no poster).
+                // Seeking a hair into the clip once metadata loads forces the
+                // browser to decode and display that frame, same as the
+                // always-playing preview clips on the homepage.
+                video.addEventListener('loadedmetadata', () => {
+                    video.currentTime = 0.1;
+                }, { once: true });
                 const source = document.createElement('source');
                 source.src = v.src;
                 source.type = 'video/mp4';
@@ -6053,11 +6052,28 @@
                 gallery.appendChild(item);
             });
 
-            showPage('project-detail');
-            history.replaceState(null, '', location.pathname + location.search + '#' + id);
+            showPage('project-detail', 'none');
+            setProjectUrl(id, historyMode);
         }
 
-        function showPage(pageId) {
+        // Writes the URL for a project without touching the DOM. 'push' (the
+        // default, used by onclick handlers) adds a real history entry so the
+        // browser's Back button returns to the previous page instead of
+        // leaving the site entirely; 'replace' is for the initial deep-link
+        // load, and 'none' is used when the browser itself already changed
+        // history (Back/Forward) and we're just re-syncing the view.
+        function setProjectUrl(id, historyMode) {
+            if (historyMode === 'none') return;
+            const url = location.pathname + location.search + '#' + id;
+            if (historyMode === 'replace') {
+                history.replaceState(null, '', url);
+            } else {
+                history.pushState(null, '', url);
+            }
+        }
+
+        function showPage(pageId, historyMode) {
+            historyMode = historyMode || 'push';
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -6070,24 +6086,38 @@
                 window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
             }
 
+            if (historyMode === 'none') return;
             const hash = pageId === 'home' ? '' : '#' + pageId;
-            history.replaceState(null, '', location.pathname + location.search + hash);
+            const url = location.pathname + location.search + hash;
+            if (historyMode === 'replace') {
+                history.replaceState(null, '', url);
+            } else {
+                history.pushState(null, '', url);
+            }
         }
 
         // Deep-linking: a URL like yoursite.com/#claude opens straight to that
         // project (or #portfolio / #studio / etc. to that page), so a specific
-        // link can be shared instead of always landing on the homepage.
+        // link can be shared instead of always landing on the homepage. This
+        // same function re-renders on browser Back/Forward (the hash changes,
+        // which fires hashchange) -- it always uses historyMode 'none' since
+        // in every case here the URL is already correct (either it was typed/
+        // shared as-is, or the browser itself just updated it via Back or
+        // Forward), so we only need to sync the page content to match it.
         (function() {
             function routeFromHash() {
                 const hash = decodeURIComponent(location.hash.replace('#', ''));
-                if (!hash) return;
+                if (!hash) {
+                    showPage('home', 'none');
+                    return;
+                }
                 const key = CAMPAIGN_ALIASES[hash] || hash;
                 if (CAMPAIGNS[key]) {
-                    openProject(hash);
+                    openProject(hash, 'none');
                 } else {
                     const target = document.getElementById(hash);
                     if (target && target.classList.contains('page')) {
-                        showPage(hash);
+                        showPage(hash, 'none');
                     }
                 }
             }
