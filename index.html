@@ -2680,6 +2680,12 @@
             padding: 1.5rem;
             border-right: 1px solid rgba(28, 27, 27, 0.15);
             border-bottom: 1px solid rgba(28, 27, 27, 0.15);
+            cursor: pointer;
+            transition: background 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .logo-grid-cell:hover {
+            background: rgba(190, 242, 124, 0.08);
         }
 
         .logo-grid-cell:nth-child(3n) {
@@ -2695,6 +2701,11 @@
             width: auto;
             max-width: 75%;
             object-fit: contain;
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .logo-grid-cell:hover img {
+            transform: scale(1.08);
         }
 
         /* Coke Zero, Maggi and PolarPro read visually smaller than the
@@ -4394,7 +4405,7 @@
                 Projects
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </button>
-            <button class="pill-btn" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">
+            <button class="pill-btn" onclick="goHomeAndScrollTo('book')">
                 Contact
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </button>
@@ -4409,7 +4420,7 @@
         <div class="mobile-menu-links">
             <span onclick="closeMobileMenu(); showPage('portfolio')">Projects</span>
             <span onclick="closeMobileMenu(); showPage('studio')">Studio</span>
-            <span onclick="closeMobileMenu(); showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Contact</span>
+            <span onclick="closeMobileMenu(); goHomeAndScrollTo('book')">Contact</span>
         </div>
     </div>
 
@@ -4549,12 +4560,12 @@
         <section class="clients-section" id="clients">
             <p class="section-label reveal">Stories Told For</p>
             <div class="logo-grid reveal">
-                <div class="logo-grid-cell"><img class="logo-lg" src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
-                <div class="logo-grid-cell"><img class="logo-sm" src="client-durable.svg" alt="Durable" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-koalendar.png" alt="Koalendar" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-fiverr.svg" alt="Fiverr" loading="lazy"></div>
-                <div class="logo-grid-cell"><img class="logo-lg" src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
-                <div class="logo-grid-cell"><img class="logo-xl" src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
+                <div class="logo-grid-cell" onclick="openProject('cokezero')"><img class="logo-lg" src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
+                <div class="logo-grid-cell" onclick="openProject('durable')"><img class="logo-sm" src="client-durable.svg" alt="Durable" loading="lazy"></div>
+                <div class="logo-grid-cell" onclick="openProject('koalendar')"><img src="client-koalendar.png" alt="Koalendar" loading="lazy"></div>
+                <div class="logo-grid-cell" onclick="openProject('fiverr')"><img src="client-fiverr.svg" alt="Fiverr" loading="lazy"></div>
+                <div class="logo-grid-cell" onclick="openProject('maggie')"><img class="logo-lg" src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
+                <div class="logo-grid-cell" onclick="openProject('polarpro')"><img class="logo-xl" src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
             </div>
         </section>
 
@@ -5247,8 +5258,8 @@
                     <h4 class="footer-title">Navigation</h4>
                     <div class="footer-links">
                         <span class="footer-link" onclick="showPage('portfolio')">Projects</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('services'), 100)">Services</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Book</span>
+                        <span class="footer-link" onclick="goHomeAndScrollTo('services')">Services</span>
+                        <span class="footer-link" onclick="goHomeAndScrollTo('book')">Book</span>
                     </div>
                 </div>
 
@@ -5373,7 +5384,7 @@
     <!-- Project Detail Page -->
     <div id="project-detail" class="page">
         <div class="project-detail-container">
-            <span class="project-detail-back" onclick="showPage('home'); setTimeout(() => scrollToSection('projects'), 100)">
+            <span class="project-detail-back" onclick="goHomeAndScrollTo('projects')">
                 &#8592; Back to work
             </span>
 
@@ -5436,7 +5447,7 @@
                     <div class="footer-links">
                         <span class="footer-link" onclick="showPage('portfolio')">Projects</span>
                         <span class="footer-link" onclick="showPage('home')">Services</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Book</span>
+                        <span class="footer-link" onclick="goHomeAndScrollTo('book')">Book</span>
                     </div>
                 </div>
             </div>
@@ -5509,7 +5520,7 @@
 
         <section class="studio-cta-band">
             <h2 class="studio-cta-title">Got a brand story worth telling?</h2>
-            <span class="pill-btn" style="display: inline-flex; border-color: rgba(244,243,239,0.4); color: var(--bg-primary);" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">
+            <span class="pill-btn" style="display: inline-flex; border-color: rgba(244,243,239,0.4); color: var(--bg-primary);" onclick="goHomeAndScrollTo('book')">
                 Let's talk
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </span>
@@ -5529,7 +5540,7 @@
                     <div class="footer-links">
                         <span class="footer-link" onclick="showPage('portfolio')">Projects</span>
                         <span class="footer-link" onclick="showPage('home')">Services</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Book</span>
+                        <span class="footer-link" onclick="goHomeAndScrollTo('book')">Book</span>
                     </div>
                 </div>
             </div>
@@ -6387,11 +6398,55 @@
             const navEl = document.getElementById('main-nav');
             const offset = (navEl ? navEl.getBoundingClientRect().height : 100) + 12;
             const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+            // 'instant', not 'smooth': a smooth scroll here is a browser-
+            // driven animation that keeps running for several hundred ms
+            // regardless of JS state, and clicking into another project
+            // before it finishes was leaving it to land on the NEW page's
+            // layout — shifting content (including "Back to work") out
+            // from under the very next click. Not worth the animation.
+            window.scrollTo({ top: Math.max(0, top), behavior: 'instant' });
+        }
+
+        // Single named handler for every "go home and scroll to a section"
+        // link (Back to work, Services, Book, etc.), replacing a two-
+        // statement inline onclick. Wrapped in try/catch so a failure in
+        // the scroll step can never also swallow the page switch itself —
+        // if something throws, the console will say exactly what, instead
+        // of the whole click silently doing nothing.
+        //
+        // navGeneration guards against a nastier race than a simple
+        // clearTimeout can: if the user navigates again (e.g. back to home,
+        // then straight into another project) before the queued
+        // scrollToSection() fires, a timer cancel alone doesn't help once
+        // it HAS fired — its smooth-scroll animation can still be
+        // mid-flight on the next page's layout, landing wherever that
+        // page's content happens to be and shifting "Back to work" out
+        // from under the very next click. Each showPage() bumps the
+        // counter; the queued scroll checks it's still the latest
+        // navigation before touching the viewport at all.
+        let navGeneration = 0;
+
+        function goHomeAndScrollTo(sectionId) {
+            try {
+                showPage('home');
+            } catch (err) {
+                console.error('goHomeAndScrollTo: showPage failed', err);
+                return;
+            }
+            const myGeneration = navGeneration;
+            setTimeout(() => {
+                if (navGeneration !== myGeneration) return;
+                try {
+                    scrollToSection(sectionId);
+                } catch (err) {
+                    console.error('goHomeAndScrollTo: scrollToSection failed', err);
+                }
+            }, 100);
         }
 
         function showPage(pageId, historyMode) {
             historyMode = historyMode || 'push';
+            navGeneration++;
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -6401,7 +6456,13 @@
             const selectedPage = document.getElementById(pageId);
             if (selectedPage) {
                 selectedPage.classList.add('active');
-                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+                // 'auto' means "respect CSS scroll-behavior", which is
+                // 'smooth' on this site — that silently turned this reset
+                // into a multi-frame scroll animation, during which the
+                // whole page (including "Back to work") keeps sliding
+                // under the cursor. 'instant' forces an immediate jump
+                // regardless of the CSS.
+                window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
             }
 
             if (historyMode === 'none') return;
