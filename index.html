@@ -1117,19 +1117,7 @@
         }
 
         .project-detail-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.25rem;
-            transition: color 0.2s ease;
-            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
-        }
-
-        .project-detail-back:hover {
-            color: var(--text-primary);
+            margin-bottom: 1.5rem;
         }
 
         .project-detail-title {
@@ -1216,7 +1204,7 @@
         .pd-top .project-gallery.single:not(.has-horizontal) .project-gallery-item {
             width: auto;
             max-width: 100%;
-            height: min(52vh, 520px);
+            height: min(58vh, 580px);
         }
 
         .pd-sidebar {
@@ -5384,9 +5372,12 @@
     <!-- Project Detail Page -->
     <div id="project-detail" class="page">
         <div class="project-detail-container">
-            <span class="project-detail-back" onclick="goHomeAndScrollTo('projects')">
-                &#8592; Back to work
-            </span>
+            <div class="project-detail-back">
+                <button type="button" class="pill-btn" onclick="showPage('home')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 12H7M11 7l-5 5 5 5"/></svg>
+                    Back to work
+                </button>
+            </div>
 
             <h1 id="project-detail-title" class="project-detail-title">Project</h1>
 
