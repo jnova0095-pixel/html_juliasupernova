@@ -175,6 +175,11 @@
 
         html {
             scroll-behavior: smooth;
+            /* The nav bar is ~108px tall and fixed at the top; without this,
+               every scrollIntoView() jump (Back to work, Services, Book,
+               etc.) lands its target flush with the viewport top, hidden
+               behind the nav, which reads as "navigation doesn't work". */
+            scroll-padding-top: 120px;
         }
 
         body {
@@ -1174,11 +1179,15 @@
             display: block;
         }
 
-        /* Info section: media (left) + objective/deliverables/timeline (right) */
+        /* Info section: media (left) + objective/deliverables/timeline (right).
+           Flex (not grid) so the sidebar hugs however wide the video actually
+           renders, instead of sitting at the edge of a fixed-ratio column
+           with empty space in between. */
         .pd-top {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 3rem;
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2.5rem;
             max-width: 1000px;
             margin: 0 auto 3.5rem;
             font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
@@ -1186,11 +1195,16 @@
 
         .pd-top .project-gallery {
             margin: 0;
+            flex: 0 0 auto;
         }
 
-        .pd-top .project-gallery.single,
+        /* Multi-video grids and the horizontal single case have no natural
+           shrink-to-fit size (both dimensions of an aspect-ratio box are
+           auto), so they need an explicit width to size sensibly as a flex
+           item. */
+        .pd-top .project-gallery:not(.single),
         .pd-top .project-gallery.single.has-horizontal {
-            max-width: 100%;
+            width: min(560px, 100%);
         }
 
         /* Cap the hero video by height (not column width) so a single
@@ -1203,6 +1217,11 @@
             width: auto;
             max-width: 100%;
             height: min(52vh, 520px);
+        }
+
+        .pd-sidebar {
+            flex: 1 1 260px;
+            min-width: 240px;
         }
 
         /* Shared by the homepage "Durable Case Study" info block */
@@ -1282,7 +1301,7 @@
             letter-spacing: 0.08em;
             color: var(--text-muted);
             margin-bottom: 0.75rem;
-            font-weight: 500;
+            font-weight: 300;
             font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
         }
 
@@ -1385,7 +1404,11 @@
                 max-width: 480px;
             }
 
-            .pd-top,
+            .pd-top {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
             .d-info {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -1677,6 +1700,11 @@
         /* Persistent nav - matches reference's fixed/scroll-aware nav */
         html {
             scroll-behavior: smooth;
+            /* The nav bar is ~108px tall and fixed at the top; without this,
+               every scrollIntoView() jump (Back to work, Services, Book,
+               etc.) lands its target flush with the viewport top, hidden
+               behind the nav, which reads as "navigation doesn't work". */
+            scroll-padding-top: 120px;
         }
 
         body {
@@ -2581,6 +2609,7 @@
 
         .social-carousel-strip.dragging {
             cursor: grabbing;
+            scroll-snap-type: none;
         }
 
         .social-carousel-strip::-webkit-scrollbar {
@@ -2609,7 +2638,13 @@
         /* Clients Section */
         .clients-section {
             position: relative;
-            max-width: 1400px;
+            /* 1496, not 1400: this section's own 3rem (48px) side padding is
+               applied inside this same box (unlike .videos-section, which
+               keeps its padding on the outer element and caps width on an
+               inner .section-container) — so the max-width has to include
+               that padding for the content to land at the same 1400px the
+               Featured Projects grid uses. */
+            max-width: 1496px;
             margin: 0 auto;
             padding: 5rem 3rem 6rem;
         }
@@ -4483,12 +4518,12 @@
         <section class="clients-section" id="clients">
             <p class="section-label reveal">Stories Told For</p>
             <div class="logo-grid reveal">
-                <div class="logo-grid-cell"><img src="client-cokezero-halftone.png" alt="Coca-Cola" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-durable-halftone.png" alt="Durable" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-koalendar-halftone.png" alt="Koalendar" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-fiverr-halftone.png" alt="Fiverr" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-maggi-halftone.png" alt="Maggi" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-polarpro-halftone.png" alt="PolarPro" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-durable.svg" alt="Durable" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-koalendar.png" alt="Koalendar" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-fiverr.svg" alt="Fiverr" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
             </div>
         </section>
 
@@ -5540,7 +5575,7 @@
                 cursor.style.top = e.clientY + 'px';
             });
             document.addEventListener('mouseover', (e) => {
-                const viewTarget = e.target.closest('.showreel-card, .project-gallery-item');
+                const viewTarget = e.target.closest('.showreel-card');
                 const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, .st-row, .sticker-dropzone, .sticker-modal-cancel, .sticker-modal-confirm, .sticker-modal-close, [onclick]');
                 if (viewTarget) {
                     cursor.classList.add('view');
@@ -5880,6 +5915,8 @@
             let startX = 0;
             let scrollStart = 0;
             let dragDistance = 0;
+            let pendingDelta = null;
+            let rafId = null;
 
             let interacted = false;
 
@@ -5895,6 +5932,12 @@
                 if (!badge || interacted) return;
                 const hasOverflow = strip.scrollWidth > strip.clientWidth + 1;
                 badge.classList.toggle('hide', !hasOverflow);
+            }
+
+            function flushScroll() {
+                rafId = null;
+                if (pendingDelta === null) return;
+                strip.scrollLeft = scrollStart - pendingDelta;
             }
 
             strip.addEventListener('mousedown', (e) => {
@@ -5917,7 +5960,12 @@
                 e.preventDefault();
                 const delta = e.pageX - startX;
                 dragDistance = Math.max(dragDistance, Math.abs(delta));
-                strip.scrollLeft = scrollStart - delta;
+                // Batch the scrollLeft write into the next animation frame
+                // instead of on every mousemove — mousemove can fire much
+                // faster than the browser can reflow a scroll container,
+                // which is what was making the drag feel choppy.
+                pendingDelta = delta;
+                if (rafId === null) rafId = requestAnimationFrame(flushScroll);
             });
             strip.addEventListener('click', (e) => {
                 if (dragDistance > 5) {
@@ -5925,7 +5973,6 @@
                     e.stopPropagation();
                 }
             }, true);
-            strip.addEventListener('scroll', hideBadge, { passive: true });
             strip.addEventListener('touchstart', hideBadge, { passive: true });
 
             updateBadgeForOverflow();
