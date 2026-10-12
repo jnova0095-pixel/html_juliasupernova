@@ -1108,7 +1108,7 @@
         .project-detail-container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 8rem 3rem 4rem;
+            padding: 6rem 3rem 4rem;
         }
 
         .project-detail-back {
@@ -1118,7 +1118,7 @@
             cursor: pointer;
             color: var(--text-secondary);
             font-size: 0.9rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.25rem;
             transition: color 0.2s ease;
             font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
         }
@@ -1130,9 +1130,9 @@
         .project-detail-title {
             font-family: 'Aeonik', sans-serif;
             font-weight: 700;
-            font-size: 3rem;
+            font-size: 2.25rem;
             line-height: 1.1;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Media gallery: one or more videos from the same campaign */
@@ -1191,6 +1191,18 @@
         .pd-top .project-gallery.single,
         .pd-top .project-gallery.single.has-horizontal {
             max-width: 100%;
+        }
+
+        /* Cap the hero video by height (not column width) so a single
+           vertical clip doesn't blow past the fold on a laptop screen */
+        .pd-top .project-gallery.single:not(.has-horizontal) {
+            justify-items: start;
+        }
+
+        .pd-top .project-gallery.single:not(.has-horizontal) .project-gallery-item {
+            width: auto;
+            max-width: 100%;
+            height: min(52vh, 520px);
         }
 
         /* Shared by the homepage "Durable Case Study" info block */
@@ -2614,9 +2626,7 @@
 
         .logo-grid {
             margin-top: 2.5rem;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             border: 1px solid rgba(28, 27, 27, 0.15);
@@ -2629,7 +2639,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 140px;
+            height: 170px;
             padding: 1.5rem;
             border-right: 1px solid rgba(28, 27, 27, 0.15);
             border-bottom: 1px solid rgba(28, 27, 27, 0.15);
@@ -2644,7 +2654,7 @@
         }
 
         .logo-grid-cell img {
-            height: 32px;
+            height: 38px;
             width: auto;
             max-width: 75%;
             object-fit: contain;
@@ -4473,15 +4483,12 @@
         <section class="clients-section" id="clients">
             <p class="section-label reveal">Stories Told For</p>
             <div class="logo-grid reveal">
-                <div class="logo-grid-cell"><img src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-durable.svg" alt="Durable" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-koalendar.png" alt="Koalendar" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-fiverr.svg" alt="Fiverr" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-bazaart.png" alt="Bazaart" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-headway.png" alt="Headway" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-lifesum.svg" alt="Lifesum" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-cokezero-halftone.png" alt="Coca-Cola" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-durable-halftone.png" alt="Durable" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-koalendar-halftone.png" alt="Koalendar" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-fiverr-halftone.png" alt="Fiverr" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-maggi-halftone.png" alt="Maggi" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-polarpro-halftone.png" alt="PolarPro" loading="lazy"></div>
             </div>
         </section>
 
@@ -4617,10 +4624,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="drag-badge" id="social-carousel-drag">
-                    Drag
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/></svg>
+                    <div class="drag-badge" id="social-carousel-drag">
+                        Drag
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3"/></svg>
+                    </div>
                 </div>
 
                 <div style="text-align: center; margin-top: 2.5rem;">
@@ -5874,11 +5881,26 @@
             let scrollStart = 0;
             let dragDistance = 0;
 
+            let interacted = false;
+
             function hideBadge() {
+                interacted = true;
                 if (badge) badge.classList.add('hide');
             }
 
+            // Only show the "Drag" hint when the strip actually has more
+            // content than fits on screen — otherwise it's a promise the
+            // interaction can't keep.
+            function updateBadgeForOverflow() {
+                if (!badge || interacted) return;
+                const hasOverflow = strip.scrollWidth > strip.clientWidth + 1;
+                badge.classList.toggle('hide', !hasOverflow);
+            }
+
             strip.addEventListener('mousedown', (e) => {
+                // Stops the browser's native image/video drag-out gesture from
+                // hijacking the mousemove sequence this custom scroll relies on.
+                e.preventDefault();
                 isDown = true;
                 dragDistance = 0;
                 strip.classList.add('dragging');
@@ -5905,6 +5927,10 @@
             }, true);
             strip.addEventListener('scroll', hideBadge, { passive: true });
             strip.addEventListener('touchstart', hideBadge, { passive: true });
+
+            updateBadgeForOverflow();
+            window.addEventListener('resize', updateBadgeForOverflow);
+            window.addEventListener('load', updateBadgeForOverflow);
         })();
 
         const CAMPAIGNS = {
