@@ -1239,7 +1239,7 @@
             text-align: center;
         }
 
-        .d-info.restricted p {
+        .d-info.restricted p:not(.pd-label) {
             font-size: 1.15rem;
             line-height: 1.6;
             color: var(--text-primary);
@@ -1296,14 +1296,14 @@
         }
 
         /* Matches .hero-meta-info (the nav's "38.722 N, 9.139 W / EST. 2025"
-           text) exactly, at this element's reduced weight. */
+           text) exactly, weight included. */
         .pd-label {
             font-size: 0.68rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: var(--text-secondary);
             margin-bottom: 0.75rem;
-            font-weight: 300;
+            font-weight: 400;
             font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
         }
 
@@ -1355,7 +1355,7 @@
             margin-bottom: 2rem;
         }
 
-        .pd-side-block p {
+        .pd-side-block p:not(.pd-label) {
             font-size: 0.9rem;
             color: var(--text-secondary);
             line-height: 1.6;
@@ -1375,7 +1375,7 @@
             margin-bottom: 0;
         }
 
-        .pd-body-block p,
+        .pd-body-block p:not(.pd-label),
         .pd-body-block li {
             font-size: 1.15rem;
             line-height: 1.6;
@@ -4394,7 +4394,7 @@
                 Projects
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </button>
-            <button class="pill-btn" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100);">
+            <button class="pill-btn" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">
                 Contact
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </button>
@@ -4409,7 +4409,7 @@
         <div class="mobile-menu-links">
             <span onclick="closeMobileMenu(); showPage('portfolio')">Projects</span>
             <span onclick="closeMobileMenu(); showPage('studio')">Studio</span>
-            <span onclick="closeMobileMenu(); showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100);">Contact</span>
+            <span onclick="closeMobileMenu(); showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Contact</span>
         </div>
     </div>
 
@@ -4578,6 +4578,22 @@
 
                 <div class="social-carousel-stage">
                     <div class="social-carousel-strip" id="social-carousel-strip">
+                        <!-- K&F Concept — instructions -->
+                        <div class="showreel-card sc-item" onclick="openProject('kfconcept')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/kf-instructions-grid.mp4" type="video/mp4">
+                            </video>
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">K&amp;F Concept</div>
+                                        <div class="showreel-overlay-tag">Spec work</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Fiverr 1 -->
                         <div class="showreel-card sc-item" onclick="openProject('fiverr')">
                             <video autoplay muted loop playsinline preload="metadata">
@@ -4684,6 +4700,22 @@
                                     <div>
                                         <div class="showreel-overlay-title">Maggie</div>
                                         <div class="showreel-overlay-tag">Social Campaign</div>
+                                    </div>
+                                    <div class="showreel-expand">&#8599;</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- K&F Concept — one tool -->
+                        <div class="showreel-card sc-item" onclick="openProject('kfconcept')">
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/kf-one-tool-grid.mp4" type="video/mp4">
+                            </video>
+                            <div class="showreel-overlay">
+                                <div class="showreel-overlay-content">
+                                    <div>
+                                        <div class="showreel-overlay-title">K&amp;F Concept</div>
+                                        <div class="showreel-overlay-tag">Spec work</div>
                                     </div>
                                     <div class="showreel-expand">&#8599;</div>
                                 </div>
@@ -5215,8 +5247,8 @@
                     <h4 class="footer-title">Navigation</h4>
                     <div class="footer-links">
                         <span class="footer-link" onclick="showPage('portfolio')">Projects</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => document.getElementById('services').scrollIntoView({behavior: 'smooth'}), 100)">Services</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100)">Book</span>
+                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('services'), 100)">Services</span>
+                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Book</span>
                     </div>
                 </div>
 
@@ -5341,7 +5373,7 @@
     <!-- Project Detail Page -->
     <div id="project-detail" class="page">
         <div class="project-detail-container">
-            <span class="project-detail-back" onclick="showPage('home'); setTimeout(() => document.getElementById('projects').scrollIntoView({behavior: 'smooth'}), 100)">
+            <span class="project-detail-back" onclick="showPage('home'); setTimeout(() => scrollToSection('projects'), 100)">
                 &#8592; Back to work
             </span>
 
@@ -5404,7 +5436,7 @@
                     <div class="footer-links">
                         <span class="footer-link" onclick="showPage('portfolio')">Projects</span>
                         <span class="footer-link" onclick="showPage('home')">Services</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100)">Book</span>
+                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Book</span>
                     </div>
                 </div>
             </div>
@@ -5477,7 +5509,7 @@
 
         <section class="studio-cta-band">
             <h2 class="studio-cta-title">Got a brand story worth telling?</h2>
-            <span class="pill-btn" style="display: inline-flex; border-color: rgba(244,243,239,0.4); color: var(--bg-primary);" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100)">
+            <span class="pill-btn" style="display: inline-flex; border-color: rgba(244,243,239,0.4); color: var(--bg-primary);" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">
                 Let's talk
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </span>
@@ -5497,7 +5529,7 @@
                     <div class="footer-links">
                         <span class="footer-link" onclick="showPage('portfolio')">Projects</span>
                         <span class="footer-link" onclick="showPage('home')">Services</span>
-                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => document.getElementById('book').scrollIntoView({behavior: 'smooth'}), 100)">Book</span>
+                        <span class="footer-link" onclick="showPage('home'); setTimeout(() => scrollToSection('book'), 100)">Book</span>
                     </div>
                 </div>
             </div>
@@ -6212,6 +6244,23 @@
                     { src: 'Bonebroth2.mp4', orientation: 'vertical', label: 'Bone Broth 2' },
                     { src: 'Bonebroth3.mp4', orientation: 'vertical', label: 'Bone Broth 3' }
                 ]
+            },
+            kfconcept: {
+                title: 'K&F Concept',
+                tags: ['Spec work'],
+                objective: ['Brand awareness', 'Drive long-term engagement.'],
+                deliverables: '2x high quality videos, 9:16',
+                timeline: 'Details coming soon.',
+                challenge: 'Show how K&F Concept\'s gear actually gets used in the field, instead of just a studio product shot.',
+                solution: [
+                    'Instructions, made watchable. Turned a straightforward how-to into a piece with enough pace and personality to hold attention.',
+                    'One tool, one clear job. Focused the second cut on a single accessory so its purpose is obvious in seconds, not explained in a paragraph.'
+                ],
+                result: 'Two spec pieces built to show the gear in actual use, not just on a shelf.',
+                videos: [
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/kf-instructions-detail.mp4', orientation: 'vertical', label: 'Instructions' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/kf-one-tool-detail.mp4', orientation: 'vertical', label: 'One Tool' }
+                ]
             }
         };
 
@@ -6325,6 +6374,20 @@
             } else {
                 history.pushState(null, '', url);
             }
+        }
+
+        // Scrolls a section into view, offsetting for the fixed nav bar
+        // manually rather than relying solely on CSS scroll-padding-top
+        // (scrollIntoView's support for that has been inconsistent across
+        // browsers/versions) — this is what "Back to work", "Services" and
+        // "Book" all use so the destination never lands hidden behind the nav.
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const navEl = document.getElementById('main-nav');
+            const offset = (navEl ? navEl.getBoundingClientRect().height : 100) + 12;
+            const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
         }
 
         function showPage(pageId, historyMode) {
