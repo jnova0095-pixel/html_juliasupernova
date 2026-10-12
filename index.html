@@ -2697,6 +2697,13 @@
             object-fit: contain;
         }
 
+        /* Coke Zero, Maggi and PolarPro read visually smaller than the
+           others at the same pixel height (thin script, squat badge,
+           compact icon), so they get a deliberate size bump. */
+        .logo-grid-cell img.logo-lg {
+            height: 54px;
+        }
+
         @media (max-width: 700px) {
             .logo-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -2709,6 +2716,10 @@
 
             .logo-grid-cell img {
                 height: 22px;
+            }
+
+            .logo-grid-cell img.logo-lg {
+                height: 30px;
             }
         }
 
@@ -4520,12 +4531,12 @@
         <section class="clients-section" id="clients">
             <p class="section-label reveal">Stories Told For</p>
             <div class="logo-grid reveal">
-                <div class="logo-grid-cell"><img src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
+                <div class="logo-grid-cell"><img class="logo-lg" src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
                 <div class="logo-grid-cell"><img src="client-durable.svg" alt="Durable" loading="lazy"></div>
                 <div class="logo-grid-cell"><img src="client-koalendar.png" alt="Koalendar" loading="lazy"></div>
                 <div class="logo-grid-cell"><img src="client-fiverr.svg" alt="Fiverr" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
+                <div class="logo-grid-cell"><img class="logo-lg" src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
+                <div class="logo-grid-cell"><img class="logo-lg" src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
             </div>
         </section>
 
