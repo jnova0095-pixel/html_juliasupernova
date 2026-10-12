@@ -2699,9 +2699,19 @@
 
         /* Coke Zero, Maggi and PolarPro read visually smaller than the
            others at the same pixel height (thin script, squat badge,
-           compact icon), so they get a deliberate size bump. */
+           compact icon), so they get a deliberate size bump. Durable
+           reads larger than the rest, so it gets a size reduction. */
         .logo-grid-cell img.logo-lg {
             height: 54px;
+        }
+
+        .logo-grid-cell img.logo-sm {
+            height: 30px;
+        }
+
+        /* PolarPro, on top of the shared .logo-lg bump, gets another 5%. */
+        .logo-grid-cell img.logo-xl {
+            height: 57px;
         }
 
         @media (max-width: 700px) {
@@ -2720,6 +2730,14 @@
 
             .logo-grid-cell img.logo-lg {
                 height: 30px;
+            }
+
+            .logo-grid-cell img.logo-sm {
+                height: 17px;
+            }
+
+            .logo-grid-cell img.logo-xl {
+                height: 32px;
             }
         }
 
@@ -4532,11 +4550,11 @@
             <p class="section-label reveal">Stories Told For</p>
             <div class="logo-grid reveal">
                 <div class="logo-grid-cell"><img class="logo-lg" src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
-                <div class="logo-grid-cell"><img src="client-durable.svg" alt="Durable" loading="lazy"></div>
+                <div class="logo-grid-cell"><img class="logo-sm" src="client-durable.svg" alt="Durable" loading="lazy"></div>
                 <div class="logo-grid-cell"><img src="client-koalendar.png" alt="Koalendar" loading="lazy"></div>
                 <div class="logo-grid-cell"><img src="client-fiverr.svg" alt="Fiverr" loading="lazy"></div>
                 <div class="logo-grid-cell"><img class="logo-lg" src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
-                <div class="logo-grid-cell"><img class="logo-lg" src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
+                <div class="logo-grid-cell"><img class="logo-xl" src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
             </div>
         </section>
 
