@@ -2612,39 +2612,57 @@
             background: rgba(28, 27, 27, 0.1);
         }
 
-        .clients-text {
-            font-family: 'Aeonik', sans-serif;
-            font-size: clamp(1.3rem, 3vw, 2.5rem);
-            font-weight: 300;
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-            color: var(--text-primary);
-            max-width: 1100px;
-            margin-top: 1.5rem;
+        .logo-grid {
+            margin-top: 2.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid rgba(28, 27, 27, 0.15);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--bg-card);
         }
 
-        .client {
-            color: inherit;
-            text-decoration: none;
-            cursor: none;
-            transition: color 0.25s;
-            border-bottom: 1px solid transparent;
+        .logo-grid-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 140px;
+            padding: 1.5rem;
+            border-right: 1px solid rgba(28, 27, 27, 0.15);
+            border-bottom: 1px solid rgba(28, 27, 27, 0.15);
         }
 
-        .client:hover {
-            color: var(--accent-green-dark);
-            border-bottom-color: var(--accent-green-dark);
+        .logo-grid-cell:nth-child(3n) {
+            border-right: none;
         }
 
-        .typing-cursor {
-            display: inline-block;
-            color: var(--accent-green-dark);
-            animation: typingBlink 0.9s step-end infinite;
+        .logo-grid-cell:nth-last-child(-n+3) {
+            border-bottom: none;
         }
 
-        @keyframes typingBlink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
+        .logo-grid-cell img {
+            height: 32px;
+            width: auto;
+            max-width: 75%;
+            object-fit: contain;
+        }
+
+        @media (max-width: 700px) {
+            .logo-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .logo-grid-cell {
+                height: 96px;
+                padding: 0.85rem;
+            }
+
+            .logo-grid-cell img {
+                height: 22px;
+            }
         }
 
         /* Contact / Footer CTA */
@@ -4454,9 +4472,17 @@
 
         <section class="clients-section" id="clients">
             <p class="section-label reveal">Stories Told For</p>
-            <p class="clients-text reveal">
-                <a href="javascript:void(0)" class="client" onclick="openProject('cokezero')">Coke Zero</a>, <a href="javascript:void(0)" class="client" onclick="openProject('durable')">Durable</a>, <a href="javascript:void(0)" class="client" onclick="openProject('koalendar')">Koalendar</a>, <a href="javascript:void(0)" class="client" onclick="openProject('fiverr')">Fiverr</a>, <a href="javascript:void(0)" class="client" onclick="openProject('maggie')">Maggie</a> and <a href="javascript:void(0)" class="client" onclick="openProject('polarpro')">PolarPro</a>.
-            </p>
+            <div class="logo-grid reveal">
+                <div class="logo-grid-cell"><img src="client-cokezero.svg" alt="Coca-Cola" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-durable.svg" alt="Durable" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-koalendar.png" alt="Koalendar" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-fiverr.svg" alt="Fiverr" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-maggi.svg" alt="Maggi" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-polarpro.png" alt="PolarPro" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-bazaart.png" alt="Bazaart" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-headway.png" alt="Headway" loading="lazy"></div>
+                <div class="logo-grid-cell"><img src="client-lifesum.svg" alt="Lifesum" loading="lazy"></div>
+            </div>
         </section>
 
         <!-- Tagline Section -->
@@ -5750,60 +5776,6 @@
                 const saved = localStorage.getItem(STORAGE_KEY);
                 if (saved) renderCustomSticker(saved);
             } catch (err) {}
-        })();
-
-        // Trusted By: type the client list out on scroll into view, keeping links clickable
-        (function() {
-            const el = document.querySelector('.clients-text');
-            if (!el) return;
-            const originalNodes = Array.from(el.childNodes);
-            el.innerHTML = '';
-            const cursor = document.createElement('span');
-            cursor.className = 'typing-cursor';
-            cursor.textContent = '|';
-            el.appendChild(cursor);
-
-            function typeText(text, container, cb) {
-                let i = 0;
-                (function step() {
-                    if (i <= text.length) {
-                        container.textContent = text.slice(0, i);
-                        i++;
-                        setTimeout(step, 18);
-                    } else if (cb) {
-                        cb();
-                    }
-                })();
-            }
-
-            function revealNodes(nodes, i) {
-                if (i >= nodes.length) {
-                    cursor.remove();
-                    return;
-                }
-                const node = nodes[i];
-                if (node.nodeType === Node.TEXT_NODE) {
-                    const span = document.createElement('span');
-                    el.insertBefore(span, cursor);
-                    typeText(node.textContent, span, () => revealNodes(nodes, i + 1));
-                } else {
-                    node.style.opacity = '0';
-                    node.style.transition = 'opacity 0.2s ease';
-                    el.insertBefore(node, cursor);
-                    requestAnimationFrame(() => { node.style.opacity = '1'; });
-                    setTimeout(() => revealNodes(nodes, i + 1), 220);
-                }
-            }
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        revealNodes(originalNodes, 0);
-                        observer.disconnect();
-                    }
-                });
-            }, { threshold: 0.4 });
-            observer.observe(el);
         })();
 
         // Studio page hero strip: click-and-drag scrolling
