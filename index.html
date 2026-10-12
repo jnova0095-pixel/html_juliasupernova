@@ -1174,24 +1174,47 @@
             display: block;
         }
 
-        /* Info section: description (left) + tags/tools/usecase (right) */
-        .d-info {
+        /* Info section: media (left) + objective/deliverables/timeline (right) */
+        .pd-top {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
             gap: 3rem;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 0 auto 3.5rem;
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+        }
+
+        .pd-top .project-gallery {
+            margin: 0;
+        }
+
+        .pd-top .project-gallery.single,
+        .pd-top .project-gallery.single.has-horizontal {
+            max-width: 100%;
+        }
+
+        /* Shared by the homepage "Durable Case Study" info block */
+        .d-info {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 3rem;
             font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
         }
 
         .d-info.restricted {
             grid-template-columns: 1fr;
             max-width: 700px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .d-info-main h3,
-        .d-side-block h3 {
+        .d-info.restricted p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .d-info-main h3 {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
@@ -1203,24 +1226,6 @@
         .d-info-main p {
             font-size: 1.15rem;
             line-height: 1.6;
-            color: var(--text-primary);
-        }
-
-        .d-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .d-tag {
-            display: inline-block;
-            padding: 0.35rem 0.85rem;
-            background: rgba(190, 242, 124, 0.4);
-            border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
             color: var(--text-primary);
         }
 
@@ -1259,14 +1264,102 @@
             flex-shrink: 0;
         }
 
-        .d-side-block {
+        .pd-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+        }
+
+        .d-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .d-tag {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            background: rgba(190, 242, 124, 0.4);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-primary);
+        }
+
+        .pd-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pd-list li {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.6rem 0;
+            border-top: 1px solid rgba(28, 27, 27, 0.1);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .pd-list li:last-child {
+            border-bottom: 1px solid rgba(28, 27, 27, 0.1);
+        }
+
+        .pd-list li .n {
+            color: var(--text-muted);
+            font-variant-numeric: tabular-nums;
+            flex-shrink: 0;
+        }
+
+        .pd-side-block {
             margin-bottom: 2rem;
         }
 
-        .d-side-block p {
+        .pd-side-block p {
             font-size: 0.9rem;
             color: var(--text-secondary);
             line-height: 1.6;
+        }
+
+        .pd-body {
+            max-width: 1000px;
+            margin: 0 auto;
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+        }
+
+        .pd-body-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .pd-body-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .pd-body-block p,
+        .pd-body-block li {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .pd-bullets {
+            margin: 0;
+            padding-left: 1.3rem;
+        }
+
+        .pd-bullets li {
+            margin-bottom: 0.6rem;
+        }
+
+        .pd-bullets li:last-child {
+            margin-bottom: 0;
         }
 
         @media (max-width: 900px) {
@@ -1280,6 +1373,7 @@
                 max-width: 480px;
             }
 
+            .pd-top,
             .d-info {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -5154,24 +5248,44 @@
 
             <h1 id="project-detail-title" class="project-detail-title">Project</h1>
 
-            <div id="project-detail-gallery" class="project-gallery"></div>
+            <div class="d-info restricted" id="project-detail-restricted-note" style="display:none;">
+                <p class="pd-label">A quick note</p>
+                <p id="project-detail-idea"></p>
+            </div>
 
-            <div class="d-info" id="project-detail-info">
-                <div class="d-info-main">
-                    <h3 id="project-detail-idea-heading">The Idea</h3>
-                    <p id="project-detail-idea"></p>
-                </div>
-                <div class="d-side" id="project-detail-side">
-                    <div id="project-detail-tags" class="d-tags"></div>
-                    <p class="d-sp-label">Tools Used</p>
-                    <ol id="project-detail-tools" class="d-sp"></ol>
-                    <div class="d-side-block">
-                        <h3>The Objective</h3>
-                        <p id="project-detail-usecase"></p>
+            <div id="project-detail-main">
+                <div id="project-detail-tags" class="d-tags"></div>
+
+                <div class="pd-top">
+                    <div id="project-detail-gallery" class="project-gallery"></div>
+                    <div class="pd-sidebar" id="project-detail-side">
+                        <div class="pd-side-block">
+                            <p class="pd-label">The Objective</p>
+                            <ol id="project-detail-objective" class="pd-list"></ol>
+                        </div>
+                        <div class="pd-side-block">
+                            <p class="pd-label">Deliverables</p>
+                            <p id="project-detail-deliverables"></p>
+                        </div>
+                        <div class="pd-side-block">
+                            <p class="pd-label">Estimated Timeline</p>
+                            <p id="project-detail-timeline"></p>
+                        </div>
                     </div>
-                    <div class="d-side-block">
-                        <h3>Estimated Timeline</h3>
-                        <p id="project-detail-timeline"></p>
+                </div>
+
+                <div class="pd-body">
+                    <div class="pd-body-block">
+                        <p class="pd-label">The Challenge</p>
+                        <p id="project-detail-challenge"></p>
+                    </div>
+                    <div class="pd-body-block">
+                        <p class="pd-label">The Solution</p>
+                        <ul id="project-detail-solution" class="pd-bullets"></ul>
+                    </div>
+                    <div class="pd-body-block">
+                        <p class="pd-label">The Result</p>
+                        <p id="project-detail-result"></p>
                     </div>
                 </div>
             </div>
@@ -5825,10 +5939,16 @@
             notion: {
                 title: 'Notion',
                 tags: ['Spec work'],
-                idea: 'Showcase the feeling of untangling a mess in your head, using bold animation.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — compositing & animation'],
-                useCase: 'Drive long-term engagement.',
+                objective: ['Brand awareness', 'Drive long-term engagement.'],
+                deliverables: '1x high quality video, 9:16',
                 timeline: '10 working days, concept to final edit.',
+                challenge: 'Show what it actually feels like when your brain is a mess of tabs, notes and half-finished to-dos, and Notion is the thing that closes them all.',
+                solution: [
+                    'Bold, chaotic-to-calm animation. I built a sequence that visualizes mental clutter as literal moving shapes and clears it in rhythm with the voiceover.',
+                    'Matched pace to feeling. Fast, jittery cuts early on settle into clean, confident motion once Notion appears, so the edit itself tells the story.',
+                    'Sound as punctuation. Every beat of clarity lands on a sound cue, so the "aha" moment is felt, not just seen.'
+                ],
+                result: 'A spec piece built to show range: bold motion design paired with a clear, simple message.',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/notion-detail.mp4', orientation: 'vertical' }
                 ]
@@ -5836,10 +5956,17 @@
             headspace: {
                 title: 'Headspace',
                 tags: ['Spec work'],
-                idea: 'Showcase the feeling of peace, being able to access meditation anywhere.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — 2.5D compositing & animation'],
-                useCase: 'Drive clicks and long-term engagement.',
-                timeline: '10 working days, concept to final edit.',
+                objective: ['Brand awareness', 'Drive downloads and long-term engagement.'],
+                deliverables: '1x high quality video, 9:16',
+                timeline: '7 working days, concept to final edit.',
+                challenge: 'Show Headspace taking you somewhere calm in seconds, across four very different locations, without travel, location fees or a big crew.',
+                solution: [
+                    'One studio, four worlds. I shot on green screen and hand-animated each environment in 2D in After Effects: forest, mountain, beach and lake. A single shoot day replaced four location shoots.',
+                    'The app as the trigger. Each escape starts with a tap on the phone, so Headspace drives the story instead of appearing only as a logo at the end.',
+                    'Built from their brand. I studied Headspace\'s social channels and matched their soft, illustrated, calming tone, so the piece feels like it could run on their feed tomorrow.',
+                    'Sound does half the work. I did the full sound design myself, taking the viewer from office noise to calm nature sound to carry the shift in mood.'
+                ],
+                result: 'Concept to final cut in 7 working days. Posted on my socials, where it led to new client work.',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/headspace-detail.mp4', orientation: 'vertical' }
                 ]
@@ -5862,9 +5989,6 @@
             cokezero: {
                 title: 'Coca-Cola — The Club loyalty programme',
                 tags: [],
-                idea: '',
-                tools: [],
-                useCase: '',
                 timeline: '',
                 videos: [],
                 restricted: true,
@@ -5873,10 +5997,16 @@
             polarpro: {
                 title: 'PolarPro',
                 tags: ['Brand Collaboration'],
-                idea: 'A gamified bit of storytelling built around one very real problem: showing up to shoot and realizing you forgot your memory card. PolarPro\'s body cap holds a spare right on the camera, so that panic never happens again.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design, graphics'],
-                useCase: 'Drive sales and long-term engagement.',
+                objective: ['Drive product sales', 'Build long-term engagement with PolarPro\'s audience.'],
+                deliverables: '1x high quality video, 9:16',
                 timeline: '5 working days.',
+                challenge: 'Make a niche camera accessory feel exciting, by dramatizing the one moment every creator dreads: showing up to shoot with no memory card.',
+                solution: [
+                    'Built it like a mini-disaster movie. The panic of realizing the card\'s missing is played completely straight, so the relief when PolarPro\'s body cap saves the shoot lands harder.',
+                    'Kept it product-first without feeling like an ad. The body cap is the hero of the story, not a bolted-on plug at the end.',
+                    'Edited for the scroll. Paced it to hook in the first second, since this was built to live in a feed, not a cinema.'
+                ],
+                result: 'Delivered in 5 working days, used across PolarPro\'s social channels to highlight the product\'s everyday usefulness.',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/polarpro-detail.mp4', orientation: 'vertical' }
                 ]
@@ -5884,10 +6014,16 @@
             claude: {
                 title: 'Claude',
                 tags: ['Spec work'],
-                idea: 'Closing the gap between the idea and the action, that\'s the whole pitch, and Claude is what makes it happen.',
-                tools: ['DaVinci Resolve', 'After Effects'],
-                useCase: 'Drive clicks and long-term engagement.',
+                objective: ['Brand awareness', 'Drive clicks and long-term engagement.'],
+                deliverables: '1x high quality video, 16:9',
                 timeline: '5 working days, concept to final edit.',
+                challenge: 'Explain what Claude actually does in a way that feels like a story, not a feature list, for an audience that\'s already tired of generic "AI assistant" pitches.',
+                solution: [
+                    'Led with the gap, not the tool. The piece opens on the distance between having an idea and actually shipping it, and Claude is introduced as the thing that closes it.',
+                    'Kept the visuals clean and confident. No gimmicks, just clear motion graphics that mirror how fast an idea moves once Claude\'s involved.',
+                    'Wrote it like a spec ad, not a sizzle reel. Built to feel like something Anthropic could run as-is.'
+                ],
+                result: 'A polished spec piece built to demonstrate range on brand and tech-forward storytelling.',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/claude-detail.mp4', orientation: 'horizontal' }
                 ]
@@ -5895,10 +6031,15 @@
             vinted: {
                 title: 'Vinted',
                 tags: ['Spec work'],
-                idea: 'A quick, native-feeling spec piece showing Vinted off in the wild.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design'],
-                useCase: 'Drive long-term engagement and brand recognition.',
+                objective: ['Brand recognition', 'Drive long-term engagement.'],
+                deliverables: '1x high quality video, 9:16',
                 timeline: 'Details coming soon.',
+                challenge: 'Make a secondhand marketplace app feel exciting in a feed full of people selling things, not showing them off.',
+                solution: [
+                    'Shot it native. Framed and paced like a real creator post, not an ad, so it earns attention instead of asking for it.',
+                    'Led with a relatable moment, not a feature list, so the app sells itself through the story instead of a voiceover explaining it.'
+                ],
+                result: 'A fast-turnaround spec piece built to show how Vinted could look inside an organic social feed.',
                 videos: [
                     { src: 'Vinted.mp4', orientation: 'vertical' }
                 ]
@@ -5906,10 +6047,16 @@
             fiverr: {
                 title: 'Fiverr',
                 tags: ['Brand Collaboration', 'Social Campaign'],
-                idea: 'Two cuts from the same Fiverr campaign: one built as a spotlight piece for Fiverr\'s own official page, the other trimmed down to feel native in the social feed first and sell second.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — graphics'],
-                useCase: 'Build long-term engagement and trust.',
+                objective: ['Build long-term engagement and trust', 'Drive clicks to Fiverr\'s platform.'],
+                deliverables: '2x high quality videos, 9:16',
                 timeline: '3 working days, concept to final edit.',
+                challenge: 'Make one Fiverr story work in two completely different contexts: a polished spotlight piece for Fiverr\'s own page, and a native-feeling cut built to survive the scroll.',
+                solution: [
+                    'Cut it twice, not once. Same core story, re-paced and re-edited for where it would actually be watched.',
+                    'Fiverr 1 leads with polish, built to represent the brand on its own channel.',
+                    'Fiverr 2 leads with the hook, trimmed to earn the first three seconds in a crowded feed before it sells anything.'
+                ],
+                result: 'Delivered both cuts in 3 working days, giving Fiverr flexibility across owned and organic placements.',
                 videos: [
                     { src: 'Fiverr.mp4', orientation: 'vertical', label: 'Fiverr 1' },
                     { src: 'fiverr2-detail.mp4', orientation: 'vertical', label: 'Fiverr 2' }
@@ -5918,10 +6065,15 @@
             maggie: {
                 title: 'Maggie',
                 tags: ['Social Campaign'],
-                idea: 'Two creative directions from the same Maggie campaign, both built to feel native in the feed while testing a different hook and pace.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design'],
-                useCase: 'Launch a new product.',
+                objective: ['Launch a new product', 'Test which hook resonates best with the feed audience.'],
+                deliverables: '2x high quality videos, 9:16',
                 timeline: '5 working days.',
+                challenge: 'Launch a new Maggie product with creative that feels native enough to earn trust in a crowded feed, without a big production budget.',
+                solution: [
+                    'Built two directions, not one. Same product, two different hooks and paces, so the stronger one could be identified from real performance.',
+                    'Kept both cuts social-first. No polished ad gloss, just pacing and framing that matches how people actually watch on their phone.'
+                ],
+                result: 'Two launch-ready cuts delivered in 5 working days, giving the brand a direct hook comparison to run with.',
                 videos: [
                     { src: 'maggie-v1-detail.mp4', orientation: 'vertical', label: 'Maggie 1' },
                     { src: 'maggie-v2-detail.mp4', orientation: 'vertical', label: 'Maggie 2' }
@@ -5930,10 +6082,16 @@
             durable: {
                 title: 'Durable',
                 tags: ['Social Campaign'],
-                idea: 'Two creative directions tested for the same ongoing Durable collaboration: an "Explorer" theme and a "Girl, Relax" theme, run side by side to see which story resonates.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects'],
-                useCase: 'Test new creative and drive clicks.',
+                objective: ['Test new creative directions', 'Drive clicks for an ongoing collaboration.'],
+                deliverables: '5x high quality videos, 9:16',
                 timeline: '7 working days.',
+                challenge: 'Keep an ongoing Durable collaboration feeling fresh by testing genuinely different creative directions instead of repeating the same format.',
+                solution: [
+                    'Ran two themes side by side. "Explorer" and "Girl, Relax" tell very different stories, so performance data shows which angle the audience actually responds to.',
+                    'Multiple cuts per theme. Explorer and Girl, Relax each got several variations, giving a wide enough spread to compare pacing and hooks, not just concepts.',
+                    'Built for an always-on collaboration. Structured the batch so new variations can keep feeding the same ongoing partnership.'
+                ],
+                result: 'Five videos delivered in 7 working days, giving Durable a direct read on which creative direction to lean into next.',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_1-detail.mp4', orientation: 'vertical', label: 'Explorer 1' },
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_2-detail.mp4', orientation: 'vertical', label: 'Explorer 2' },
@@ -5945,10 +6103,16 @@
             koalendar: {
                 title: 'Koalendar',
                 tags: ['Landing Page Videos'],
-                idea: 'Two software explainer videos built to make a scheduling tool feel instantly understandable: no jargon, just a clear walkthrough of what it does and why it saves you time.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design', 'After Effects — motion graphics & UI callouts'],
-                useCase: 'Provide more information about the product.',
+                objective: ['Explain the product clearly', 'Support the landing page with video that reduces sign-up friction.'],
+                deliverables: '2x high quality videos, 16:9',
                 timeline: '10 working days, concept to final edit.',
+                challenge: 'Make a scheduling tool\'s value obvious in under a minute, for visitors who\'ll bounce from a landing page the moment something feels confusing.',
+                solution: [
+                    'No jargon, just a walkthrough. Built the script around what the tool actually does, screen by screen, instead of marketing language.',
+                    'Motion graphics and UI callouts. Used on-screen highlights to draw the eye exactly where it needs to go, so nothing requires pausing to understand.',
+                    'Two videos, two angles. One covers the core workflow, the other goes deeper on a specific use case, giving the landing page flexibility on what to show where.'
+                ],
+                result: 'Two explainer videos delivered in 10 working days, built to sit directly on Koalendar\'s landing page and support the sign-up flow.',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-1-detail.mp4', orientation: 'horizontal', label: 'Koalendar 1' },
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-2-detail.mp4', orientation: 'horizontal', label: 'Koalendar 2' }
@@ -5957,10 +6121,16 @@
             bonebroth: {
                 title: 'Himalayan Bone Broth',
                 tags: ['Social Campaign'],
-                idea: 'A trio of social-first cuts built to make bone broth actually look craveable: real texture, real steam, real "I want that" energy instead of a stiff product shot.',
-                tools: ['DaVinci Resolve — editing, color grading, sound design'],
-                useCase: 'Drive clicks and sales.',
+                objective: ['Drive clicks and sales', 'Make the product feel craveable, not clinical.'],
+                deliverables: '3x high quality videos, 9:16',
                 timeline: '7 working days, concept to final edit.',
+                challenge: 'Make bone broth, a product that usually gets shot like a supplement, actually look like something you want to eat.',
+                solution: [
+                    'Shot for texture and steam. Leaned into close, tactile shots that sell the product through craving, not ingredient callouts.',
+                    'Built three distinct cuts. Different angles and pacing per video, so the campaign could test what actually drives appetite on the scroll.',
+                    'Kept it social-first throughout. Framing and pacing built for sound-off, fast-scroll viewing, not a polished studio ad.'
+                ],
+                result: 'Three craveable, scroll-ready cuts delivered in 7 working days, built to drive both clicks and sales.',
                 videos: [
                     { src: 'Bonebroth1.mp4', orientation: 'vertical', label: 'Bone Broth 1' },
                     { src: 'Bonebroth2.mp4', orientation: 'vertical', label: 'Bone Broth 2' },
@@ -5985,29 +6155,21 @@
             document.getElementById('project-detail-title').textContent = p.title;
 
             const gallery = document.getElementById('project-detail-gallery');
-            const infoBlock = document.getElementById('project-detail-info');
-            const ideaHeading = document.getElementById('project-detail-idea-heading');
-            const sideBlock = document.getElementById('project-detail-side');
+            const restrictedNote = document.getElementById('project-detail-restricted-note');
+            const mainBlock = document.getElementById('project-detail-main');
 
             if (p.restricted) {
                 gallery.innerHTML = '';
-                gallery.style.display = 'none';
-                infoBlock.classList.add('restricted');
-                sideBlock.style.display = 'none';
-                ideaHeading.textContent = 'A quick note';
+                mainBlock.style.display = 'none';
+                restrictedNote.style.display = '';
                 document.getElementById('project-detail-idea').textContent = p.restrictedNote;
                 showPage('project-detail', 'none');
                 setProjectUrl(id, historyMode);
                 return;
             }
 
-            gallery.style.display = '';
-            infoBlock.classList.remove('restricted');
-            sideBlock.style.display = '';
-            ideaHeading.textContent = 'The Idea';
-            document.getElementById('project-detail-idea').textContent = p.idea;
-            document.getElementById('project-detail-usecase').textContent = p.useCase;
-            document.getElementById('project-detail-timeline').textContent = p.timeline;
+            mainBlock.style.display = '';
+            restrictedNote.style.display = 'none';
 
             const tagsWrap = document.getElementById('project-detail-tags');
             tagsWrap.innerHTML = '';
@@ -6018,17 +6180,31 @@
                 tagsWrap.appendChild(span);
             });
 
-            const toolsList = document.getElementById('project-detail-tools');
-            toolsList.innerHTML = '';
-            p.tools.forEach((t, i) => {
+            const objectiveList = document.getElementById('project-detail-objective');
+            objectiveList.innerHTML = '';
+            p.objective.forEach((o, i) => {
                 const li = document.createElement('li');
                 const n = document.createElement('span');
                 n.className = 'n';
                 n.textContent = String(i + 1).padStart(2, '0');
                 li.appendChild(n);
-                li.appendChild(document.createTextNode(t));
-                toolsList.appendChild(li);
+                li.appendChild(document.createTextNode(o));
+                objectiveList.appendChild(li);
             });
+
+            document.getElementById('project-detail-deliverables').textContent = p.deliverables;
+            document.getElementById('project-detail-timeline').textContent = p.timeline;
+            document.getElementById('project-detail-challenge').textContent = p.challenge;
+
+            const solutionList = document.getElementById('project-detail-solution');
+            solutionList.innerHTML = '';
+            p.solution.forEach(s => {
+                const li = document.createElement('li');
+                li.textContent = s;
+                solutionList.appendChild(li);
+            });
+
+            document.getElementById('project-detail-result').textContent = p.result;
 
             gallery.innerHTML = '';
             const hasHorizontal = p.videos.some(v => v.orientation === 'horizontal');
