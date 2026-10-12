@@ -2500,46 +2500,54 @@
             }
         }
 
-        /* Clients Section */
-        .clients-section {
+        /* Trusted By - Logo Marquee */
+        .trusted-by-section {
+            padding: 1rem 0 4rem;
+        }
+
+        .trusted-by-label {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-marquee {
             position: relative;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 5rem 3rem 6rem;
+            overflow: hidden;
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
         }
 
-        .clients-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 3rem;
-            right: 3rem;
-            height: 1px;
-            background: rgba(28, 27, 27, 0.1);
+        .logo-marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: logo-marquee-scroll 32s linear infinite;
         }
 
-        .clients-text {
-            font-family: 'Aeonik', sans-serif;
-            font-size: clamp(1.3rem, 3vw, 2.5rem);
-            font-weight: 300;
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-            color: var(--text-primary);
-            max-width: 1100px;
-            margin-top: 1.5rem;
+        .logo-marquee-track img {
+            height: 28px;
+            width: auto;
+            margin: 0 3rem;
+            opacity: 0.55;
+            flex-shrink: 0;
         }
 
-        .client {
-            color: inherit;
-            text-decoration: none;
-            cursor: none;
-            transition: color 0.25s;
-            border-bottom: 1px solid transparent;
+        .logo-marquee:hover .logo-marquee-track {
+            animation-play-state: paused;
         }
 
-        .client:hover {
-            color: var(--accent-green-dark);
-            border-bottom-color: var(--accent-green-dark);
+        @keyframes logo-marquee-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 900px) {
+            .logo-marquee-track img {
+                height: 22px;
+                margin: 0 1.75rem;
+            }
         }
 
         .typing-cursor {
@@ -4358,6 +4366,33 @@
             </div>
         </section>
 
+        <!-- Trusted By - Logo Marquee -->
+        <section class="trusted-by-section" id="clients">
+            <p class="section-label reveal trusted-by-label">Trusted By</p>
+            <div class="logo-marquee">
+                <div class="logo-marquee-track">
+                    <img src="client-cokezero.svg" alt="Coca-Cola">
+                    <img src="client-durable.svg" alt="Durable">
+                    <img src="client-koalendar.png" alt="Koalendar">
+                    <img src="client-fiverr.svg" alt="Fiverr">
+                    <img src="client-maggi.svg" alt="Maggi">
+                    <img src="client-polarpro.png" alt="PolarPro">
+                    <img src="client-bazaart.png" alt="Bazaart">
+                    <img src="client-headway.png" alt="Headway">
+                    <img src="client-lifesum.svg" alt="Lifesum">
+                    <img src="client-cokezero.svg" alt="" aria-hidden="true">
+                    <img src="client-durable.svg" alt="" aria-hidden="true">
+                    <img src="client-koalendar.png" alt="" aria-hidden="true">
+                    <img src="client-fiverr.svg" alt="" aria-hidden="true">
+                    <img src="client-maggi.svg" alt="" aria-hidden="true">
+                    <img src="client-polarpro.png" alt="" aria-hidden="true">
+                    <img src="client-bazaart.png" alt="" aria-hidden="true">
+                    <img src="client-headway.png" alt="" aria-hidden="true">
+                    <img src="client-lifesum.svg" alt="" aria-hidden="true">
+                </div>
+            </div>
+        </section>
+
         <!-- Tagline Section -->
         <section class="tagline-section" id="tagline">
             <p class="tagline-text reveal">
@@ -4617,13 +4652,6 @@
         </section>
 
         <!-- Clients Section -->
-        <section class="clients-section" id="clients">
-            <p class="section-label reveal">Trusted By</p>
-            <p class="clients-text reveal">
-                <a href="javascript:void(0)" class="client" onclick="openProject('cokezero')">Coke Zero</a>, <a href="javascript:void(0)" class="client" onclick="openProject('durable')">Durable</a>, <a href="javascript:void(0)" class="client" onclick="openProject('koalendar')">Koalendar</a>, <a href="javascript:void(0)" class="client" onclick="openProject('fiverr')">Fiverr</a>, <a href="javascript:void(0)" class="client" onclick="openProject('maggie')">Maggie</a> and <a href="javascript:void(0)" class="client" onclick="openProject('polarpro')">PolarPro</a>.
-            </p>
-        </section>
-
         <!-- Contact / Footer CTA -->
         <section class="footer-cta" id="book">
             <div class="footer-cta-top">
