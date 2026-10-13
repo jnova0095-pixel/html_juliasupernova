@@ -1216,6 +1216,63 @@
             color: var(--text-secondary);
         }
 
+        /* Horizontal arrow carousel, 3 cells at a time, for galleries with
+           too many videos to show as a clean grid. Lives inside the same
+           gallery column width as every other project page. */
+        .project-gallery.carousel3 {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pg-carousel-track {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .pg-carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-gallery.carousel3 .project-gallery-cell {
+            flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
+            min-width: 0;
+            scroll-snap-align: start;
+        }
+
+        .pg-carousel-arrow {
+            flex: 0 0 auto;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border-radius: 50%;
+            border: 1px solid var(--text-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .pg-carousel-arrow svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .pg-carousel-arrow:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
         /* Info section: media (left) + objective/deliverables/timeline (right).
            Flex (not grid) so the sidebar hugs however wide the video actually
            renders, instead of sitting at the edge of a fixed-ratio column
@@ -1362,6 +1419,18 @@
             color: var(--text-primary);
         }
 
+        /* Client work gets its own accent so it reads apart from spec work
+           at a glance, using the site's existing orange accent. */
+        .d-tag-client {
+            background: rgba(255, 107, 53, 0.18);
+        }
+
+        /* Inline highlighted stat within a result paragraph, e.g. "230K+". */
+        .pd-stat-inline {
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
         .pd-list {
             list-style: none;
             margin: 0;
@@ -1468,6 +1537,38 @@
 
             .project-gallery:not(.single) .project-gallery-cell.horizontal {
                 flex-basis: 92%;
+            }
+
+            /* carousel3 overrides the generic multi-video rule above: the
+               arrows disappear (swipe replaces them on mobile) and the
+               inner track itself becomes the single scroll container,
+               instead of nesting two scrollable elements. */
+            .project-gallery.carousel3 {
+                display: block;
+            }
+
+            .pg-carousel-arrow {
+                display: none;
+            }
+
+            .project-gallery.carousel3 .pg-carousel-track {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+                gap: 1rem;
+                max-width: 100%;
+                padding-bottom: 0.25rem;
+            }
+
+            .project-gallery.carousel3 .pg-carousel-track::-webkit-scrollbar {
+                display: none;
+            }
+
+            .project-gallery.carousel3 .project-gallery-cell {
+                flex: 0 0 82%;
+                scroll-snap-align: center;
             }
 
             .pd-top {
@@ -6287,23 +6388,25 @@
             },
             durable: {
                 title: 'Durable',
-                tags: ['Social Campaign'],
-                objective: ['Test new creative directions', 'Drive clicks for an ongoing collaboration.'],
-                deliverables: '5x high quality videos, 9:16',
-                timeline: '7 working days.',
-                challenge: 'Keep an ongoing Durable collaboration feeling fresh by testing genuinely different creative directions instead of repeating the same format.',
+                tags: ['Client Work · Returning Client'],
+                tagStyle: 'client',
+                objective: ['Drive sign-ups through paid social', 'Build founder trust through story, not a demo'],
+                deliverables: '5x narrative ad films, 9:16, across 3 campaigns',
+                timeline: 'About 1 week per 2 films, over 3 months',
+                challenge: 'Sell an AI website builder without a product demo, in my own voice, as something I\'d actually post on my page.',
                 solution: [
-                    'Ran two themes side by side. "Explorer" and "Girl, Relax" tell very different stories, so performance data shows which angle the audience actually responds to.',
-                    'Multiple cuts per theme. Explorer and Girl, Relax each got several variations, giving a wide enough spread to compare pacing and hooks, not just concepts.',
-                    'Built for an always-on collaboration. Structured the batch so new variations can keep feeding the same ongoing partnership.'
+                    '**Metaphor over features.** The *Explorer series* frames starting a business as being lost in the woods or stranded on an island, with Durable as the way out.',
+                    '**The problem, made visible.** *Chained to the desk* shows the always-online founder who can\'t step away, and why automation matters.',
+                    '**Characters to test new angles.** *Girl, relax* pits a burnt-out founder doing everything by hand against a calm one who automates, so the product sells through contrast.'
                 ],
-                result: 'Five videos delivered in 7 working days, giving Durable a direct read on which creative direction to lean into next.',
+                result: '[[230K+]] views and a [[4.51%]] average CTR on the Explorer series. Durable came back 3 times.',
+                galleryStyle: 'carousel3',
                 videos: [
-                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_1-detail.mp4', orientation: 'vertical', label: 'Explorer 1' },
-                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_2-detail.mp4', orientation: 'vertical', label: 'Explorer 2' },
-                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_3-detail.mp4', orientation: 'vertical', label: 'Durable V2' },
-                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_4-detail.mp4', orientation: 'vertical', label: 'Girl, Relax 1' },
-                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_5-detail.mp4', orientation: 'vertical', label: 'Girl, Relax 2' }
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_1-detail.mp4', orientation: 'vertical', label: 'Explorer series: Lost in the woods', caption: 'Explorer series: Lost in the woods' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_2-detail.mp4', orientation: 'vertical', label: 'Explorer series: Deserted island', caption: 'Explorer series: Deserted island' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_3-detail.mp4', orientation: 'vertical', label: 'Chained to the desk', caption: 'Chained to the desk' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_4-detail.mp4', orientation: 'vertical', label: 'Girl, relax: Part 1', caption: 'Girl, relax: Part 1' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/Durable_5-detail.mp4', orientation: 'vertical', label: 'Girl, relax: Part 2', caption: 'Girl, relax: Part 2' }
                 ]
             },
             koalendar: {
@@ -6372,20 +6475,38 @@
             durable2: 'durable'
         };
 
-        // Renders a solution-bullet string into an element, turning
-        // **text** into a bold lead phrase. Content is all first-party
-        // copy from CAMPAIGNS, not user input, so a simple split is safe.
-        function renderBoldText(el, text) {
-            const parts = text.split('**');
-            parts.forEach((part, i) => {
-                if (i % 2 === 1) {
-                    const strong = document.createElement('strong');
-                    strong.textContent = part;
-                    el.appendChild(strong);
-                } else if (part) {
-                    el.appendChild(document.createTextNode(part));
+        // Renders a solution/result string into an element: **text** is a
+        // bold lead phrase, *text* is an italicized reference (e.g. a video
+        // title), and [[text]] is a visually highlighted inline stat.
+        // Content is all first-party copy from CAMPAIGNS, not user input,
+        // so this simple tokenizer is safe.
+        function renderRichText(el, text) {
+            const re = /\*\*(.+?)\*\*|\*(.+?)\*|\[\[(.+?)\]\]/g;
+            let lastIndex = 0;
+            let match;
+            while ((match = re.exec(text)) !== null) {
+                if (match.index > lastIndex) {
+                    el.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
                 }
-            });
+                if (match[1] !== undefined) {
+                    const strong = document.createElement('strong');
+                    strong.textContent = match[1];
+                    el.appendChild(strong);
+                } else if (match[2] !== undefined) {
+                    const em = document.createElement('em');
+                    em.textContent = match[2];
+                    el.appendChild(em);
+                } else if (match[3] !== undefined) {
+                    const stat = document.createElement('strong');
+                    stat.className = 'pd-stat-inline';
+                    stat.textContent = match[3];
+                    el.appendChild(stat);
+                }
+                lastIndex = re.lastIndex;
+            }
+            if (lastIndex < text.length) {
+                el.appendChild(document.createTextNode(text.slice(lastIndex)));
+            }
         }
 
         function openProject(id, historyMode) {
@@ -6417,7 +6538,7 @@
             tagsWrap.innerHTML = '';
             p.tags.forEach(tag => {
                 const span = document.createElement('span');
-                span.className = 'd-tag';
+                span.className = 'd-tag' + (p.tagStyle === 'client' ? ' d-tag-client' : '');
                 span.textContent = tag;
                 tagsWrap.appendChild(span);
             });
@@ -6442,15 +6563,29 @@
             solutionList.innerHTML = '';
             p.solution.forEach(s => {
                 const li = document.createElement('li');
-                renderBoldText(li, s);
+                renderRichText(li, s);
                 solutionList.appendChild(li);
             });
 
-            document.getElementById('project-detail-result').textContent = p.result;
+            const resultEl = document.getElementById('project-detail-result');
+            resultEl.innerHTML = '';
+            renderRichText(resultEl, p.result);
 
             gallery.innerHTML = '';
             const hasHorizontal = p.videos.some(v => v.orientation === 'horizontal');
-            gallery.className = 'project-gallery' + (p.videos.length === 1 ? ' single' : '') + (hasHorizontal ? ' has-horizontal' : '');
+            const isCarousel3 = p.galleryStyle === 'carousel3';
+            gallery.className = 'project-gallery'
+                + (p.videos.length === 1 ? ' single' : '')
+                + (hasHorizontal ? ' has-horizontal' : '')
+                + (isCarousel3 ? ' carousel3' : '');
+
+            // carousel3 cells go into a scrollable track with arrow buttons
+            // either side; the plain grid appends cells directly.
+            const track = isCarousel3 ? document.createElement('div') : gallery;
+            if (isCarousel3) {
+                track.className = 'pg-carousel-track';
+            }
+
             p.videos.forEach(v => {
                 const cell = document.createElement('div');
                 cell.className = 'project-gallery-cell' + (v.orientation === 'horizontal' ? ' horizontal' : '');
@@ -6479,8 +6614,34 @@
                     caption.textContent = v.caption;
                     cell.appendChild(caption);
                 }
-                gallery.appendChild(cell);
+                track.appendChild(cell);
             });
+
+            if (isCarousel3) {
+                const prev = document.createElement('button');
+                prev.type = 'button';
+                prev.className = 'pg-carousel-arrow pg-carousel-prev';
+                prev.setAttribute('aria-label', 'Previous video');
+                prev.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>';
+
+                const next = document.createElement('button');
+                next.type = 'button';
+                next.className = 'pg-carousel-arrow pg-carousel-next';
+                next.setAttribute('aria-label', 'Next video');
+                next.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>';
+
+                function scrollByOneCell(direction) {
+                    const cell = track.querySelector('.project-gallery-cell');
+                    const step = cell ? cell.getBoundingClientRect().width + 20 : track.clientWidth / 3;
+                    track.scrollBy({ left: direction * step, behavior: 'smooth' });
+                }
+                prev.addEventListener('click', () => scrollByOneCell(-1));
+                next.addEventListener('click', () => scrollByOneCell(1));
+
+                gallery.appendChild(prev);
+                gallery.appendChild(track);
+                gallery.appendChild(next);
+            }
 
             showPage('project-detail', 'none');
             setProjectUrl(id, historyMode);
