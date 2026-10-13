@@ -1120,6 +1120,38 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Deliberately NOT .pill-btn: this button skips the custom cursor
+           and its arrow-wrap hover animation entirely (see the mouseover
+           handler), so it needs its own plain, predictable styling with a
+           real native cursor instead of relying on the site-wide one. */
+        .back-to-work-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.55rem 1.1rem;
+            border: 1px solid var(--text-primary);
+            border-radius: var(--radius-full);
+            background: transparent;
+            font-family: 'Aeonik', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .back-to-work-btn svg {
+            width: 10px;
+            height: 10px;
+        }
+
+        .back-to-work-btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
         .project-detail-title {
             font-family: 'Aeonik', sans-serif;
             font-weight: 700;
@@ -5373,7 +5405,7 @@
     <div id="project-detail" class="page">
         <div class="project-detail-container">
             <div class="project-detail-back">
-                <button type="button" class="pill-btn" onclick="showPage('home')">
+                <button type="button" class="back-to-work-btn" onclick="goHomeAndScrollTo('projects')">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 12H7M11 7l-5 5 5 5"/></svg>
                     Back to work
                 </button>
@@ -5640,6 +5672,17 @@
                 cursor.style.top = e.clientY + 'px';
             });
             document.addEventListener('mouseover', (e) => {
+                // The custom cursor's enlarged "expand" ring was visually
+                // swallowing this small pill button, making its actual
+                // clickable edges hard to judge — so this one button gets
+                // the plain native pointer cursor instead, with no overlay.
+                if (e.target.closest('.back-to-work-btn')) {
+                    cursor.style.opacity = '0';
+                    cursor.classList.remove('expand', 'view');
+                    label.textContent = '';
+                    return;
+                }
+                cursor.style.opacity = '';
                 const viewTarget = e.target.closest('.showreel-card');
                 const clickTarget = e.target.closest('a, button, .pill-btn, .showreel-card, .st-row, .sticker-dropzone, .sticker-modal-cancel, .sticker-modal-confirm, .sticker-modal-close, [onclick]');
                 if (viewTarget) {
