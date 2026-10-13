@@ -1964,6 +1964,15 @@
             transition: width 0.3s cubic-bezier(0.33,1,0.68,1), height 0.3s cubic-bezier(0.33,1,0.68,1), background 0.25s ease;
         }
 
+        /* Belt-and-suspenders backup for the mouseover-based hide in the
+           cursor JS: a pure CSS kill-switch that doesn't depend on any JS
+           event firing correctly, timing, or bubbling order. Whichever
+           mechanism applies first keeps the cursor hidden over this
+           button. */
+        body:has(.back-to-work-btn:hover) #cursor {
+            opacity: 0 !important;
+        }
+
         #cursor .cursor-label {
             font-family: 'Aeonik', sans-serif;
             font-size: 11px;
