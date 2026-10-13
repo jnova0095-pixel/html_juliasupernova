@@ -1116,7 +1116,14 @@
             padding: 6rem 3rem 4rem;
         }
 
+        /* width: fit-content, not a full-width block: without this, the
+           wrapper spans the whole row, so hovering anywhere to the right
+           of the visible pill still shows a cursor (normal, not hidden —
+           this div isn't .back-to-work-btn) but isn't actually clickable,
+           which read as "the button just sits there" until the real
+           button underneath was found by moving further left. */
         .project-detail-back {
+            width: fit-content;
             margin-bottom: 1.5rem;
         }
 
@@ -1962,6 +1969,15 @@
             align-items: center;
             justify-content: center;
             transition: width 0.3s cubic-bezier(0.33,1,0.68,1), height 0.3s cubic-bezier(0.33,1,0.68,1), background 0.25s ease;
+        }
+
+        /* Belt-and-suspenders backup for the mouseover-based hide in the
+           cursor JS: a pure CSS kill-switch that doesn't depend on any JS
+           event firing correctly, timing, or bubbling order. Whichever
+           mechanism applies first keeps the cursor hidden over this
+           button. */
+        body:has(.back-to-work-btn:hover) #cursor {
+            opacity: 0 !important;
         }
 
         #cursor .cursor-label {
