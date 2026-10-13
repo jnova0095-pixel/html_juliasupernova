@@ -1178,6 +1178,10 @@
             max-width: 720px;
         }
 
+        .project-gallery-cell.horizontal {
+            grid-column: 1 / -1;
+        }
+
         .project-gallery-item {
             position: relative;
             border-radius: var(--radius-video);
@@ -1188,7 +1192,6 @@
 
         .project-gallery-item.horizontal {
             aspect-ratio: 16/9;
-            grid-column: 1 / -1;
         }
 
         .project-gallery-item video {
@@ -1197,6 +1200,13 @@
             object-fit: contain;
             background: #000;
             display: block;
+        }
+
+        .project-gallery-caption {
+            margin-top: 0.6rem;
+            font-family: 'Aeonik', 'Helvetica Neue', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
 
         /* Info section: media (left) + objective/deliverables/timeline (right).
@@ -1424,6 +1434,33 @@
             .project-gallery.has-horizontal,
             .project-gallery.single.has-horizontal {
                 max-width: 480px;
+            }
+
+            /* Multi-video galleries become a swipeable, one-at-a-time
+               carousel on mobile instead of a tall vertical stack. */
+            .project-gallery:not(.single) {
+                display: flex;
+                grid-template-columns: none;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                max-width: 100%;
+                gap: 1rem;
+                padding-bottom: 0.25rem;
+            }
+
+            .project-gallery:not(.single)::-webkit-scrollbar {
+                display: none;
+            }
+
+            .project-gallery:not(.single) .project-gallery-cell {
+                flex: 0 0 82%;
+                scroll-snap-align: center;
+            }
+
+            .project-gallery:not(.single) .project-gallery-cell.horizontal {
+                flex-basis: 92%;
             }
 
             .pd-top {
@@ -6097,9 +6134,9 @@
                 timeline: '10 working days, concept to final edit.',
                 challenge: 'Show what it actually feels like when your brain is a mess of tabs, notes and half-finished to-dos, and Notion is the thing that closes them all.',
                 solution: [
-                    'Bold, chaotic-to-calm animation. I built a sequence that visualizes mental clutter as literal moving shapes and clears it in rhythm with the voiceover.',
-                    'Matched pace to feeling. Fast, jittery cuts early on settle into clean, confident motion once Notion appears, so the edit itself tells the story.',
-                    'Sound as punctuation. Every beat of clarity lands on a sound cue, so the "aha" moment is felt, not just seen.'
+                    '**Bold, chaotic-to-calm animation.** I built a sequence that visualizes mental clutter as literal moving shapes and clears it in rhythm with the voiceover.',
+                    '**Matched pace to feeling.** Fast, jittery cuts early on settle into clean, confident motion once Notion appears, so the edit itself tells the story.',
+                    '**Sound as punctuation.** Every beat of clarity lands on a sound cue, so the "aha" moment is felt, not just seen.'
                 ],
                 result: 'A spec piece built to show range: bold motion design paired with a clear, simple message.',
                 videos: [
@@ -6114,10 +6151,10 @@
                 timeline: '7 working days, concept to final edit.',
                 challenge: 'Show Headspace taking you somewhere calm in seconds, across four very different locations, without travel, location fees or a big crew.',
                 solution: [
-                    'One studio, four worlds. I shot on green screen and hand-animated each environment in 2D in After Effects: forest, mountain, beach and lake. A single shoot day replaced four location shoots.',
-                    'The app as the trigger. Each escape starts with a tap on the phone, so Headspace drives the story instead of appearing only as a logo at the end.',
-                    'Built from their brand. I studied Headspace\'s social channels and matched their soft, illustrated, calming tone, so the piece feels like it could run on their feed tomorrow.',
-                    'Sound does half the work. I did the full sound design myself, taking the viewer from office noise to calm nature sound to carry the shift in mood.'
+                    '**One studio, four worlds.** I shot on green screen and hand-animated each environment in 2D in After Effects: forest, mountain, beach and lake. A single shoot day replaced four location shoots.',
+                    '**The app as the trigger.** Each escape starts with a tap on the phone, so Headspace drives the story instead of appearing only as a logo at the end.',
+                    '**Built from their brand.** I studied Headspace\'s social channels and matched their soft, illustrated, calming tone, so the piece feels like it could run on their feed tomorrow.',
+                    '**Sound does half the work.** I did the full sound design myself, taking the viewer from office noise to calm nature sound to carry the shift in mood.'
                 ],
                 result: 'Concept to final cut in 7 working days. Posted on my socials, where it led to new client work.',
                 videos: [
@@ -6293,18 +6330,21 @@
             kfconcept: {
                 title: 'K&F Concept',
                 tags: ['Spec work'],
-                objective: ['Brand awareness', 'Drive long-term engagement.'],
-                deliverables: '2x high quality videos, 9:16',
-                timeline: 'Details coming soon.',
-                challenge: 'Show how K&F Concept\'s gear actually gets used in the field, instead of just a studio product shot.',
+                objective: ['Drive clicks and sales of the Nano-X ND filters', 'Give the brand a ready-to-test ad set'],
+                deliverables: '4x vertical ads, 9:16 (6s, 12s, 16s, 30s)',
+                timeline: '4 days, one shoot',
+                challenge: 'Turn a single shoot of the Nano-X Magnetic ND filters into four ads different enough to test against each other.',
                 solution: [
-                    'Instructions, made watchable. Turned a straightforward how-to into a piece with enough pace and personality to hold attention.',
-                    'One tool, one clear job. Focused the second cut on a single accessory so its purpose is obvious in seconds, not explained in a paragraph.'
+                    '**One shoot, four hooks.** Curiosity, visual, trend and story-led angles, so the brand learns what its audience responds to.',
+                    '**Results as the payoff.** Every cut builds to what the filter does to the shot, which is the reason to buy.',
+                    '**Clean and sound-led.** A minimal white set keeps the product the hero, and custom sound design times each reveal.'
                 ],
-                result: 'Two spec pieces built to show the gear in actual use, not just on a shelf.',
+                result: 'Four ready-to-post ads from one shoot, covering every length from a 6s bumper to a 30s story.',
                 videos: [
-                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-instructions-detail.mp4', orientation: 'vertical', label: 'Instructions' },
-                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-one-tool-detail.mp4', orientation: 'vertical', label: 'One Tool' }
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-extra-1-detail.mp4', orientation: 'vertical', label: 'Just a piece of glass', caption: 'Just a piece of glass · 12s' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-instructions-detail.mp4', orientation: 'vertical', label: 'How to use an ND filter', caption: 'How to use an ND filter · 16s' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-extra-2-detail.mp4', orientation: 'vertical', label: 'Gear vs. result', caption: 'Gear vs. result · 6s' },
+                    { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-one-tool-detail.mp4', orientation: 'vertical', label: 'The one tool I\'d keep', caption: 'The one tool I\'d keep · 30s' }
                 ]
             }
         };
@@ -6315,6 +6355,22 @@
             maggie2: 'maggie',
             durable2: 'durable'
         };
+
+        // Renders a solution-bullet string into an element, turning
+        // **text** into a bold lead phrase. Content is all first-party
+        // copy from CAMPAIGNS, not user input, so a simple split is safe.
+        function renderBoldText(el, text) {
+            const parts = text.split('**');
+            parts.forEach((part, i) => {
+                if (i % 2 === 1) {
+                    const strong = document.createElement('strong');
+                    strong.textContent = part;
+                    el.appendChild(strong);
+                } else if (part) {
+                    el.appendChild(document.createTextNode(part));
+                }
+            });
+        }
 
         function openProject(id, historyMode) {
             historyMode = historyMode || 'push';
@@ -6370,7 +6426,7 @@
             solutionList.innerHTML = '';
             p.solution.forEach(s => {
                 const li = document.createElement('li');
-                li.textContent = s;
+                renderBoldText(li, s);
                 solutionList.appendChild(li);
             });
 
@@ -6380,6 +6436,8 @@
             const hasHorizontal = p.videos.some(v => v.orientation === 'horizontal');
             gallery.className = 'project-gallery' + (p.videos.length === 1 ? ' single' : '') + (hasHorizontal ? ' has-horizontal' : '');
             p.videos.forEach(v => {
+                const cell = document.createElement('div');
+                cell.className = 'project-gallery-cell' + (v.orientation === 'horizontal' ? ' horizontal' : '');
                 const item = document.createElement('div');
                 item.className = 'project-gallery-item' + (v.orientation === 'horizontal' ? ' horizontal' : '');
                 const video = document.createElement('video');
@@ -6398,7 +6456,14 @@
                 source.type = 'video/mp4';
                 video.appendChild(source);
                 item.appendChild(video);
-                gallery.appendChild(item);
+                cell.appendChild(item);
+                if (v.caption) {
+                    const caption = document.createElement('p');
+                    caption.className = 'project-gallery-caption';
+                    caption.textContent = v.caption;
+                    cell.appendChild(caption);
+                }
+                gallery.appendChild(cell);
             });
 
             showPage('project-detail', 'none');
