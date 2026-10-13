@@ -1283,12 +1283,15 @@
             color: var(--bg-primary);
         }
 
-        /* Vertical stack for galleries with exactly 2 videos — no "doesn't
-           divide evenly" problem like carousel3, but still sized like
-           Headspace/K&F instead of squeezed into a 2-column grid. */
+        /* Side-by-side pair for galleries with exactly 2 videos — no
+           "doesn't divide evenly" problem like carousel3, and sized like
+           Headspace/K&F instead of squeezed into a narrow 2-column grid.
+           (Container width is unconstrained below, after the 560px cap
+           that applies to every other multi-video gallery.) */
         .project-gallery.stacked {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
             gap: 1.25rem;
         }
 
@@ -1298,10 +1301,9 @@
             max-width: 100%;
         }
 
-        .project-gallery.stacked .project-gallery-item.horizontal {
+        .project-gallery.stacked.has-horizontal .project-gallery-item {
             height: auto;
-            width: 100%;
-            max-width: 560px;
+            width: min(380px, 100%);
         }
 
         /* Info section: media (left) + objective/deliverables/timeline (right).
@@ -1330,6 +1332,14 @@
         .pd-top .project-gallery:not(.single),
         .pd-top .project-gallery.single.has-horizontal {
             width: min(560px, 100%);
+        }
+
+        /* The 2-video "pair" gallery needs room for two full Headspace-size
+           cards side by side (~672px), so it opts out of the 560px cap set
+           above for every other multi-video gallery. */
+        .pd-top .project-gallery.stacked {
+            width: auto;
+            max-width: 100%;
         }
 
         /* Cap the hero video by height (not column width) so a single
@@ -1612,32 +1622,22 @@
                 max-width: 100%;
             }
 
-            /* Stacked galleries (exactly 2 videos) stay a plain vertical
-               stack on mobile too — 2 videos don't need swipe/carousel
-               complexity. */
+            /* The desktop side-by-side pair falls back to the same
+               swipeable one-at-a-time treatment as every other multi-video
+               gallery on mobile (the generic .project-gallery:not(.single)
+               rules above already cover it) — flex-wrap: nowrap undoes the
+               desktop pair's wrapping (which would otherwise stack the two
+               82%-wide cards instead of letting them scroll side by side),
+               and the item reset stops an 82%-wide card from also trying
+               to be 580px tall. */
             .project-gallery.stacked {
-                display: flex;
-                flex-direction: column;
-                overflow-x: visible;
-                scroll-snap-type: none;
-                gap: 1.25rem;
-            }
-
-            .project-gallery.stacked .project-gallery-cell {
-                flex: 0 0 auto;
-                scroll-snap-align: none;
+                flex-wrap: nowrap;
             }
 
             .project-gallery.stacked .project-gallery-item {
                 height: auto;
                 width: 100%;
-                max-width: 320px;
-                margin: 0 auto;
-            }
-
-            .project-gallery.stacked .project-gallery-item.horizontal {
                 max-width: 100%;
-                margin: 0;
             }
 
             .pd-top {
