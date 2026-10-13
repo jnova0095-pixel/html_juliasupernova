@@ -1241,10 +1241,20 @@
             display: none;
         }
 
+        /* Each cell is sized the same way as a single-video page's hero
+           (height-driven, auto width via the 9:16 aspect ratio) rather
+           than squeezed to a fraction of the row — Julia wants these to
+           read at the same size as Headspace/K&F, just reachable one at
+           a time via the arrows since 5 doesn't grid evenly. */
         .project-gallery.carousel3 .project-gallery-cell {
-            flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
-            min-width: 0;
+            flex: 0 0 auto;
             scroll-snap-align: start;
+        }
+
+        .project-gallery.carousel3 .project-gallery-item {
+            height: min(58vh, 580px);
+            width: auto;
+            max-width: 100%;
         }
 
         .pg-carousel-arrow {
@@ -1569,6 +1579,16 @@
             .project-gallery.carousel3 .project-gallery-cell {
                 flex: 0 0 82%;
                 scroll-snap-align: center;
+            }
+
+            /* Reset the desktop height-driven sizing — on mobile this goes
+               back to width-percentage-driven like every other multi-video
+               gallery, otherwise each 82%-wide card would also try to be
+               580px tall. */
+            .project-gallery.carousel3 .project-gallery-item {
+                height: auto;
+                width: 100%;
+                max-width: 100%;
             }
 
             .pd-top {
