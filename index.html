@@ -1116,7 +1116,14 @@
             padding: 6rem 3rem 4rem;
         }
 
+        /* width: fit-content, not a full-width block: without this, the
+           wrapper spans the whole row, so hovering anywhere to the right
+           of the visible pill still shows a cursor (normal, not hidden —
+           this div isn't .back-to-work-btn) but isn't actually clickable,
+           which read as "the button just sits there" until the real
+           button underneath was found by moving further left. */
         .project-detail-back {
+            width: fit-content;
             margin-bottom: 1.5rem;
         }
 
