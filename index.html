@@ -1241,10 +1241,20 @@
             display: none;
         }
 
+        /* Each cell is sized the same way as a single-video page's hero
+           (height-driven, auto width via the 9:16 aspect ratio) rather
+           than squeezed to a fraction of the row — Julia wants these to
+           read at the same size as Headspace/K&F, just reachable one at
+           a time via the arrows since 5 doesn't grid evenly. */
         .project-gallery.carousel3 .project-gallery-cell {
-            flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
-            min-width: 0;
+            flex: 0 0 auto;
             scroll-snap-align: start;
+        }
+
+        .project-gallery.carousel3 .project-gallery-item {
+            height: min(58vh, 580px);
+            width: auto;
+            max-width: 100%;
         }
 
         .pg-carousel-arrow {
@@ -1273,6 +1283,29 @@
             color: var(--bg-primary);
         }
 
+        /* Side-by-side pair for galleries with exactly 2 videos — no
+           "doesn't divide evenly" problem like carousel3, and sized like
+           Headspace/K&F instead of squeezed into a narrow 2-column grid.
+           (Container width is unconstrained below, after the 560px cap
+           that applies to every other multi-video gallery.) */
+        .project-gallery.stacked {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        .project-gallery.stacked .project-gallery-item {
+            height: min(58vh, 580px);
+            width: auto;
+            max-width: 100%;
+        }
+
+        .project-gallery.stacked.has-horizontal .project-gallery-item {
+            height: auto;
+            width: min(380px, 100%);
+        }
+
         /* Info section: media (left) + objective/deliverables/timeline (right).
            Flex (not grid) so the sidebar hugs however wide the video actually
            renders, instead of sitting at the edge of a fixed-ratio column
@@ -1299,6 +1332,14 @@
         .pd-top .project-gallery:not(.single),
         .pd-top .project-gallery.single.has-horizontal {
             width: min(560px, 100%);
+        }
+
+        /* The 2-video "pair" gallery needs room for two full Headspace-size
+           cards side by side (~672px), so it opts out of the 560px cap set
+           above for every other multi-video gallery. */
+        .pd-top .project-gallery.stacked {
+            width: auto;
+            max-width: 100%;
         }
 
         /* Cap the hero video by height (not column width) so a single
@@ -1569,6 +1610,34 @@
             .project-gallery.carousel3 .project-gallery-cell {
                 flex: 0 0 82%;
                 scroll-snap-align: center;
+            }
+
+            /* Reset the desktop height-driven sizing — on mobile this goes
+               back to width-percentage-driven like every other multi-video
+               gallery, otherwise each 82%-wide card would also try to be
+               580px tall. */
+            .project-gallery.carousel3 .project-gallery-item {
+                height: auto;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* The desktop side-by-side pair falls back to the same
+               swipeable one-at-a-time treatment as every other multi-video
+               gallery on mobile (the generic .project-gallery:not(.single)
+               rules above already cover it) — flex-wrap: nowrap undoes the
+               desktop pair's wrapping (which would otherwise stack the two
+               82%-wide cards instead of letting them scroll side by side),
+               and the item reset stops an 82%-wide card from also trying
+               to be 580px tall. */
+            .project-gallery.stacked {
+                flex-wrap: nowrap;
+            }
+
+            .project-gallery.stacked .project-gallery-item {
+                height: auto;
+                width: 100%;
+                max-width: 100%;
             }
 
             .pd-top {
@@ -6364,6 +6433,7 @@
                     'Fiverr 2 leads with the hook, trimmed to earn the first three seconds in a crowded feed before it sells anything.'
                 ],
                 result: 'Delivered both cuts in 3 working days, giving Fiverr flexibility across owned and organic placements.',
+                galleryStyle: 'stacked',
                 videos: [
                     { src: 'Fiverr.mp4', orientation: 'vertical', label: 'Fiverr 1' },
                     { src: 'fiverr2-detail.mp4', orientation: 'vertical', label: 'Fiverr 2' }
@@ -6381,6 +6451,7 @@
                     'Kept both cuts social-first. No polished ad gloss, just pacing and framing that matches how people actually watch on their phone.'
                 ],
                 result: 'Two launch-ready cuts delivered in 5 working days, giving the brand a direct hook comparison to run with.',
+                galleryStyle: 'stacked',
                 videos: [
                     { src: 'maggie-v1-detail.mp4', orientation: 'vertical', label: 'Maggie 1' },
                     { src: 'maggie-v2-detail.mp4', orientation: 'vertical', label: 'Maggie 2' }
@@ -6440,6 +6511,7 @@
                     'Kept it social-first throughout. Framing and pacing built for sound-off, fast-scroll viewing, not a polished studio ad.'
                 ],
                 result: 'Three craveable, scroll-ready cuts delivered in 7 working days, built to drive both clicks and sales.',
+                galleryStyle: 'carousel3',
                 videos: [
                     { src: 'Bonebroth1.mp4', orientation: 'vertical', label: 'Bone Broth 1' },
                     { src: 'Bonebroth2.mp4', orientation: 'vertical', label: 'Bone Broth 2' },
@@ -6459,6 +6531,7 @@
                     '**Clean and sound-led.** A minimal white set keeps the product the hero, and custom sound design times each reveal.'
                 ],
                 result: 'Four ready-to-post ads from one shoot, covering every length from a 6s bumper to a 30s story.',
+                galleryStyle: 'carousel3',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-extra-1-detail.mp4', orientation: 'vertical', label: 'Just a piece of glass', caption: 'Just a piece of glass · 12s' },
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-instructions-detail.mp4', orientation: 'vertical', label: 'How to use an ND filter', caption: 'How to use an ND filter · 16s' },
@@ -6574,10 +6647,12 @@
             gallery.innerHTML = '';
             const hasHorizontal = p.videos.some(v => v.orientation === 'horizontal');
             const isCarousel3 = p.galleryStyle === 'carousel3';
+            const isStacked = p.galleryStyle === 'stacked';
             gallery.className = 'project-gallery'
                 + (p.videos.length === 1 ? ' single' : '')
                 + (hasHorizontal ? ' has-horizontal' : '')
-                + (isCarousel3 ? ' carousel3' : '');
+                + (isCarousel3 ? ' carousel3' : '')
+                + (isStacked ? ' stacked' : '');
 
             // carousel3 cells go into a scrollable track with arrow buttons
             // either side; the plain grid appends cells directly.
