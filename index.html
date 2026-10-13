@@ -1342,6 +1342,18 @@
             max-width: 100%;
         }
 
+        /* The carousel should show exactly 2 full, uncropped cards at a
+           time (same size as the "pair" gallery) with the rest reachable
+           via the arrows — not a 2nd card sliced in half. Card width is
+           derived from the same height-driven sizing as the item itself
+           (9:16 ratio), so the cap stays responsive instead of a fixed px
+           value: 2 cards + the gap between them + both arrow buttons +
+           their own gaps to the track. */
+        .pd-top .project-gallery.carousel3 {
+            width: auto;
+            max-width: calc(min(58vh, 580px) * 0.5625 * 2 + 1.25rem + 60px + 1rem);
+        }
+
         /* Cap the hero video by height (not column width) so a single
            vertical clip doesn't blow past the fold on a laptop screen */
         .pd-top .project-gallery.single:not(.has-horizontal) {
