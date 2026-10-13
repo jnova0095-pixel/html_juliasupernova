@@ -1283,6 +1283,27 @@
             color: var(--bg-primary);
         }
 
+        /* Vertical stack for galleries with exactly 2 videos — no "doesn't
+           divide evenly" problem like carousel3, but still sized like
+           Headspace/K&F instead of squeezed into a 2-column grid. */
+        .project-gallery.stacked {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .project-gallery.stacked .project-gallery-item {
+            height: min(58vh, 580px);
+            width: auto;
+            max-width: 100%;
+        }
+
+        .project-gallery.stacked .project-gallery-item.horizontal {
+            height: auto;
+            width: 100%;
+            max-width: 560px;
+        }
+
         /* Info section: media (left) + objective/deliverables/timeline (right).
            Flex (not grid) so the sidebar hugs however wide the video actually
            renders, instead of sitting at the edge of a fixed-ratio column
@@ -1589,6 +1610,34 @@
                 height: auto;
                 width: 100%;
                 max-width: 100%;
+            }
+
+            /* Stacked galleries (exactly 2 videos) stay a plain vertical
+               stack on mobile too — 2 videos don't need swipe/carousel
+               complexity. */
+            .project-gallery.stacked {
+                display: flex;
+                flex-direction: column;
+                overflow-x: visible;
+                scroll-snap-type: none;
+                gap: 1.25rem;
+            }
+
+            .project-gallery.stacked .project-gallery-cell {
+                flex: 0 0 auto;
+                scroll-snap-align: none;
+            }
+
+            .project-gallery.stacked .project-gallery-item {
+                height: auto;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .project-gallery.stacked .project-gallery-item.horizontal {
+                max-width: 100%;
+                margin: 0;
             }
 
             .pd-top {
@@ -6384,6 +6433,7 @@
                     'Fiverr 2 leads with the hook, trimmed to earn the first three seconds in a crowded feed before it sells anything.'
                 ],
                 result: 'Delivered both cuts in 3 working days, giving Fiverr flexibility across owned and organic placements.',
+                galleryStyle: 'stacked',
                 videos: [
                     { src: 'Fiverr.mp4', orientation: 'vertical', label: 'Fiverr 1' },
                     { src: 'fiverr2-detail.mp4', orientation: 'vertical', label: 'Fiverr 2' }
@@ -6401,6 +6451,7 @@
                     'Kept both cuts social-first. No polished ad gloss, just pacing and framing that matches how people actually watch on their phone.'
                 ],
                 result: 'Two launch-ready cuts delivered in 5 working days, giving the brand a direct hook comparison to run with.',
+                galleryStyle: 'stacked',
                 videos: [
                     { src: 'maggie-v1-detail.mp4', orientation: 'vertical', label: 'Maggie 1' },
                     { src: 'maggie-v2-detail.mp4', orientation: 'vertical', label: 'Maggie 2' }
@@ -6442,6 +6493,7 @@
                     'Two videos, two angles. One covers the core workflow, the other goes deeper on a specific use case, giving the landing page flexibility on what to show where.'
                 ],
                 result: 'Two explainer videos delivered in 10 working days, built to sit directly on Koalendar\'s landing page and support the sign-up flow.',
+                galleryStyle: 'stacked',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-1-detail.mp4', orientation: 'horizontal', label: 'Koalendar 1' },
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/koalendar-2-detail.mp4', orientation: 'horizontal', label: 'Koalendar 2' }
@@ -6460,6 +6512,7 @@
                     'Kept it social-first throughout. Framing and pacing built for sound-off, fast-scroll viewing, not a polished studio ad.'
                 ],
                 result: 'Three craveable, scroll-ready cuts delivered in 7 working days, built to drive both clicks and sales.',
+                galleryStyle: 'carousel3',
                 videos: [
                     { src: 'Bonebroth1.mp4', orientation: 'vertical', label: 'Bone Broth 1' },
                     { src: 'Bonebroth2.mp4', orientation: 'vertical', label: 'Bone Broth 2' },
@@ -6479,6 +6532,7 @@
                     '**Clean and sound-led.** A minimal white set keeps the product the hero, and custom sound design times each reveal.'
                 ],
                 result: 'Four ready-to-post ads from one shoot, covering every length from a 6s bumper to a 30s story.',
+                galleryStyle: 'carousel3',
                 videos: [
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-extra-1-detail.mp4', orientation: 'vertical', label: 'Just a piece of glass', caption: 'Just a piece of glass · 12s' },
                     { src: 'https://pub-8ba6caa391b54c4081c591b678b84bf6.r2.dev/k-f-instructions-detail.mp4', orientation: 'vertical', label: 'How to use an ND filter', caption: 'How to use an ND filter · 16s' },
@@ -6594,10 +6648,12 @@
             gallery.innerHTML = '';
             const hasHorizontal = p.videos.some(v => v.orientation === 'horizontal');
             const isCarousel3 = p.galleryStyle === 'carousel3';
+            const isStacked = p.galleryStyle === 'stacked';
             gallery.className = 'project-gallery'
                 + (p.videos.length === 1 ? ' single' : '')
                 + (hasHorizontal ? ' has-horizontal' : '')
-                + (isCarousel3 ? ' carousel3' : '');
+                + (isCarousel3 ? ' carousel3' : '')
+                + (isStacked ? ' stacked' : '');
 
             // carousel3 cells go into a scrollable track with arrow buttons
             // either side; the plain grid appends cells directly.
