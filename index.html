@@ -1354,6 +1354,20 @@
             max-width: calc(min(58vh, 580px) * 0.5625 * 2 + 1.25rem + 60px + 1rem);
         }
 
+        /* The widened carousel (above) can combine with the sidebar to
+           need more room than fits inside the 1100px page container,
+           before the existing 900px mobile breakpoint would otherwise
+           kick in — without this, flex-wrap drops the sidebar onto its
+           own row instead of cleanly stacking it below the gallery like
+           every narrower layout already does. Force that same clean
+           stack a bit earlier, just for carousel pages. */
+        @media (max-width: 1080px) {
+            .pd-top:has(> .project-gallery.carousel3) {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
         /* Cap the hero video by height (not column width) so a single
            vertical clip doesn't blow past the fold on a laptop screen */
         .pd-top .project-gallery.single:not(.has-horizontal) {
